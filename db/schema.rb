@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_28_161732) do
+ActiveRecord::Schema.define(version: 2022_02_28_164206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,19 +53,6 @@ ActiveRecord::Schema.define(version: 2022_02_28_161732) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.boolean "animal", default: false
-    t.boolean "garden", default: false
-    t.boolean "fitness", default: false
-    t.boolean "music", default: false
-    t.boolean "cooking", default: false
-    t.boolean "sports", default: false
-    t.boolean "community", default: false
-    t.boolean "webdev", default: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "favorites", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "project_id", null: false
@@ -90,12 +77,8 @@ ActiveRecord::Schema.define(version: 2022_02_28_161732) do
     t.boolean "sports", default: false
     t.boolean "community", default: false
     t.boolean "webdev", default: false
+    t.string "location"
     t.index ["user_id"], name: "index_projects_on_user_id"
-  end
-
-  create_table "skills", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -124,6 +107,10 @@ ActiveRecord::Schema.define(version: 2022_02_28_161732) do
     t.boolean "webdev", default: false
     t.boolean "writting", default: false
     t.boolean "tennis", default: false
+    t.text "bio"
+    t.string "username"
+    t.string "location"
+    t.date "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
