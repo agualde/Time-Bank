@@ -4,6 +4,10 @@ export default class extends Controller {
   static targets = ["image"]
 
   connect() {
-    console.log(this.contentTarget)
+    console.log("Hola")
+  }
+
+  revealBio() {
+    this.imageTarget.innerHTML("<p>This paragraph replaced the original div.</p>")
   }
 }
