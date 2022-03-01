@@ -7,4 +7,6 @@ class Project < ApplicationRecord
   validates :description, presence: true
   validates :description, length: { minimum: 250 }
   validates :location, presence: true
+
+  belongs_to :category
 end
