@@ -25,7 +25,7 @@ avatars = [
 ]
 
 5.times do
-  User.create!(
+  user = User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     username: Faker::Name.first_name,
@@ -35,24 +35,31 @@ avatars = [
     bio: Faker::Lorem.paragraph(sentence_count: 12),
     birthday:Faker::Date.birthday
   )
-#   file1 = URI.open(avatars.sample)
-#   file2 = URI.open(avatars.sample)
-#   file3 = URI.open(avatars.sample)
-# users.photos.attach([ { io: file1, filename: user.username, content_type: 'image/jpeg' },
-#                       { io: file1, filename: user.username, content_type: 'image/jpeg' },
-#                       { io: file1, filename: user.username, content_type: 'image/jpeg' }])
+  file1 = URI.open(avatars.sample)
+  user.photo.attach(io: file1, filename: user.username, content_type: 'image/jpeg')
 end
 
 puts "user #{User.count} created"
 
 10.times do
-    Project.create!(
+  project =  Project.create!(
     title: Faker::Lorem.paragraph(sentence_count: 1),
     description: Faker::Lorem.paragraph(sentence_count: 15),
     location: Faker::Address.city,
     category_id: 1,
     user_id: User.all.sample.id
   )
+  file1 = URI.open(avatars.sample)
+  file2 = URI.open(avatars.sample)
+  file3 = URI.open(avatars.sample)
+  file4 = URI.open(avatars.sample)
+  file5 = URI.open(avatars.sample)
+
+  project.photos.attach([{ io: file1, filename: project.title, content_type: 'image/jpeg' },
+    { io: file2, filename: project.title, content_type: 'image/jpeg' },
+    { io: file3, filename: project.title, content_type: 'image/jpeg' },
+    { io: file4, filename: project.title, content_type: 'image/jpeg' },
+    { io: file5, filename: project.title, content_type: 'image/jpeg' }])
 end
 
 puts "projects #{Project.count} created"
