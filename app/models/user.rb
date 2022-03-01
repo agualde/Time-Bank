@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :skills, through: :user_skills
 
   validates :username, presence: true
+  validates :username, uniqueness: true
   validates :bio, presence: true
   validates :bio, length: { minimum: 140 }
   validates :location, presence: true
