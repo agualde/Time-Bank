@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_28_164206) do
+ActiveRecord::Schema.define(version: 2022_03_01_103735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,14 +69,6 @@ ActiveRecord::Schema.define(version: 2022_02_28_164206) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "animal", default: false
-    t.boolean "garden", default: false
-    t.boolean "fitness", default: false
-    t.boolean "music", default: false
-    t.boolean "cooking", default: false
-    t.boolean "sports", default: false
-    t.boolean "community", default: false
-    t.boolean "webdev", default: false
     t.string "location"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
@@ -92,21 +84,6 @@ ActiveRecord::Schema.define(version: 2022_02_28_164206) do
     t.string "first_name"
     t.string "last_name"
     t.boolean "availability", default: true
-    t.boolean "animal_care", default: false
-    t.boolean "gardening", default: false
-    t.boolean "fitness", default: false
-    t.boolean "guitar", default: false
-    t.boolean "drummer", default: false
-    t.boolean "ableton", default: false
-    t.boolean "cooking", default: false
-    t.boolean "soccer", default: false
-    t.boolean "community", default: false
-    t.boolean "baking", default: false
-    t.boolean "art", default: false
-    t.boolean "design", default: false
-    t.boolean "webdev", default: false
-    t.boolean "writting", default: false
-    t.boolean "tennis", default: false
     t.text "bio"
     t.string "username"
     t.string "location"
