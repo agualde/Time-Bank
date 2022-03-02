@@ -2,9 +2,9 @@
   <div class="row d-flex justify-content-between" data-controller="flip" >
     <% @users.each do |user| %>
       <div class="card usercard d-flex col-md-4 col-sm-1" >
-        <div style="background-image: url(<%= cl_image_path user.photo.key %>);" data-flip-target="image">
+        <div style="background-image: url(<%= cl_image_path user.photo.key if user.photo.attached? %>);" data-flip-target="image">
         </div>
-        <p><%= user.first_name %>, <%= (( Date.new(@current_year, @current_day, @current_month) - user.birthday ).to_i) / 365 %></p>
+        <p><%= user.first_name %>, <%= ((( Date.new(@current_year, @current_day, @current_month) - user.birthday ).to_i) / 365) if user.birthday.present? %></p>
         <span class="d-flex justify-content-between">
           <button type="submit" value="<%= user.id %>" data-action="click->flip#revealBio"> Quick view</button>
           <form action="/users">
