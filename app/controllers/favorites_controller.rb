@@ -2,10 +2,12 @@ class FavoritesController < ApplicationController
   def create
     @favorite = Favorite.new
     @project = Project.find(params[:project_id])
-    @favorite.project = @project
-    @favorite.user = current_user
+    @favorite.project_id = @project.id
+    @favorite.user_id = current_user.id
     @favorite.save
     redirect_to projects_path
+
+
   end
 
   def destroy

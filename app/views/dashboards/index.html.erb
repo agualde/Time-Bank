@@ -1,0 +1,85 @@
+<div class="container">
+<h3>Hello There, <%= @user.username %> Have you completed your profile?</h3>
+
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="projects-tab" data-bs-toggle="tab" data-bs-target="#projects" type="button" role="tab" aria-controls="projects" aria-selected="false">Projects</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="bookings-received-tab" data-bs-toggle="tab" data-bs-target="#bookings-received" type="button" role="tab" aria-controls="bookings-received" aria-selected="false">Their Requests</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="bookings-made-tab" data-bs-toggle="bookings-made" data-bs-target="#bookings-made" type="button" role="tab" aria-controls="bookings-made" aria-selected="false">My Requests</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="info">
+        <h4>Email: <%= @user.email%> </h4>
+        <h4>Name: <%= "#{@user.first_name} #{@user.last_name}" %></h4>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="projects-tab">
+      <% @user.projects.each do |project| %>
+        <div class="card project-card" style="width: 100%">
+            <div class="row no-gutters">
+                <div class="col-sm-2">
+                    <img class="card-img-projects" src="" alt="Image of project">
+                </div>
+                <div class="col-sm-10">
+                    <div class="card-body">
+                        <h5 class="card-title">Your Project</h5>
+                        <p class="card-text">Some information here</p>
+                        <p class="card-text">Skills</p>
+                        <%= link_to "Delete your Project", project_path(project.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <% end%>
+    </div>
+
+        <div class="tab-pane fade" id="bookings-received-tab" role="tabpanel" aria-labelledby="bookings-received-tab">
+      <% @bookings.each do |booking| %>
+        <% if booking.project.user_id == current_user.id %>
+          <div class="card bookings-card" style="width: 100%">
+              <div class="row no-gutters">
+                <div class="col-sm-2">
+                    <img class="card-img-bookings" src="https://media.istockphoto.com/vectors/first-date-calendar-vector-id1152656819?k=6&m=1152656819&s=612x612&w=0&h=XBiJawvL7OU43FYGJS2F46VHo3nTfExIxYinvLf_yGk=" alt="Image of the flat booked">
+                </div>
+                <div class="col-sm-10">
+                    <div class="card-body">
+                        <h5 class="card-title">Booking Recieved <form action=""></form></h5>
+                        <p class="card-text">Project Info</p>
+                          <% if booking.status == "Approved" %>
+                            <p class="card-text"><strong>Booking status:<%= booking.status %></strong></p>
+                          <% elsif booking.status == "Pending" %>
+                            <p class="card-text"><strong>Booking status:<%= booking.status %></strong></p>
+                          <% end %>
+                        <% if booking.status != "Approved" %>
+                          <%= link_to "Accept the booking", accept_booking_path(booking.id), class:"btn btn-success"%>
+                          <%= link_to "Reject the booking", booking_path(booking.id), class:"btn btn-danger"%>
+                        <% end %>
+                    </div>
+                </div>
+              </div>
+            </div>
+          <% end%>
+          <% end%>
+      </div>
+    </div>
+
+          <div class="tab-pane fade" id="bookings-made" role="tabpanel" aria-labelledby="bookings-made-tab">
+        </div>
+      </div>
+  </div>
+</div>

@@ -6,6 +6,9 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @current_day = Time.now.day
+    @current_month = Time.now.month
+    @current_year = Time.now.year
   end
 
   def new
