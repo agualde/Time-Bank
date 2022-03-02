@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   def index
+    @favorites = Favorite.where(user_id: current_user)
     @projects = Project.all
   end
 
