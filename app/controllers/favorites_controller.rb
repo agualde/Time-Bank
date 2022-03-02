@@ -15,7 +15,7 @@ class FavoritesController < ApplicationController
     @favorite.user_id = current_user.id
     @favorite.save
 
-    render "/projects/#{@project.id}"
+    redirect_to project_path(@project.id)
   end
 
   def destroy
@@ -23,4 +23,14 @@ class FavoritesController < ApplicationController
     @favorite.destroy
     redirect_to projects_path
   end
+
+  def destroyfavorite
+    @favorite = Favorite.find(params[:id])
+    @project = @favorite.project_id
+    @favorite.destroy
+
+    redirect_to project_path(@project)
+  end
+
+
 end

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get '/users', to: 'users#index'
   post '/project/:project_id/projectfavorites', to: 'favorites#createfavorite', as: :project_favorite
-  delete '/projectfavorite/:id', to: 'favorites#destroy'
+  delete '/projectfavorite/:id', to: 'favorites#destroyfavorite', as: :project_favorite_delete
   delete '/bookings/:id', to: 'bookings#destroy', as: :booking
 
 end
