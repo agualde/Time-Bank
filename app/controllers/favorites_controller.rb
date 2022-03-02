@@ -8,6 +8,16 @@ class FavoritesController < ApplicationController
     redirect_to projects_path
   end
 
+  def createfavorite
+    @favorite = Favorite.new
+    @project = Project.find(params[:project_id])
+    @favorite.project_id = @project.id
+    @favorite.user_id = current_user.id
+    @favorite.save
+
+    render "/projects/#{@project.id}"
+  end
+
   def destroy
     @favorite = Favorite.find(params[:id])
     @favorite.destroy
