@@ -263,8 +263,11 @@ GEM
       nokogiri (~> 1.8)
     zeitwerk (2.5.4)
 
-PLATFORMS
+
+  x86_64-darwin-19
+
   arm64-darwin-21
+
   x86_64-darwin-21
   x86_64-linux
 

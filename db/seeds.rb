@@ -24,7 +24,7 @@ avatars = [
   'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fHBlcnNvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
 ]
 
-5.times do
+20.times do
   user = User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -40,13 +40,14 @@ avatars = [
 end
 
 puts "user #{User.count} created"
+category = Category.create(name: "Gardening")
 
 10.times do
   project =  Project.create!(
     title: Faker::Lorem.paragraph(sentence_count: 1),
     description: Faker::Lorem.paragraph(sentence_count: 15),
     location: Faker::Address.city,
-    category_id: 1,
+    category_id: category.id,
     user_id: User.all.sample.id
   )
   file1 = URI.open(avatars.sample)
