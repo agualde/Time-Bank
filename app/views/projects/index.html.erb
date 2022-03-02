@@ -20,7 +20,7 @@
                     <h5 class='header-link mt-3'><%= link_to project.title, project_path(project) %></h5>
 
                     <%= link_to "♥", project_favorites_path(project), method: :create, class: "grey #{@favorites.find_by(project_id: project).present? ? 'd-none' : ''}", id: "heart" %>
-                    
+    
                     <% if @favorites.find_by(project_id: project).present? %>
                     <%= link_to "♥", favorite_path(@favorites.find_by(project_id: project).id), method: :delete, class: "red #{@favorites.find_by(project_id: project).present? ? '' : 'd-none'}", id: "heart"%>    
                     <% else %> 
@@ -31,6 +31,7 @@
                 </div>
                     <div class='index-card-list mb-3'>
                         <h6><%= project.category.name %> in <%= project.location %></h6>
+                        <%= cl_image_tag(project.user.photo.key, class: "card-avatar") %>
                     </div>
                 </div>
                </div>

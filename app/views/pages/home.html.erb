@@ -2,12 +2,12 @@
 <div class="container">
 
 <div class="heading-container col-4">
-    <div>
+    <div class="header-div">
       <h1>This is Important Text about Time Bank</h1>
     </div>
   <div class="button-container">
-    <input type="submit" class="home-page-btn" value="Check out the Projects">
-    <input type="submit" class="home-page-btn" value="Become a User">
+    <%= link_to 'Check out the Projects', projects_path, class: 'home-page-btn' %>
+    <%= link_to 'Become a Time Banker', projects_path, class: 'home-page-btn' %>
 </div>
 </div>
 
