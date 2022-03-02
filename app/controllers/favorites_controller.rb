@@ -5,7 +5,7 @@ class FavoritesController < ApplicationController
     @favorite.project_id = @project.id
     @favorite.user_id = current_user.id
     @favorite.save
-    redirect_to projects_path
+    redirect_to projects_path(anchor: @project.id)
   end
 
   def createfavorite
