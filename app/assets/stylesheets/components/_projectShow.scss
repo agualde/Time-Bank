@@ -34,6 +34,7 @@
         width: 342px;
         border: 1px solid #0000002e;
         box-shadow: 0px 0px 10px #9d97975e;
+        height: 287px;
         .card-contents {
             padding-inline: 20px;
         }
@@ -82,5 +83,21 @@
         position: relative;
         bottom: 196px;
         font-size: 25px;
-        text-shadow: -1px 7px 20px #00000036;
+        text-shadow: -1px 7px 20px #00000030;
+    }
+    
+    .index-card-list {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .card-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: relative;
+        bottom: 65px;
+        object-fit: cover;
+        border: 3px solid #f4f4f4;
+        left: 10px;
     }
