@@ -47,23 +47,22 @@
         <p><%= @project.description %></p>
       </span>
       <div class="project-buttons d-flex justify-content-between">
-        <% if @project.user_id == current_user.id %>
-          <form action="/favorites" method="post">
-            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-            <input class="d-none" type="text" id="project_id" name="project_id" value="<%= @project.id %>">
-            <button type="submit"> Add to favourites </button>
-          </form>
-        <% else %>
-          <form action="/favorites/:id" method="patch">
-            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-            <input class="d-none" type="text" id="favorite_id" name="project_id" value="<%= @project.favorites.where(user_id: current_user) %>">
-            <button type="submit"> Remove favorite </button>
-          </form>
+
+        <% if @project.user_id != current_user.id %>
+          <% if @project.favorites.where(user_id: current_user).present? %>
+            <%= link_to "Remove favorite", favorite_path(@project.favorites.where(user_id: current_user)[0].id), method: "delete"%>
+          <% else %>
+            <%= link_to "Add favorite", project_favorites_path(@project.id), method: "post"%>
+          <% end %>
         <% end %>
-        <form action="/users">
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-          <button name="user_id" type="submit" value="<%= @project.id %>"> Request to join </button>
-        </form>
+
+        <% if @project.user_id != current_user.id %>
+          <% if @project.bookings.where(user_id: current_user).present? %>
+            <%= link_to "Cancel request", booking_path(@project.bookings.where(user_id: current_user)[0].id), method: "delete"%>
+          <% else %>
+            <%= link_to "Join the project", project_bookings_path(@project.id), method: "post"%>
+          <% end %>
+        <% end %>
       </div>
   </div>
 </div>

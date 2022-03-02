@@ -6,8 +6,6 @@ class FavoritesController < ApplicationController
     @favorite.user_id = current_user.id
     @favorite.save
     redirect_to projects_path
-
-
   end
 
   def destroy

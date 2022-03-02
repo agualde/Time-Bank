@@ -8,6 +8,7 @@
 h1 {
   font-size: 50px;
   font-family: 'Montserrat', sans-serif;
+  width: 400px;
 }
 
 .info {
@@ -30,4 +31,12 @@ h1 {
   margin:130px;
   display: flex;
   justify-content: space-between;
+}
+
+#logo {
+  width: 10px
+}
+
+.header-div {
+  width: 300px;
 }

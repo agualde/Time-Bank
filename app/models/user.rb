@@ -9,6 +9,11 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :user_skills
   has_many :skills, through: :user_skills
+  has_many :favorites
+  has_many :projects, through: :favorites
+  has_many :bookings
+  has_many :projects, through: :bookings
+
 
   has_one_attached :photo
 
