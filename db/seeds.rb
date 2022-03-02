@@ -40,7 +40,7 @@ avatars = [
 end
 
 puts "user #{User.count} created"
-category = Category.create(name: "Hola")
+category = Category.create(name: "Gardening")
 
 10.times do
   project =  Project.create!(
