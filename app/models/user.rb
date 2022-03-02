@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :skills, through: :user_skills
 
+  has_one_attached :photo
+
   validates :username, presence: true
   validates :username, uniqueness: true
   validates :bio, presence: true
