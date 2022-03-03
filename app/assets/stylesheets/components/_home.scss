@@ -1,44 +1,43 @@
 .info-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
 }
 
-
 h1 {
-  font-size: 50px;
-  font-family: 'Montserrat', sans-serif;
-  width: 400px;
+    font-size: 50px;
+    font-family: 'Montserrat', sans-serif;
+    width: 400px;
 }
 
 .info {
-  padding: 20px;
-  height: 300px
+    padding: 20px;
+    height: 300px
 }
 
-.heading-container{
-  display: flex;
-  padding: 50px;
-  margin-top: 145px;
-  justify-content: space-between;
+.heading-container {
+    display: flex;
+    padding: 50px;
+    margin-top: 145px;
+    justify-content: space-between;
 }
 
 .home-page-btn {
- margin: 20px;
+    margin: 20px;
 }
 
 .button-container {
-  margin:130px;
-  display: flex;
-  justify-content: space-between;
+    margin: 130px;
+    display: flex;
+    justify-content: space-between;
 }
 
 #logo {
-  width: 10px
+    width: 10px
 }
 
 .header-div {
-  width: 300px;
+    width: 300px;
 }
 
 
@@ -46,4 +45,27 @@ h1 {
 
     padding: 30px;
     margin-left: 50px;
+}
+
+#my-blob {
+    width: 577px;
+    height: 605px;
+    border-radius: 50%;
+    background-color: #f4f4f4;
+    opacity: 0.8;
+    position: absolute;
+    left: 87px;
+    top: 656px;
+    z-index: -1;
+}
+
+#my-blob-2 {
+  width: 577px;
+  height: 605px;
+  border-radius: 50%;
+  background-color: #f4f4f4;
+  opacity: 0.8;
+  position: absolute;
+  right: 87px;
+  z-index: -1;
 }
