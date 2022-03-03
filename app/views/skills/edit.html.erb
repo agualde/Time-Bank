@@ -1,0 +1,16 @@
+<div class=container>
+  <div class="container">
+      <div class="col-md-8 offset-md-2">
+        <h1>Update your skills</h1>
+          <%= simple_form_for :skills_path, :method => :patch do |f| %>
+            <% @skills_array.each do |skill| %>
+              <%= f.input :"#{skill}", as: :boolean %>
+            <% end %>
+            <div class="form-actions d-flex justify-content-between mb-2">
+              <%= f.button :submit, class: "btn btn-dark", id: "go-btn",  value:"Update"%>
+              <button class= "btn btn-dark">Skip</button>
+            </div>
+          <% end %>
+      </div>
+  </div>
+</div>
