@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get '/users/:id', to: 'users#show'
   get '/users', to: 'users#index'
-  get '/users/:id/edit', to: 'users#edit'
+  get '/users/:id/edit', to: 'users#edit', as: :edit_user
   patch '/users/:id', to: 'users#update', as: :user
 
   get '/skills', to: 'skills#edit', as: :edit_skills

@@ -38,6 +38,9 @@
             <div id="b-day">
                 <p><%= @user.birthday %></p>
             </div>
+            <div id="edit-profile">
+              <%= link_to "Update your profile" , edit_user_path(@user.id) %>
+            </div>
         </div>
       </div>
     </div>
