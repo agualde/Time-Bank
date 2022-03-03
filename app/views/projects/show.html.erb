@@ -57,7 +57,7 @@
         <% end %>
 
 
-
+        <% if @project.user_id != current_user.id %>
           <% if @project.bookings.where(user_id: current_user).present? %>
             <%= link_to "Cancel request", booking_path(@project.bookings.where(user_id: current_user)[0].id), method: "delete"%>
           <% else %>
