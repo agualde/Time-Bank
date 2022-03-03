@@ -14,26 +14,22 @@
             <p>Projects I'm taking part in: <%= @user.bookings.where(status: "Approved").count %></p>
 
             </div>
-        <div  style="margin-left: 100px;">
+        <div style="margin-left: 100px;">
             <h4>Bio:</h4>
             <p style="width: 500px;"><%= @user.bio %></p>
-            <h4>My projects:</h4>
+            <h4 class="mb-3">My projects:</h4>
             <div class="user-show-grid">
                 <% @user.projects.each do | project | %>
-                    <div class='my-card my-3' id="<%= project.id %>">
-                        <div>
-                        <a href="/projects/<%= project.id %> "><div class="project-image" style="background-image: url(https://picsum.photos/2000/3000?random=<%= rand(1..50) %>);"></div></a>
-                        </div>
-                        <div class="card-contents">
-                        <div class="card-head">
-                            <h5 class='header-link mt-3'><%= link_to project.title, project_path(project) %></h5>
-                            <%= link_to "♥", project_favorites_path(project), method: :create, class: "grey", id: "heart" %>
-                        </div>
-                            <div class='index-card-list mb-3'>
-                                <h6><%= project.category.name %> in <%= project.location %></h6>
-                            </div>
-                        </div>
+                <div class="card-product">
+                    <img src="https://picsum.photos/2000/3000?random=<%= rand(1..50) %>)" />
+                    <div class="card-product-infos">
+                        <h2><%= link_to project.title, project_path(project) %></h2>
+                        <p><%= project.category.name %> in <%= project.location %></p>
                     </div>
+                </div>
+
+
+
                 <% end %>
             </div>
         </div>
