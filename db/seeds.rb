@@ -63,4 +63,10 @@ category = Category.create(name: "Gardening")
     { io: file5, filename: project.title, content_type: 'image/jpeg' }])
 end
 
+15.times do
+  Skill.create!(
+    name: Faker::Superhero.name,
+  )
+end
+
 puts "projects #{Project.count} created"
