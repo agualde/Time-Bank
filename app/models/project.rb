@@ -1,9 +1,9 @@
 class Project < ApplicationRecord
   belongs_to :user
-  
+
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
-  
+
   has_many :bookings, dependent: :destroy
   has_many :users, through: :bookings
 
@@ -11,7 +11,7 @@ class Project < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
-  validates :description, length: { minimum: 250 }
+  validates :description, length: { minimum: 140 }
   validates :location, presence: true
 
   belongs_to :category
