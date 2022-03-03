@@ -3,7 +3,11 @@
     <div class="d-flex">
     <div>
         <div class="user-img">
-            <%= cl_image_tag(@user.photo.key, class: "show-avatar mb-3") %>
+        <% if @user.photo.key != nil %>
+          <%= cl_image_tag(@user.photo.key, class: "show-avatar mb-3") %>
+        <% else %>
+          <img src="https://vectorified.com/images/unknown-avatar-icon-7.jpg" alt="Avatar">
+        <% end %>
         </div>
             <p><%= @user.location %></p>
             <h6>My skills:</h6>
@@ -35,5 +39,3 @@
         </div>
     </div>
 </div>
-
-
