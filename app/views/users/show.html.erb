@@ -2,7 +2,9 @@
     <h1 class="header mb-5"><%= @user.first_name %> <%= @user.last_name %></h1>
     <div class="d-flex">
     <div>
-        <%= cl_image_tag(@user.photo.key, class: "show-avatar mb-3") %>
+        <div class="user-img">
+            <%= cl_image_tag(@user.photo.key, class: "show-avatar mb-3") %>
+        </div>
             <p><%= @user.location %></p>
             <h6>My skills:</h6>
             <p><% @user.skills.each do | skill | %></p>

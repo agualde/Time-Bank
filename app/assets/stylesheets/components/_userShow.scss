@@ -5,15 +5,21 @@
     border-bottom: 1px solid #bfbfbf57;
 }
 
+.user-img {
+    width: 450px;
+}
+
 .show-avatar {
-    height: 500px;
-    border-radius: 4px;
+    height: 100%;
+    border-radius: 6px;
+    width: 100%;
 }
 
 .user-show-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 45px;
+    grid-row-gap: 45px;
 }
 
 .card-product {
