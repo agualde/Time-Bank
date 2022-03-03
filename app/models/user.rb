@@ -10,9 +10,9 @@ class User < ApplicationRecord
   has_many :user_skills
   has_many :skills, through: :user_skills
   has_many :favorites
-  has_many :projects, through: :favorites
   has_many :bookings
-  has_many :projects, through: :bookings
+  has_many :favorite_projects, through: :favorites, source: :project
+  has_many :booked_projects, through: :bookings, source: :project
 
 
   has_one_attached :photo
