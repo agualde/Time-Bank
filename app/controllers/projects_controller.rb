@@ -17,10 +17,10 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.user_id = current_user
+    @project.user_id = current_user.id
     if @project.save
       redirect_to dashboard_path
-      raise
+      
     else
       render :new
     end

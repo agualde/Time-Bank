@@ -31,7 +31,7 @@
                 </div>
                     <div class='index-card-list mb-3'>
                         <h6><%= project.category.name %> in <%= project.location %></h6>
-                       <a href="#"><%= cl_image_tag(project.user.photo.key, class: "card-avatar") %></a>
+                       <a href='/users/<%= project.user.id %>'><%= cl_image_tag(project.user.photo.key, class: "card-avatar") %></a>
                     </div>
                 </div>
                </div>

@@ -55,7 +55,8 @@
                         <h3>Title - <%= project.title %></h3>
                         <p class="card-text">Description -  <%= project.description %></p>
                             <p class="card-text">Location -  <%= project.location %></p>
-                            <p class="card-text">Category -  <%= project.category_id %></p>
+                            <p class="card-text">Category -  <%= project.category.name %></p>
+
                         <p class="card-text">Skills</p>
                         <%= link_to "Delete your Project", project_path(project.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
                 </div>
@@ -64,7 +65,6 @@
       <% end%>
       </div>
     </div>
-
 
     <div class="tab-pane fade" id="bookings-received" role="tabpanel" aria-labelledby="bookings-received-tab">
     <div class="card-container-dash">
