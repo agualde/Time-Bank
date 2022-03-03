@@ -59,3 +59,13 @@ h4 {
 .card-header {
     border: none;
 }
+
+.profile-container {
+  display:flex;
+  width: 500px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.profile-projects {
+  display: flex;
+}

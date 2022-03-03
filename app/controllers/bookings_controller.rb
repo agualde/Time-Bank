@@ -8,12 +8,12 @@ class BookingsController < ApplicationController
     redirect_to project_path(@project.id)
   end
 
-  #def update
-   # @booking = Booking.find(params[:project_id])
-   # @booking.status = "Approved"
-   # @booking.save
-   # redirect_to project_booking
-  # end
+  def update
+   @booking = Booking.find(params[:project_id])
+   @booking.status = "Approved"
+   @booking.save
+   redirect_to project_booking
+  end
 
   def destroy
     @booking = Booking.find(params[:id])

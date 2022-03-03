@@ -24,24 +24,24 @@
 
   <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <div class="profile-container">
-      <div id="avatar-and-info">
-        <div class="avatar-dash-contain">
-          <img class="avatar-dash" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHBlcnNvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" alt="" />
-        </div>
-        <div class="blob"></div>
-        <div class="info">
-          <h3><%= @user.username %></h3>  <h3><%= @user.first_name %></h3>
-        </div>
-        <div class="new-project">
-         <%= link_to "Create a New Project",  new_project_path, class:"btn", id: "project-btn" %>
-        </div>
-
-          <div id="user-projects-cards-profile">
+    <div class="profile-container">
+      <div class="avatar-dash-contain">
+        <div style="background-image: url(<%= cl_image_path @user.photo.key if @user.photo.attached? %>);">
       </div>
-      </div>
+        <div class="info-bio">
+          <div id="user-name">
+              <h3><%= @user.username %></h3>  <h3><%= @user.first_name %></h3>
+          </div>
+            <div class="bio">
+                <p><%= @user.bio %></p>
+            </div>
+            <div id="b-day">
+                <p><%= @user.birthday %></p>
+            </div>
+        </div>
       </div>
     </div>
+   </div>
 
     <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="projects-tab">
     <div class="card-container-dash">
@@ -52,13 +52,11 @@
                 </div>
                 <div class="col-sm-10">
                     <div class="card-body">
-                        <h3>Title - <%= project.title %></h3>
-                        <p class="card-text">Description -  <%= project.description %></p>
+                        <h3><%= project.title %></h3>
+                        <p class="card-text"><%= project.description %></p>
                             <p class="card-text">Location -  <%= project.location %></p>
                             <p class="card-text">Category -  <%= project.category.name %></p>
-
-                        <p class="card-text">Skills</p>
-                        <%= link_to "Delete your Project", project_path(project.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
+                        <%= link_to "Delete your Project", project_path(project.id), method: :delete, data: { confirm: "Are you sure?" }, class:"delete-btn"%>
                 </div>
             </div>
         </div>
@@ -70,7 +68,7 @@
     <div class="card-container-dash">
       <% @bookings.each do |booking| %>
       <% if booking.project.user_id == current_user.id %>
-       <div class="project-card my-3 mx-3" style="width: 400px">
+        <div class="project-card my-3 mx-3" style="width: 400px">
                 <div class="col-sm-2">
                     <img class="card-img-projects" src="" alt="Image of project">
                 </div>
@@ -84,7 +82,7 @@
                           <p class="card-text"><strong>Booking status:<%= booking.status %></strong></p>
                       <% end %>
                       <% if booking.status != "Approved" %>
-                        <%= link_to "Accept the booking", accept_booking_path(booking.id), class:"btn btn-success"%>
+                        <%= link_to "Accept the booking", accept_booking_path(booking.id), class:""%>
                         <%= link_to "Reject the booking", booking_path(booking.id), class:"btn btn-danger"%>
                     <% end %>
                 </div>
