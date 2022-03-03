@@ -1,2 +1,43 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<div class="container" style="margin-left: 135px;">
+
+    <h1 class='index-head mt-5 mb-2'>Work on any (<%= @projects.count %>) projects around you</h1>
+    <p class='index-head mb-5' id='sub-header'>Explore your communty, expand your reach</p>
+
+</div>
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10 grid justify-content-center">
+            <% @projects.each do | project | %>
+            <div class='my-card my-3' id="<%= project.id %>">
+                <div>
+                   <a href="/projects/<%= project.id %> "><div class="project-image" style="background-image: url(https://picsum.photos/2000/3000?random=<%= rand(1..50) %>);"></div></a>
+                </div>
+
+                <div class="card-contents">
+
+                <div class="card-head">
+                    <h5 class='header-link mt-3'><%= link_to project.title, project_path(project) %></h5>
+
+                    <%= link_to "♥", project_favorites_path(project), method: :create, class: "grey #{@favorites.find_by(project_id: project).present? ? 'd-none' : ''}", id: "heart" %>
+    
+                    <% if @favorites.find_by(project_id: project).present? %>
+                    <%= link_to "♥", favorite_path(@favorites.find_by(project_id: project).id), method: :delete, class: "red #{@favorites.find_by(project_id: project).present? ? '' : 'd-none'}", id: "heart"%>    
+                    <% else %> 
+
+                    <% end %>
+                      
+
+                </div>
+                    <div class='index-card-list mb-3'>
+                        <h6><%= project.category.name %> in <%= project.location %></h6>
+                       <a href='/users/<%= project.user.id %>'><%= cl_image_tag(project.user.photo.key, class: "card-avatar") %></a>
+                    </div>
+                </div>
+               </div>
+            <% end %>
+        </div>
+        <div class="col"></div>
+    </div>
+
+

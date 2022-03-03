@@ -1,0 +1,118 @@
+<div class="container mt-5">
+<h2 class="mt-5">Hello,</h2> <h2 class="mt-5" id="underline"><%= @user.username %></h2>
+<h4 class="mt-3"> Have you completed your profile?</h4>
+<div class="dash-container mt-5">
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="projects-tab" data-bs-toggle="tab" data-bs-target="#projects" type="button" role="tab" aria-controls="projects" aria-selected="false">Projects</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="bookings-received-tab" data-bs-toggle="tab" data-bs-target="#bookings-received" type="button" role="tab" aria-controls="bookings-received" aria-selected="true">Their Requests</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="bookings-made-tab" data-bs-toggle="tab" data-bs-target="#bookings-made" type="button" role="tab" aria-controls="bookings-made" aria-selected="false">My Requests</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="profile-container">
+      <div id="avatar-and-info">
+        <div class="avatar-dash-contain">
+          <img class="avatar-dash" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHBlcnNvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" alt="" />
+        </div>
+        <div class="blob"></div>
+        <div class="info">
+          <h3><%= @user.username %></h3>  <h3><%= @user.first_name %></h3>
+        </div>
+        <div class="new-project">
+         <%= link_to "Create a New Project",  new_project_path, class:"btn", id: "project-btn" %>
+        </div>
+
+          <div id="user-projects-cards-profile">
+      </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="projects-tab">
+    <div class="card-container-dash">
+      <% @user.projects.each do |project| %>
+        <div class="project-card my-3 mx-3" style="width: 400px">
+                <div>
+                    <img class="card-img-projects" src="https://images.unsplash.com/photo-1619646286438-6b7abb956565?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8aG9iYmllfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="Image of project">
+                </div>
+                <div class="col-sm-10">
+                    <div class="card-body">
+                        <h3>Title - <%= project.title %></h3>
+                        <p class="card-text">Description -  <%= project.description %></p>
+                            <p class="card-text">Location -  <%= project.location %></p>
+                            <p class="card-text">Category -  <%= project.category.name %></p>
+
+                        <p class="card-text">Skills</p>
+                        <%= link_to "Delete your Project", project_path(project.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
+                </div>
+            </div>
+        </div>
+      <% end%>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="bookings-received" role="tabpanel" aria-labelledby="bookings-received-tab">
+    <div class="card-container-dash">
+      <% @bookings.each do |booking| %>
+      <% if booking.project.user_id == current_user.id %>
+       <div class="project-card my-3 mx-3" style="width: 400px">
+                <div class="col-sm-2">
+                    <img class="card-img-projects" src="" alt="Image of project">
+                </div>
+                <div class="col-sm-10">
+                    <div class="card-body">
+                      <h5 class="card-title">Booking Recieved <form action=""></form></h5>
+                          <p class="card-text">Project Info</p>
+                      <% if booking.status == "Approved" %>
+                          <p class="card-text"><strong>Booking status:<%= booking.status %></strong></p>
+                      <% elsif booking.status == "Pending" %>
+                          <p class="card-text"><strong>Booking status:<%= booking.status %></strong></p>
+                      <% end %>
+                      <% if booking.status != "Approved" %>
+                        <%= link_to "Accept the booking", accept_booking_path(booking.id), class:"btn btn-success"%>
+                        <%= link_to "Reject the booking", booking_path(booking.id), class:"btn btn-danger"%>
+                    <% end %>
+                </div>
+            </div>
+          </div>
+        <% end%>
+        <% end%>
+      </div>
+    </div>
+
+        <div class="tab-pane fade" id="bookings-made" role="tabpanel" aria-labelledby="bookings-made-tab">
+          <div class="card-container-dash">
+
+              <div class="card project-card my-3 mx-3">
+            <div class="row no-gutters">
+                <div class="col-sm-2">
+                    <img class="card-img-projects" src="" alt="Image of project">
+                </div>
+                <div class="col-sm-10">
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+      </div>
+  </div>
+  </div>
+</div>

@@ -1,2 +1,68 @@
-<h1>Projects#show</h1>
-<p>Find me in app/views/projects/show.html.erb</p>
+<div class="container d-flex justify-content-between">
+  <div class="left-page col-6">
+    <div class="carousel">
+      <div id="carouselExampleDark<%= @project.id %>" class="carousel carousel-dark slide img-container">
+        <div class="carousel-inner">
+          <% @project.photos.each_with_index do |photo, index| %>
+            <% case index %>
+            <% when 0 %>
+              <div class="carousel-item active">
+                <img src="<%= cl_image_path @project.photos[index].key, alt:"Image of the flat booked" %>" class="d-block carouselHome" alt="photo <%= index %>" data-interval="0">
+              </div>
+            <% else %>
+              <div class="carousel-item" >
+                <img src="<%= cl_image_path @project.photos[index].key, alt:"Image of the flat booked" %>" class="d-block carouselHome" alt="photo <%= index %>" data-interval="0">
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark<%= @project.id %>" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark<%= @project.id %>" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="icons d-flex justify-content-between">
+      <div class="favorites text-center">
+        <span><%= @project.favorites.count %></span>
+        <p>Favorites</p>
+      </div>
+      <div class="collaborators text-center">
+        <span><%= @project.bookings.where(status: "Approved").count %></span>
+        <p>Collaborators</p>
+      </div>
+    </div>
+  </div>
+  <div class="right-page col-6">
+      <span>
+        <h2><%= @project.title.upcase %></h2>
+        <p><em><%= @project.user.first_name %>, <%= ((( Date.new(@current_year, @current_day, @current_month) - @project.user.birthday ).to_i) / 365) if @project.user.birthday.present? %></em></p>
+        <h4 class="location">Project location</h4>
+        <p><%= @project.location %></p>
+        <h4 class="description">Project description</h4>
+        <p><%= @project.description %></p>
+      </span>
+      <div class="project-buttons d-flex justify-content-between">
+
+        <% if @project.user_id != current_user.id %>
+          <% if @project.favorites.where(user_id: current_user).present? %>
+            <%= link_to "Remove favorite", project_favorite_delete_path(@project.favorites.where(user_id: current_user)[0].id), method: "delete"%>
+          <% else %>
+            <%= link_to "Add favorite", project_favorite_path(@project.id), method: "post"%>
+          <% end %>
+        <% end %>
+
+        <% if @project.user_id != current_user.id %>
+          <% if @project.bookings.where(user_id: current_user).present? %>
+            <%= link_to "Cancel request", booking_path(@project.bookings.where(user_id: current_user)[0].id), method: "delete"%>
+          <% else %>
+            <%= link_to "Join the project", project_bookings_path(@project.id), method: "post"%>
+          <% end %>
+        <% end %>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.header {
+    font-size: 50px;
+    font-family: 'Montserrat', sans-serif;
+    width: fit-content;
+    border-bottom: 1px solid #bfbfbf57;
+}
+
+.show-avatar {
+    height: 500px;
+    border-radius: 4px;
+}
+
+.user-show-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 45px;
+}

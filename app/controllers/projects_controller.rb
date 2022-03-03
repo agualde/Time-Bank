@@ -1,10 +1,14 @@
 class ProjectsController < ApplicationController
   def index
+    @favorites = Favorite.where(user_id: current_user)
     @projects = Project.all
   end
 
   def show
     @project = Project.find(params[:id])
+    @current_day = Time.now.day
+    @current_month = Time.now.month
+    @current_year = Time.now.year
   end
 
   def new
@@ -13,9 +17,10 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.user_id = current_user
+    @project.user_id = current_user.id
     if @project.save
       redirect_to dashboard_path
+      
     else
       render :new
     end

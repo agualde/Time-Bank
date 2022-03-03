@@ -5,14 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :projects, dependent: :destroy
-  has_many :booking, dependent: :destroy
+  has_many :bookings, dependent: :destroy
   has_many :favorites, dependent: :destroy
+
+  has_many :favorite_projects, through: :favorites, source: :project
+  has_many :booked_projects, through: :bookings, source: :project
+  
+  has_many :user_skills
   has_many :skills, through: :user_skills
 
-  validates :username, presence: true
-  validates :username, uniqueness: true
-  validates :bio, presence: true
-  validates :bio, length: { minimum: 140 }
-  validates :location, presence: true
-  validates :birthday, presence: true
+  has_one_attached :photo
+
 end

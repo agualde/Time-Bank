@@ -1,0 +1,104 @@
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-column-gap: 50px;
+    }
+    
+    .project-image {
+        height: 200px;
+        width: 100%;
+        border-radius: 6px 6px 0 0;
+        background-position: center;
+        background-size: cover;
+    }
+    
+    .index-card-list {
+        ul {
+            list-style: none;
+            padding: 0;
+            font-size: 12px;
+        }
+    }
+    
+    .header-link {
+        border-bottom: 1px solid #857f7f2f;
+        width: fit-content;
+        a {
+            text-decoration: none;
+            color: black;
+        }
+    }
+    
+    .my-card {
+        border-radius: 6px;
+        width: 342px;
+        border: 1px solid #0000002e;
+        box-shadow: 0px 0px 10px #9d97975e;
+        height: 287px;
+        .card-contents {
+            padding-inline: 20px;
+        }
+    }
+    
+    .index-head {
+        font-weight: lighter;
+        font-size: 25px;
+        font-family: 'Montserrat', sans-serif;
+        width: 475px;
+    }
+    
+    #sub-header {
+        font-size: 15px;
+    }
+    
+    .index-card-list {
+        h6 {
+            font-size: 14px;
+        }
+    }
+    
+    .card-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        a {
+            text-decoration: none;
+        }
+    }
+    
+    .grey {
+        color: #fffdfd8a;
+        &:hover {
+            color: #ff4571;
+        }
+    }
+    
+    .red {
+        color: #ff4571;
+        &:hover {
+            color: #ff4571;
+        }
+    }
+    
+    #heart {
+        position: relative;
+        bottom: 196px;
+        font-size: 25px;
+        text-shadow: -1px 7px 20px #00000030;
+    }
+    
+    .index-card-list {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .card-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: relative;
+        bottom: 65px;
+        object-fit: cover;
+        border: 3px solid #f4f4f4;
+        left: 10px;
+    }
