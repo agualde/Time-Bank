@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :projects do
     resources :favorites, only: [:create]
-    resources :bookings, only: [:new, :create, :update, :show]
+    resources :bookings, only: [:new, :create, :show]
   end
+  resources :bookings, only: [:update, :destroy]
   resources :favorites, only: [:destroy]
   get '/dashboard', to: 'dashboards#index', as: :dashboard
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -19,6 +20,5 @@ Rails.application.routes.draw do
 
   post '/project/:project_id/projectfavorites', to: 'favorites#createfavorite', as: :project_favorite
   delete '/projectfavorite/:id', to: 'favorites#destroyfavorite', as: :project_favorite_delete
-  delete '/bookings/:id', to: 'bookings#destroy', as: :booking
 
 end

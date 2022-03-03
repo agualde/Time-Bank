@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :favorite_projects, through: :favorites, source: :project
   has_many :booked_projects, through: :bookings, source: :project
   
-  has_many :user_skills
+  has_many :user_skills, dependent: :destroy
   has_many :skills, through: :user_skills
 
   has_one_attached :photo
