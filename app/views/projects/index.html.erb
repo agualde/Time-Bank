@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-left: 135px;">
 
     <h1 class='index-head mt-5 mb-2'>Work on any (<%= @projects.count %>) projects around you</h1>
     <p class='index-head mb-5' id='sub-header'>Explore your communty, expand your reach</p>
@@ -31,7 +31,7 @@
                 </div>
                     <div class='index-card-list mb-3'>
                         <h6><%= project.category.name %> in <%= project.location %></h6>
-                        <%= cl_image_tag(project.user.photo.key, class: "card-avatar") %>
+                       <a href="#"><%= cl_image_tag(project.user.photo.key, class: "card-avatar") %></a>
                     </div>
                 </div>
                </div>

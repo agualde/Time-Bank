@@ -1,63 +1,61 @@
 h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 50px;
-  display: inline;
-  color: grey;
-
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 50px;
+    display: inline;
+    color: grey;
 }
 
-h4{
-  color: grey;
+h4 {
+    color: grey;
 }
 
 #underline {
-  text-decoration: underline;
-  text-decoration-color: pink;
+    text-decoration: underline;
+    text-decoration-color: pink;
 }
 
 .avatar-dash-contain {
-  margin: 30px;
-  padding: 46px;
+    margin: 30px;
+    padding: 46px;
 }
 
 .blob {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: pink;
-  opacity: 0.8;
-  position: absolute;
-  left: 453px;
-  top: 612px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: pink;
+    opacity: 0.8;
+    position: absolute;
+    left: 453px;
+    top: 612px;
 }
 
 #avatar-and-info {
-  display:flex
+    display: flex
 }
 
 .skills {
-  display: flex;
+    display: flex;
 }
 
 .skills-icon {
-  display: flex;
-  margin-top: -40px;
-  margin-left: 100px;
+    display: flex;
+    margin-top: -40px;
+    margin-left: 100px;
 }
 
 .nav-link {
-  padding: 0.5rem 1rem;
-  margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 0.5rem 1rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .card {
-  border: none;
+    border: none;
 }
 
 .card-header {
-    background-color: rgb(244 244 244);
     border: none;
 }
