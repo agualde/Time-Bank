@@ -3,7 +3,11 @@
     <div class="d-flex">
     <div>
         <div class="user-img">
+        <% if @user.photo.key != nil %>
             <%= cl_image_tag(@user.photo.key, class: "show-avatar mb-3") %>
+        <% else %>
+            <%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "show-avatar mb-3" %>
+        <% end %>
         </div>
             <p><%= @user.location %></p>
             <h6>My skills:</h6>
@@ -35,5 +39,3 @@
         </div>
     </div>
 </div>
-
-
