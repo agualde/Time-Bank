@@ -55,10 +55,16 @@
                         <h3>Title - <%= project.title %></h3>
                         <p class="card-text">Description -  <%= project.description %></p>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <p class="card-text">Location -  <%= project.location %></p>
                             <p class="card-text">Category -  <%= project.category_id %></p>
 =======
 >>>>>>> bd9efda3374d40e79ad8a109d70d3287a9054df1
+=======
+                            <p class="card-text">Location -  <%= project.location %></p>
+                            <p class="card-text">Category -  <%= project.category.name %></p>
+
+>>>>>>> d5faff9ad32521b3d4f71ab236872bd60559ab57
                         <p class="card-text">Skills</p>
                         <%= link_to "Delete your Project", project_path(project.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
                 </div>
