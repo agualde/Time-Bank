@@ -33,6 +33,10 @@
         <div class="info">
           <h3><% @user.username %></h3>  <h3><% @user.first_name %></h3>
         </div>
+        <div class="new-project">
+         <%= link_to "Create a New Project",  new_project_path, class:"btn", id: "project-btn" %>
+        </div>
+   
           <div id="user-projects-cards-profile">
       </div>
       </div>
@@ -48,9 +52,8 @@
                 </div>
                 <div class="col-sm-10">
                     <div class="card-body">
-                        <h5 class="card-title">Your Project</h5>
-                        <p> <% project.title %></p>
-                        <p class="card-text">Some information here</p>
+                        <h3>Title - <% project.title %></h3>
+                        <p class="card-text">Description -  <% project.description %></p>
                         <p class="card-text">Skills</p>
                         <%= link_to "Delete your Project", project_path(project.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
                 </div>

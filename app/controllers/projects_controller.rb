@@ -20,6 +20,7 @@ class ProjectsController < ApplicationController
     @project.user_id = current_user
     if @project.save
       redirect_to dashboard_path
+      raise
     else
       render :new
     end
