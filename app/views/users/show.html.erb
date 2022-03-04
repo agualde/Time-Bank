@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="header mb-5 "><%= @user.first_name %> <%= @user.last_name %></h1>
+    <h1 class="header mb-5 underline2" ><%= @user.first_name %> <%= @user.last_name %></h1>
     <div class="d-flex">
     <div>
         <div class="user-img">
@@ -22,7 +22,7 @@
             </div>
         <div style="margin-left: 100px;">
             <h4>Bio:</h4>
-            <p style="width: 500px;"><%= @user.bio %></p>
+            <p class="mb-5" style="width: 500px;"><%= @user.bio %></p>
             <h4 class="mb-3"><%= @user.first_name %>'s projects:</h4>
             <div class="user-show-grid">
                 <% @user.projects.each do | project | %>
