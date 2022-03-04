@@ -27,7 +27,7 @@
             <div class="user-show-grid">
                 <% @user.projects.each do | project | %>
                 <div class="card-product">
-                    <img src="https://picsum.photos/2000/3000?random=<%= rand(1..50) %>)" />
+                 <%= cl_image_tag project.photos[0].key, class: "project-image" %>
                     <div class="card-product-infos">
                         <h2><%= link_to project.title, project_path(project) %></h2>
                         <p><%= project.category.name %> in <%= project.location %></p>

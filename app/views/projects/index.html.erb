@@ -11,7 +11,7 @@
             <% @projects.each do | project | %>
             <div class='my-card my-3' id="<%= project.id %>">
                 <div>
-                   <a href="/projects/<%= project.id %> "><div class="project-image" style="background-image: url(https://picsum.photos/2000/3000?random=<%= rand(1..50) %>);"></div></a>
+                   <a href="/projects/<%= project.id %> "><%= cl_image_tag project.photos[0].key, class: "project-image" %></a>
                 </div>
 
                 <div class="card-contents">
