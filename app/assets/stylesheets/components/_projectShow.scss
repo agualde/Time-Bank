@@ -1,9 +1,13 @@
+    .showcontainer{
+      margin-top: 160px;
+    }
+
     .grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-column-gap: 50px;
     }
-    
+
     .project-image {
         height: 200px;
         width: 100%;
@@ -11,7 +15,7 @@
         background-position: center;
         background-size: cover;
     }
-    
+
     .index-card-list {
         a {
             font-size: 13px;
@@ -22,7 +26,7 @@
             font-size: 12px;
         }
     }
-    
+
     .header-link {
         border-bottom: 1px solid #857f7f2f;
         width: fit-content;
@@ -32,7 +36,7 @@
             color: black;
         }
     }
-    
+
     .my-card {
         border-radius: 6px;
         width: 342px;
@@ -43,24 +47,24 @@
             padding-inline: 20px;
         }
     }
-    
+
     .index-head {
         font-weight: lighter;
         font-size: 25px;
         font-family: 'Montserrat', sans-serif;
         width: 475px;
     }
-    
+
     #sub-header {
         font-size: 15px;
     }
-    
+
     .index-card-list {
         h6 {
             font-size: 14px;
         }
     }
-    
+
     .card-head {
         display: flex;
         align-items: center;
@@ -69,33 +73,33 @@
             text-decoration: none;
         }
     }
-    
+
     .grey {
         color: #fffdfd8a;
         &:hover {
             color: #ff4571;
         }
     }
-    
+
     .red {
         color: #ff4571;
         &:hover {
             color: #ff4571;
         }
     }
-    
+
     #heart {
         position: relative;
         bottom: 196px;
         font-size: 25px;
         text-shadow: -1px 7px 20px #00000030;
     }
-    
+
     .index-card-list {
         display: flex;
         justify-content: space-between;
     }
-    
+
     .card-avatar {
         width: 50px;
         height: 50px;
@@ -105,4 +109,29 @@
         object-fit: cover;
         border: 3px solid #f4f4f4;
         left: 10px;
+    }
+
+    .right-page {
+      margin-left: 50px;
+
+          h2 {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 600;
+          font-size: 40px;
+          display: inline;
+          color: grey;
+          border-bottom: 40px;
+        }
+
+        p {
+          text-align: left;
+          width: 300px;
+          font-family: 'Montserrat', sans-serif;
+
+        }
+
+        em {
+          font-size: 20px;
+        }
+
     }
