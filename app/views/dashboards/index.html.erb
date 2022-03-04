@@ -6,16 +6,16 @@
     <div class="card-header">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
+          <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">My Profile</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="projects-tab" data-bs-toggle="tab" data-bs-target="#projects" type="button" role="tab" aria-controls="projects" aria-selected="false">Projects</button>
+          <button class="nav-link" id="bookings-received-tab" data-bs-toggle="tab" data-bs-target="#bookings-received" type="button" role="tab" aria-controls="bookings-received" aria-selected="true">Who want's to join my project</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="bookings-received-tab" data-bs-toggle="tab" data-bs-target="#bookings-received" type="button" role="tab" aria-controls="bookings-received" aria-selected="true">Their Requests</button>
+          <button class="nav-link" id="bookings-made-tab" data-bs-toggle="tab" data-bs-target="#bookings-made" type="button" role="tab" aria-controls="bookings-made" aria-selected="false">Projects I want to join</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="bookings-made-tab" data-bs-toggle="tab" data-bs-target="#bookings-made" type="button" role="tab" aria-controls="bookings-made" aria-selected="false">My Requests</button>
+          <button class="nav-link" id="favorites-tab" data-bs-toggle="tab" data-bs-target="#favorites" type="button" role="tab" aria-controls="favorites" aria-selected="false">Favorites</button>
         </li>
       </ul>
     </div>
@@ -23,23 +23,21 @@
   
 
   <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-    <div class="">
-<div class="mb-3">
-    <h1 class="header mb-5"><%= @user.first_name %> <%= @user.last_name %></h1>
-    <%= link_to "✏️", edit_user_path(@user.id), class: "edit-pencil" %>   
-</div>
-
-
-    <div class="d-flex">
-    <div>
-        <div class="user-img">
-        <% if @user.photo.key != nil %>
-            <%= cl_image_tag(@user.photo.key, class: "show-avatar mb-3") %>
-        <% else %>
-            <%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "show-avatar mb-3" %>
-        <% end %>
+    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="">
+        <div class="head-container mt-3 mb-3 d-flex">
+            <h1 class="header mb-3"><%= @user.first_name %> <%= @user.last_name %></h1>
         </div>
+        
+        <div class="d-flex">
+          <div>
+            <div class="user-img">
+              <% if @user.photo.key != nil %>
+                  <%= cl_image_tag(@user.photo.key, class: "show-avatar mb-3") %>
+              <% else %>
+                  <%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "show-avatar mb-3" %>
+              <% end %>
+            </div>
             <p><%= @user.location %></p>
             <h6>My skills:</h6>
             <p><% @user.skills.each do | skill | %></p>
@@ -49,98 +47,85 @@
             <% end %>
             <p>Projects: <%= @user.projects.count %></p>
             <p>Projects I'm taking part in: <%= @user.bookings.where(status: "Approved").count %></p>
-
-            </div>
-        <div style="margin-left: 100px;">
+          </div>
+          <div style="margin-left: 100px;">
             <h4>Bio:</h4>
             <p style="width: 500px;"><%= @user.bio %></p>
+            <%= link_to "Update Profile", edit_user_path(@user.id), class: "btn btn-outline-secondary mt-2 mb-3" %>   
             <h4 class="mb-3">My projects:</h4>
             <div class="user-show-grid">
                 <% @user.projects.each do | project | %>
-                <div class="card-product">
-                    <img src="https://picsum.photos/2000/3000?random=<%= rand(1..50) %>)" />
-                    <div class="card-product-infos">
-                        <h2><%= link_to project.title, project_path(project) %></h2>
-                        <p><%= project.category.name %> in <%= project.location %></p>
-                    </div>
-                </div>
-
-                <% end %>
-            </div>
-        </div>
-    </div>
-      </div>
-    </div>
-   </div>
-
-    <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="projects-tab">
-    <div class="card-container-dash">
-      <% @user.projects.each do |project| %>
-        <div class="project-card my-3 mx-3" style="width: 400px">
-                <div>
-                    <img class="card-img-projects" src="https://images.unsplash.com/photo-1619646286438-6b7abb956565?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8aG9iYmllfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="Image of project">
-                </div>
-                <div class="col-sm-10">
-                    <div class="card-body">
-                        <h3><%= project.title %></h3>
-                        <p class="card-text"><%= project.description %></p>
-                            <p class="card-text">Location -  <%= project.location %></p>
-                            <p class="card-text">Category -  <%= project.category.name %></p>
-                        <%= link_to "Delete your Project", project_path(project.id), method: :delete, data: { confirm: "Are you sure?" }, class:"delete-btn"%>
-                </div>
-            </div>
-        </div>
-      <% end%>
-      </div>
-    </div>
-
-  <div class="tab-pane fade" id="bookings-received" role="tabpanel" aria-labelledby="bookings-received-tab">
-    <div class="card-container-dash">
-      <% @user.projects.each do |project| %>
-                <% project.bookings.each do |booking| %>
-                  <div class="project-card my-3 mx-3" style="width: 400px">
-                    <div class="col-sm-2">
-                        <img class="card-img-projects" src="" alt="Image of project">
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="card-body">
-                          <h5 class="card-title">Booking Recieved <form action=""></form></h5>
-                              <p class="card-text">Project Info</p>
-                          <% if booking.status == "Approved" %>
-                              <p class="card-text"><strong>Booking status:<%= booking.status %></strong></p>
-                          <% elsif booking.status == "Pending" %>
-                              <p class="card-text"><strong>Booking status:<%= booking.status %></strong></p>
-                          <% end %>
-                          <% if booking.status != "Approved" %>
-                            <%= link_to "Accept the booking", booking_path(booking), method: :patch ,class:"home-page-btn"%>
-                            <%= link_to "Reject the booking", booking_path(booking.id), class:"home-page-btn"%>
-                          <% end %>
+                  <div class="card-product">
+                      <img src="https://picsum.photos/2000/3000?random=<%= rand(1..50) %>)" />
+                      <div class="card-product-infos">
+                          <h2><%= link_to project.title, project_path(project) %></h2>
+                          <p><%= project.category.name %> in <%= project.location %></p>
                       </div>
-                    </div>
                   </div>
                 <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
+      <div class="card-container-dash">
+        <% @user.favorites.each do | favorite | %>
+            <div class="card-product">
+                <img src="https://picsum.photos/2000/3000?random=<%= rand(1..50) %>)" />
+                <div class="card-product-infos">
+                    <h2><%= link_to favorite.project.title, project_path(favorite.project_id) %></h2>
+                    <p><%= favorite.project.category.name %> in <%= favorite.project.location %></p>
+                </div>
+            </div>
+          <% end %>
+
+      </div>
+    </div>
+    <div class="tab-pane fade" id="bookings-received" role="tabpanel" aria-labelledby="bookings-received-tab">
+      <div class="card-container-dash">
+        <% @user.projects.each do |project| %>
+          <% project.bookings.each do |booking| %>
+            <div class="project-card my-3 mx-3" style="width: 400px">
+              <div class="col-sm-2">
+                  <img class="card-img-projects" src="" alt="Image of project">
+              </div>
+              <div class="col-sm-10">
+                  <div class="card-body">
+                    <h5 class="card-title">Booking Recieved <form action=""></form></h5>
+                        <p class="card-text">Project Info</p>
+                    <% if booking.status == "Approved" %>
+                        <p class="card-text"><strong>Booking status:<%= booking.status %></strong></p>
+                    <% elsif booking.status == "Pending" %>
+                        <p class="card-text"><strong>Booking status:<%= booking.status %></strong></p>
+                    <% end %>
+                    <% if booking.status != "Approved" %>
+                      <%= link_to "Accept the booking", booking_path(booking), method: :patch ,class:"home-page-btn"%>
+                      <%= link_to "Reject the booking", booking_path(booking.id), class:"home-page-btn"%>
+                    <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end%>
+      </div>
+    </div>  
+    <div class="tab-pane fade" id="bookings-made" role="tabpanel" aria-labelledby="bookings-made-tab">
+      <div class="card-container-dash">
+        <% @user.bookings.each do |booking| %>
+          <div class="card project-card my-3 mx-3">
+            <div class="row no-gutters">
+              <div class="col-sm-10">
+                <div class="card-body">
+                    <h5 class="card-title">Your booking for <%= link_to booking.project.title, project_booking_path(booking.project_id, booking.id), class: "booking-btn" %></h5>
+                    <p class="card-text">Booking status: <%= booking.status %> </p>
+                    <%= link_to "Delete your booking", booking_path(booking.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
+                </div>
+              </div>    
+            </div>
+          </div>
         <% end%>
       </div>
     </div>
-
-        <div class="tab-pane fade" id="bookings-made" role="tabpanel" aria-labelledby="bookings-made-tab">
-          <div class="card-container-dash">
-                <% @user.bookings.each do |booking| %>
-              <div class="card project-card my-3 mx-3">
-            <div class="row no-gutters">
-                <div class="col-sm-10">
-                    <div class="card-body">
-                        <h5 class="card-title">Your booking for <%= link_to booking.project.title, project_booking_path(booking.project_id, booking.id), class: "booking-btn" %></h5>
-                        <p class="card-text">Booking status: <%= booking.status %> </p>
-                        <%= link_to "Delete your booking", booking_path(booking.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
-                    </div>
-                </div>
-            </div>
-        </div>
-      <% end%>
-        </div>
-        </div>
-      </div>
-  </div>
   </div>
 </div>
