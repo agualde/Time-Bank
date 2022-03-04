@@ -62,3 +62,12 @@
 .card-product .card-product-infos {
     padding: 16px;
 }
+
+.back-btn {
+    margin-left: 220px;
+    text-decoration: none;
+    color: black;
+    &:hover {
+        color: black;
+    }
+}
