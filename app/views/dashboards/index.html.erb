@@ -66,9 +66,9 @@
 
     <div class="tab-pane fade" id="bookings-received" role="tabpanel" aria-labelledby="bookings-received-tab">
     <div class="card-container-dash">
-      <% @bookings.each do |booking| %>
-      <% if booking.project.user_id == current_user.id %>
-        <div class="project-card my-3 mx-3" style="width: 400px">
+      <% @user.projects.each do |project| %>
+                <% project.bookings.each do |booking| %>
+                <div class="project-card my-3 mx-3" style="width: 400px">
                 <div class="col-sm-2">
                     <img class="card-img-projects" src="" alt="Image of project">
                 </div>
@@ -85,10 +85,10 @@
                         <%= link_to "Accept the booking", booking_path(booking), method: :patch ,class:"home-page-btn"%>
                         <%= link_to "Reject the booking", booking_path(booking.id), class:"home-page-btn"%>
                     <% end %>
+                  <% end %>
                 </div>
             </div>
           </div>
-        <% end%>
         <% end%>
       </div>
     </div>
