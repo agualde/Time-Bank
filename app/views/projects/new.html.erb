@@ -4,12 +4,13 @@
       <div class="row">
         <div class="col-md-6 offset-md-3 justify-content-center">
 
-  <div class="header">
-    <h1>Create A New Project</h1>
+  <div class="header d-flex">
+    <h1>Create a </h1>
+    <h1 class="new" id="underline"> New Project</h1>
   </div>
 
   <div class="sub-header">
-    <h4>Let us know what you want to work on</h4>
+    <h4 class="mb-3">Let us know what you want to work on</h4>
   </div>
 
   <%= simple_form_for (@project) do |f| %>
@@ -25,7 +26,7 @@
 
 
   <div class="form-actions">
-    <%= f.button :submit, method: :post, class: "btn btn-primary" %>
+    <%= f.button :submit, method: :post, class: "btn btn-outline-secondary" %>
   </div>
 <% end %>
 
