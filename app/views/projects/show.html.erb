@@ -31,11 +31,11 @@
     <div class="icons d-flex justify-content-between">
       <div class="favorites text-center">
         <span><%= @project.favorites.count %></span>
-        <p>Favorites</p>
+        <p>Favorite(s)</p>
       </div>
       <div class="collaborators text-center">
         <span><%= @project.bookings.where(status: "Approved").count %></span>
-        <p>Collaborators</p>
+        <p>Collaborator(s)</p>
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@
       </span>
 
       <% if user_signed_in? %>
-        <div class="project-buttons d-flex justify-content-between">
+        <div class="project-buttons d-flex justify-content-start">
             <% if @project.user_id != current_user.id %>
               <% if @project.favorites.where(user_id: current_user).present? %>
                 <%= link_to "Remove favorite", project_favorite_delete_path(@project.favorites.where(user_id: current_user)[0].id), method: "delete"%>
@@ -64,16 +64,16 @@
               <% if @project.bookings.where(user_id: current_user).present? %>
                 <%= link_to "Cancel request", booking_path(@project.bookings.where(user_id: current_user)[0].id), method: "delete"%>
               <% else %>
-                <%= link_to "Join the project", project_bookings_path(@project.id), method: "post"%>
+                <%= link_to "Join the project", project_bookings_path(@project.id), id: "join-btn",method: "post"%>
               <% end %>
             <% end %>
           </div>
       <% else %>
-            <div class="project-buttons d-flex justify-content-between">
+            <div class="project-buttons d-flex justify-content-start">
 
                 <%= link_to "Add favorite", dashboard_path %>
 
-                <%= link_to "Join the project", dashboard_path %>
+                <%= link_to "Join the project", dashboard_path, id: "join-btn" %>
           </div>
 
       <% end %>
