@@ -20,14 +20,14 @@
       </ul>
     </div>
   </div>
-  
+
 
   <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <div class="">
 <div class="mb-3">
     <h1 class="header mb-5"><%= @user.first_name %> <%= @user.last_name %></h1>
-    <%= link_to "✏️", edit_user_path(@user.id), class: "edit-pencil" %>   
+    <%= link_to "✏️", edit_user_path(@user.id), class: "edit-pencil" %>
 </div>
 
 
