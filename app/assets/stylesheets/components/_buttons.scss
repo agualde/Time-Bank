@@ -61,7 +61,7 @@
 }
 
 .new-project {
-  border: none;
+    border: none;
 }
 
 .delete-btn {
@@ -89,4 +89,17 @@
     &:hover {
         color: black;
     }
+}
+
+.pencil-container {
+    display: flex;
+    justify-content: end;
+}
+
+.edit-pencil {
+    text-decoration: none;
+    transform: rotate(13deg);
+    position: relative;
+    top: -20px;
+    right: -4px;
 }
