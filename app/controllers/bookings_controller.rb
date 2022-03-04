@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
    @booking = Booking.find(params[:project_id])
    @booking.status = "Approved"
    @booking.save
-   redirect_to project_booking
+   redirect_to dashboard_path
   end
 
   def destroy
