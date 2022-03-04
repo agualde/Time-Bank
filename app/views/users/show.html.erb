@@ -10,7 +10,7 @@
         <% end %>
         </div>
             <p><%= @user.location %></p>
-            <h6>My skills:</h6>
+            <h6><%= @user.first_name %>'s skills:</h6>
             <p><% @user.skills.each do | skill | %></p>
                 <ul>
                     <li><%= skill.name %></li>
@@ -23,7 +23,7 @@
         <div style="margin-left: 100px;">
             <h4>Bio:</h4>
             <p style="width: 500px;"><%= @user.bio %></p>
-            <h4 class="mb-3">My projects:</h4>
+            <h4 class="mb-3"><%= @user.first_name %>'s projects:</h4>
             <div class="user-show-grid">
                 <% @user.projects.each do | project | %>
                 <div class="card-product">
