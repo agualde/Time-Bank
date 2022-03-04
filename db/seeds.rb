@@ -57,17 +57,12 @@ category6 = Category.create(name: "Crypto Currencies")
     category_id: category.id,
     user_id: User.all.sample.id
   )
-  file1 = URI.open(projects[0])
-  file2 = URI.open(projects[1])
-  file3 = URI.open(projects[2])
-  file4 = URI.open(projects[3])
-  file5 = URI.open(projects[4])
+  file1 = URI.open(projects.sample)
+  file2 = URI.open(projects.sample)
+
 
   project.photos.attach([{ io: file1, filename: project.title, content_type: 'image/jpeg' },
-    { io: file2, filename: project.title, content_type: 'image/jpeg' },
-    { io: file3, filename: project.title, content_type: 'image/jpeg' },
-    { io: file4, filename: project.title, content_type: 'image/jpeg' },
-    { io: file5, filename: project.title, content_type: 'image/jpeg' }])
+    { io: file2, filename: project.title, content_type: 'image/jpeg' }])
 end
 
 15.times do
