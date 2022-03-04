@@ -12,12 +12,12 @@ avatars = [
   'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fHBlcnNvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
 ]
 
-20.times do
+1.times do
   user = User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     username: Faker::Name.first_name,
-    email: Faker::Internet.email,
+    email: "dummy@gmail.com",
     password: 123456,
     location: Faker::Address.city,
     bio: Faker::Lorem.paragraph(sentence_count: 12),
@@ -30,7 +30,7 @@ end
 puts "user #{User.count} created"
 category = Category.create(name: "Gardening")
 
-10.times do
+3.times do
   project =  Project.create!(
     title: Faker::Lorem.paragraph(sentence_count: 1),
     description: Faker::Lorem.paragraph(sentence_count: 15),

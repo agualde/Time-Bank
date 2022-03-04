@@ -82,8 +82,8 @@
                           <p class="card-text"><strong>Booking status:<%= booking.status %></strong></p>
                       <% end %>
                       <% if booking.status != "Approved" %>
-                        <%= link_to "Accept the booking", accept_booking_path(booking.id), class:""%>
-                        <%= link_to "Reject the booking", booking_path(booking.id), class:"btn btn-danger"%>
+                        <%= link_to "Accept the booking", booking_path(booking), method: :patch ,class:"home-page-btn"%>
+                        <%= link_to "Reject the booking", booking_path(booking.id), class:"home-page-btn"%>
                     <% end %>
                 </div>
             </div>
@@ -95,19 +95,19 @@
 
         <div class="tab-pane fade" id="bookings-made" role="tabpanel" aria-labelledby="bookings-made-tab">
           <div class="card-container-dash">
-
+                <% @user.bookings.each do |booking| %>
               <div class="card project-card my-3 mx-3">
             <div class="row no-gutters">
-                <div class="col-sm-2">
-                    <img class="card-img-projects" src="" alt="Image of project">
-                </div>
                 <div class="col-sm-10">
                     <div class="card-body">
-
+                        <h5 class="card-title">Your booking for <%= link_to booking.project.title, project_booking_path(booking.project_id, booking.id), class: "booking-btn" %></h5>
+                        <p class="card-text">Booking status: <%= booking.status %> </p>
+                        <%= link_to "Delete your booking", booking_path(booking.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
                     </div>
                 </div>
             </div>
         </div>
+      <% end%>
         </div>
         </div>
       </div>
