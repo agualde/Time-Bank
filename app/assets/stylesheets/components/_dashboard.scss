@@ -20,7 +20,6 @@ h4 {
     padding: 46px;
 }
 
-
 #avatar-and-info {
     display: flex
 }
@@ -44,6 +43,7 @@ h4 {
 
 .card {
     border: none;
+    background-color: #ffffffa8;
 }
 
 .card-header {
@@ -51,11 +51,31 @@ h4 {
 }
 
 .profile-container {
-  display:flex;
-  width: 500px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    display: flex;
+    width: 500px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .profile-projects {
-  display: flex;
+    display: flex;
+}
+
+.info-bio {
+    text-align: center;
+}
+
+.user-fulname {
+    text-align: start;
+    margin: 0px;
+}
+
+.user-bio {
+    text-align: start;
+}
+
+.dashboard-avatar {
+    width: 281px;
+    height: 344px;
+    background-position: center;
+    background-size: cover;
 }
