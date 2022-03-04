@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 attr_accessor :user
+skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @users = User.all
     @current_day = Time.now.day
