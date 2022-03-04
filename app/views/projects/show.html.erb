@@ -62,7 +62,7 @@
 
             <% if @project.user_id != current_user.id %>
               <% if @project.bookings.where(user_id: current_user).present? %>
-                <%= link_to "Cancel request", booking_path(@project.bookings.where(user_id: current_user)[0].id), method: "delete"%>
+                <%= link_to "Cancel request", booking_path(@project.bookings.where(user_id: current_user)[0].id), id: "join-btn", method: "delete"%>
               <% else %>
                 <%= link_to "Join the project", project_bookings_path(@project.id), id: "join-btn",method: "post"%>
               <% end %>

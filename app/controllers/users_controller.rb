@@ -34,6 +34,6 @@ skip_before_action :authenticate_user!, only: [:index, :show]
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :birthday , :location , :bio , :availability)
+    params.require(:user).permit(:first_name, :last_name, :username, :birthday , :location , :bio , :availability, :photo)
   end
 end

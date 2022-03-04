@@ -57,7 +57,7 @@
             <div class="user-show-grid">
                 <% @user.projects.each do | project | %>
                   <div class="card-product">
-                      <img src="https://picsum.photos/2000/3000?random=<%= rand(1..50) %>)" />
+                      <%= cl_image_tag project.photos[0].key, class: "project-image" %>
                       <div class="card-product-infos">
                           <h2><%= link_to project.title, project_path(project) %></h2>
                           <p><%= project.category.name %> in <%= project.location %></p>
@@ -73,7 +73,7 @@
       <div class="card-container-dash">
         <% @user.favorites.each do | favorite | %>
             <div class="card-product">
-                <img src="https://picsum.photos/2000/3000?random=<%= rand(1..50) %>)" />
+                <%= cl_image_tag favorite.project.photos[0].key, class: "project-image" %>
                 <div class="card-product-infos">
                     <h2><%= link_to favorite.project.title, project_path(favorite.project_id) %></h2>
                     <p><%= favorite.project.category.name %> in <%= favorite.project.location %></p>
@@ -89,12 +89,10 @@
           <% project.bookings.each do |booking| %>
             <div class="project-card my-3 mx-3" style="width: 400px">
               <div class="col-sm-2">
-                  <img class="card-img-projects" src="" alt="Image of project">
+                 <%= cl_image_tag booking.project.photos[0].key, id: "project-request" %>
               </div>
               <div class="col-sm-10">
                   <div class="card-body">
-                    <h5 class="card-title">Booking Recieved <form action=""></form></h5>
-                        <p class="card-text">Project Info</p>
                     <% if booking.status == "Approved" %>
                         <p class="card-text"><strong>Booking status:<%= booking.status %></strong></p>
                     <% elsif booking.status == "Pending" %>
