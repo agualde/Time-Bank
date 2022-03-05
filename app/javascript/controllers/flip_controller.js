@@ -8,6 +8,6 @@ export default class extends Controller {
   }
 
   revealBio() {
-    this.imageTarget.innerHTML("<p>This paragraph replaced the original div.</p>")
+    console.log(imageTarget)
   }
 }
