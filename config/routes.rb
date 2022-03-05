@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   post '/project/:project_id/projectfavorites', to: 'favorites#createfavorite', as: :project_favorite
   delete '/projectfavorite/:id', to: 'favorites#destroyfavorite', as: :project_favorite_delete
 
+  delete '/dashboardbooking/:id', to: 'bookings#destroy_from_dashboard', as: :destroy_booking_from_dashboard
+
 end
