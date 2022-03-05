@@ -23,12 +23,12 @@ class ReviewsController < ApplicationController
     @review.rating = params[:review][:rating].to_i
     @review.user_id = current_user.id
     if @review.save
-      UserReview.create(user_id: review_params_userid.value, review_id: @review.id)
+      UserReview.create(user_id: review_params_userid[:user_id].to_i, review_id: @review.id)
       redirect_to user_registration_path(review_params_userid.value)
     else
+      new
       render :new
     end
-    raise
   end
 
   def destroy
