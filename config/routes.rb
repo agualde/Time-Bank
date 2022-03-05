@@ -21,8 +21,12 @@ Rails.application.routes.draw do
   post '/project/:project_id/projectfavorites', to: 'favorites#createfavorite', as: :project_favorite
   delete '/projectfavorite/:id', to: 'favorites#destroyfavorite', as: :project_favorite_delete
 
+
   get '/users/:id/review/new', to: 'reviews#new', as: :reviews
   post '/users/:id/review', to: 'reviews#create'
   delete '/review/:id', to: 'reviews#destroy'
+
+  delete '/dashboardbooking/:id', to: 'bookings#destroy_from_dashboard', as: :destroy_booking_from_dashboard
+
 
 end
