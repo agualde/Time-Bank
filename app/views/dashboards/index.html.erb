@@ -101,9 +101,9 @@
               <div class="col-sm-10">
                   <div class="card-body">
                     <% if booking.status == "Approved" %>
-                        <p class="card-text"><strong>Booking status:<%= booking.status %></strong></p>
+                        <p class="card-text"><strong>Booking status: <%= booking.status %></strong></p>
                     <% elsif booking.status == "Pending" %>
-                        <p class="card-text"><strong>Booking status:<%= booking.status %></strong></p>
+                        <p class="card-text"><strong>Booking status: <%= booking.status %></strong></p>
                     <% end %>
                     <% if booking.status != "Approved" %>
                       <%= link_to "Accept the booking", booking_path(booking), method: :patch ,class:"home-page-btn"%>
