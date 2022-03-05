@@ -7,6 +7,6 @@ class Review < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
   validates :rating, numericality: { only_integer: true }
-  validates_uniqueness_of :user_id, :scope => [:project_id]
+  validates_uniqueness_of :user_id, :scope => [:project]
 
 end
