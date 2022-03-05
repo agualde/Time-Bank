@@ -52,10 +52,12 @@
         <% end %>
       <% end %>
       <div class = "mt-3">
-        <% if @our_projects.count > 0%>
-          <% if @user == current_user %>
-          <% else %>
-            <%= link_to "Write a review", "/users/#{@user.id}/review/new", class:"btn btn-outline-secondary" %>
+        <% if user_signed_in? %>
+          <% if @our_projects.count > 0%>
+            <% if @user == current_user %>
+            <% else %>
+              <%= link_to "Write a review", "/users/#{@user.id}/review/new", class:"btn btn-outline-secondary" %>
+            <% end %>
           <% end %>
         <% end %>
       </div>

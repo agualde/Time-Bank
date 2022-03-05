@@ -3,23 +3,26 @@ class ReviewsController < ApplicationController
     @review = Review.new
     @user = User.find(params[:id])
 
-    @my_projects_together = current_user.bookings.where(user_id: params[:id])
-    @my_projects_together_2 = current_user.projects
-    @her_projects_together = @user.projects
+    if user_signed_in?
+
+      @my_projects_together = current_user.bookings.where(user_id: params[:id])
+      @my_projects_together_2 = current_user.projects
+      @her_projects_together = @user.projects
 
 
-    @our_projects = []
+      @our_projects = []
 
-    @my_projects_together.each do |booking|
-      @our_projects << booking.project.title
-    end
+      @my_projects_together.each do |booking|
+        @our_projects << booking.project.title
+      end
 
-    @her_projects_together.each do |project|
-      @our_projects << project.title if project.bookings.where(user_id: current_user.id, status: "Approved")
-    end
+      @her_projects_together.each do |project|
+        @our_projects << project.title if project.bookings.where(user_id: current_user.id, status: "Approved")
+      end
 
-    @my_projects_together_2.each do |project|
-      @our_projects << project.title if project.bookings.where(user_id: @user.id, status: "Approved")
+      @my_projects_together_2.each do |project|
+        @our_projects << project.title if project.bookings.where(user_id: @user.id, status: "Approved")
+      end
     end
   end
 
