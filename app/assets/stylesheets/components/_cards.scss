@@ -13,3 +13,19 @@
     -o-object-fit: cover;
     object-fit: cover;
 }
+
+.over-div-hearts {
+    display: flex;
+    justify-content: end;
+    position: relative;
+    bottom: 84px;
+    right: 15px;
+}
+
+#test {
+    text-decoration: none;
+}
+
+.heady {
+    margin-left: 15px;
+}

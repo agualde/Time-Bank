@@ -1,0 +1,16 @@
+             
+           <%= link_to "♥", project_favorites_path(project), method: :create, class: "heart grey #{@favorites.find_by(project_id: project).present? ? 'd-none' : ''}", id: "test" %>
+                    
+                    <% if @favorites.find_by(project_id: project).present? %>
+                    <%= link_to "♥", favorite_path(@favorites.find_by(project_id: project).id), method: :delete, class: "heart red #{@favorites.find_by(project_id: project).present? ? '' : 'd-none'}", id: "test"%>
+                    <% else %>
+                    <% end %>    
+             
+             
+             
+             
+             
+              <h5 class='mt-3'><%= link_to project.title, project_path(project), class: "white" %></h5>
+                    <h6 class="white"><%= project.category.name %> in <%= project.location %></h6>
+               
+            
