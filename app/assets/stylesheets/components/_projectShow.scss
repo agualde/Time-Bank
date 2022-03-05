@@ -4,8 +4,8 @@
     
     .grid {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-column-gap: 50px;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-column-gap: 34px;
     }
     
     .project-image {
@@ -39,13 +39,17 @@
     }
     
     .my-card {
-        border-radius: 6px;
-        width: 342px;
+        border-radius: 12px;
+        width: 300px;
         border: 1px solid #0000002e;
         box-shadow: 0px 0px 10px #9d97975e;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 300px;
         .card-contents {
             padding-inline: 20px;
             border-radius: 0 0 9px 9px;
@@ -156,7 +160,7 @@
     
     .heart {
         position: relative;
-        bottom: 80px;
+        bottom: 175px;
         right: 20px;
         font-size: 21px;
     }
