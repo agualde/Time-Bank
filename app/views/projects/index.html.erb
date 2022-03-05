@@ -10,7 +10,7 @@
         <div class="col-10 grid justify-content-center">
             <% @projects.each do | project | %>
          
-                <div class="my-card my-3 project-image" style="background-image: url(https://res.cloudinary.com/dwsgzpbts/image/upload/v1/development/<%= project.photos[0].key %>);">
+                <div class="my-card my-3 project-image" style="background-image: url(https://res.cloudinary.com/dwsgzpbts/image/upload/v1/production/<%= project.photos[0].key %>);">
                     <div style="align-self: end;">
                     
                     <%= link_to "♥", project_favorites_path(project), method: :create, class: "heart grey #{@favorites.find_by(project_id: project).present? ? 'd-none' : ''}", id: "test" %>
