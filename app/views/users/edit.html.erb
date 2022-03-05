@@ -9,7 +9,8 @@
             <%= f.input :last_name %>
             <%= f.input :username %>
             <%= f.input :photo, as: :file %>
-            <%= f.input :birthday, as: :date %>
+            <%= f.input :birthday, as: :date, start_year: Date.today.year - 120,
+                              end_year: Date.today.year %>
             <%= f.input :location %>
             <%= f.input :bio %>
             <%= f.input :availability, as: :boolean, checked_value: true, unchecked_value: false %>
