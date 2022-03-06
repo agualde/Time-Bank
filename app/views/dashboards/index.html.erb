@@ -57,7 +57,9 @@
             <div class="user-show-grid">
                 <% @user.projects.each do | project | %>
                   <div class="card-product">
-                      <%= cl_image_tag project.photos[0].key, class: "project-image" %>
+                      <a href="/projects/<%= project.id %>" style="height: 100%;">
+                        <%= cl_image_tag project.photos[0].key, class: "project-image" %>
+                      </a>
                       <div class="card-product-infos">
                       <%= link_to "Delete [X]", project_path(project) , method: :delete, data: { confirm: "Deleting your project will erase it from our database and delete all related communications. Are you sure?" }, class: "delete-project-btn" %>
                           <h2><%= link_to project.title, project_path(project) %></h2>
