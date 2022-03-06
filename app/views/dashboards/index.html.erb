@@ -61,7 +61,7 @@
                         <%= cl_image_tag project.photos[0].key, class: "project-image" %>
                       </a>
                       <div class="card-product-infos">
-                      <%= link_to "Delete [X]", project_path(project) , method: :delete, data: { confirm: "Deleting your project will erase it from our database and delete all related communications. Are you sure?" }, class: "delete-project-btn" %>
+                      <%= link_to "Delete [X]", project_path(project) , method: :delete, data: { confirm: "Deleting your project will erase it from our database and delete all related communications. Are you sure?" }, id: "delete-project-btn" %>
                           <h2><%= link_to project.title, project_path(project) %></h2>
                           <p><%= project.category.name %> in <%= project.location %></p>
                       </div>
@@ -80,7 +80,7 @@
                 <%= cl_image_tag favorite.project.photos[0].key, class: "project-image" %>
                 <div>
                   <div class="card-product-infos">
-                  <%= link_to "Delete [X]", favorite_path(favorite), method: :delete, data: { confirm: "Remove from favorites?"},class: "red fav-delete-dashboard", id: "test" %>
+                  <%= link_to "Delete [X]", favorite_path(favorite), method: :delete, data: { confirm: "Remove from favorites?"},class: "red", id: "fav-delete-dashboard" %>
                       <h2><%= link_to favorite.project.title, project_path(favorite.project_id) %></h2>
                       <p><%= favorite.project.category.name %> in <%= favorite.project.location %></p>
                   </div>
