@@ -42,7 +42,7 @@
   <div class="right-page col-6">
       <span>
         <h2 class="underline2"><%= @project.title.upcase %></h2>
-        <p class="mt-3"><em><%= @project.user.first_name %>, <%= ((( Date.new(@current_year, @current_day, @current_month) - @project.user.birthday ).to_i) / 365) if @project.user.birthday.present? %></em></p>
+        <p class="mt-3"><em><a href="/users/<%= @project.user.id %>" style="text-decoration: none; color: black;"><%= @project.user.first_name %></a>, <%= ((( Date.new(@current_year, @current_day, @current_month) - @project.user.birthday ).to_i) / 365) if @project.user.birthday.present? %></em></p>
         <h4 class="location">Project location</h4>
         <p><%= @project.location %></p>
         <h4 class="description">Project description</h4>
