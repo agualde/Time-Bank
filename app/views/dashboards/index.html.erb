@@ -73,13 +73,17 @@
       </div>
     </div>
     <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
-      <div class="card-container-dash">
+      <div class="card-container-dash" style="display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;">
         <% @user.favorites.each do | favorite | %>
             <div class="card-product my-3">
                 <%= cl_image_tag favorite.project.photos[0].key, class: "project-image" %>
-                <div class="card-product-infos">
-                    <h2><%= link_to favorite.project.title, project_path(favorite.project_id) %></h2>
-                    <p><%= favorite.project.category.name %> in <%= favorite.project.location %></p>
+                <div>
+                  <%= link_to "Delete [X]", favorite_path(favorite), method: :delete, class: "red fav-delete-dashboard", id: "test" %>
+                  <div class="card-product-infos">
+                      <h2><%= link_to favorite.project.title, project_path(favorite.project_id) %></h2>
+                      <p><%= favorite.project.category.name %> in <%= favorite.project.location %></p>
+                  </div>
                 </div>
             </div>
           <% end %>

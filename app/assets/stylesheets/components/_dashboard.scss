@@ -95,6 +95,13 @@ h4 {
     align-self: end;
     font-size: 10px;
     position: relative;
-    bottom: 26px;
+    bottom: 10px;
     color: red;
+}
+
+.fav-delete-dashboard {
+    display: flex;
+    justify-content: end;
+    font-size: 11px;
+    margin-right: 10px;
 }
