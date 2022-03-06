@@ -90,3 +90,11 @@ h4 {
     text-decoration: underline;
     text-decoration-color: pink;
 }
+
+.delete-project-btn {
+    align-self: end;
+    font-size: 10px;
+    position: relative;
+    bottom: 26px;
+    color: red;
+}

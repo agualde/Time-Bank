@@ -62,6 +62,8 @@
 
 .card-product .card-product-infos {
     padding: 16px;
+    display: flex;
+    flex-direction: column;
 }
 
 .back-btn {
