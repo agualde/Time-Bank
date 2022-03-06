@@ -42,19 +42,19 @@ puts "user #{User.count} created"
 
 
 
-category = Category.create(name: "Gardening")
-category2 = Category.create(name: "Fishing")
-category3 = Category.create(name: "Playing")
-category4 = Category.create(name: "Community")
-category5 = Category.create(name: "Web Development")
-category6 = Category.create(name: "Crypto Currencies")
+category = [Category.create(name: "Gardening"), 
+            Category.create(name: "Fishing"),
+            Category.create(name: "Playing"), 
+            Category.create(name: "Community"), 
+            Category.create(name: "Web Development"), 
+            Category.create(name: "Crypto Currencies")]
 
-3.times do
+30.times do
   project =  Project.create!(
     title: Faker::Lorem.paragraph(sentence_count: 1),
     description: Faker::Lorem.paragraph(sentence_count: 15),
     location: Faker::Address.city,
-    category_id: category.id,
+    category_id: category.sample.id,
     user_id: User.all.sample.id
   )
   file1 = URI.open(projects.sample)
