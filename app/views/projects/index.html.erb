@@ -73,6 +73,7 @@
            <% if @projects == nil %>
            <% else %>
             <% @projects.each do | project | %>
+
                   <div class="my-card my-3 project-image" style="background-image: url(https://res.cloudinary.com/dwsgzpbts/image/upload/v1/development/<%= project.photos[0].key %>);">
                       <a href="/projects/<%= project.id %>" style="height: 100%;"></a>
                       <div class="inner-card">
@@ -91,6 +92,7 @@
                   </div>
               <% end %>
           <% end %>
+
         </div>
         <div class="col" style="z-index: -1;"></div>
     </div>

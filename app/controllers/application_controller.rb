@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   private
 
   def get_chats
-    @chatrooms = Chatroom.where(sender_id: current_user).or(Chatroom.where(receiver_id: current_user))
+    @chatrooms = Chatroom.where(sender_id: current_user).or(Chatroom.where(reciever_id: current_user))
   end
 end

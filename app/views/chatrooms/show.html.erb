@@ -1,8 +1,10 @@
 <div class="container chatroom"
   data-controller="chatroom-subscription"
-  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
->
-  <h1>#<%= @chatroom.name %></h1>
+  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+  <div class="mb-5">
+    <h1 style="margin-bottom: 0;">Chat: <%= @chatroom.name %></h1>
+    <small class="mb-5" style="font-size: 15px;">  <%= link_to @chatroom.reciever.email, user_path(@chatroom.reciever.id), class: "reciever-show" %></small> 
+  </div>
 
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
@@ -13,12 +15,12 @@
 
   <%= simple_form_for [@chatroom, @message],
     remote: true,
-    html: {data: {chatroom_subscription_target: "form"}, class: "d-flex"} do |f|
+    html: {data: {chatroom_subscription_target: "form"}, class: "d-flex my-3"} do |f|
   %>
     <%= f.input :content,
       label: false,
       placeholder: "Message ##{@chatroom.name}",
-      wrapper_html: {class: "flex-grow-1"}
+      wrapper_html: {class: "flex-grow-1"}, as: :string
     %>
     <%= f.submit "Send", class: "btn btn-primary" %>
   <% end %>

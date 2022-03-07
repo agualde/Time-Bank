@@ -23,6 +23,7 @@ skip_before_action :authenticate_user!, only: [:index, :show]
 
   def show
     @user = User.find(params[:id])
+    @chatroom = Chatroom.where(sender_id: current_user, reciever_id: @user.id)
 
     if user_signed_in?
       @my_projects_together = current_user.bookings.where(user_id: params[:id])

@@ -10,6 +10,13 @@
             <%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "show-avatar mb-3" %>
         <% end %>
       </div>
+
+      <% if @chatroom.exists? %>
+      <%= link_to "To Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn" %>
+      <% else %>
+      <%= link_to "Chat", user_chatrooms_path(@user), class: "home-page-btn", method: :create %>
+      <% end %>
+
       <p><%= @user.location %></p>
       <h6><%= @user.first_name %>'s skills:</h6>
       <p><% @user.skills.each do | skill | %></p>
@@ -21,6 +28,11 @@
       <p>Projects I'm taking part in: <%= @user.bookings.where(status: "Approved").count %></p>
     </div>
     <div style="margin-left: 100px;">
+
+
+
+
+
       <h4>Bio:</h4>
       <p class="mb-5" style="width: 500px;"><%= @user.bio %></p>
       <h4 class="mb-3"><%= @user.first_name %>'s projects:</h4>
