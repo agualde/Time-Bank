@@ -68,3 +68,8 @@
     justify-content: center;
     border-bottom: 1px solid #00000014;
 }
+
+.message-content {
+    display: flex;
+    align-self: end;
+}
