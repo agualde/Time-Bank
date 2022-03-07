@@ -2,7 +2,22 @@
     position: fixed;
     bottom: 0px;
     right: 50px;
-    height: 100px;
-    background-color: black;
-    width: 100px
+    height: 300px;
+    background-color: #ffffffe0;
+    width: 300px;
+    border-radius: 6px;
+
+    #chat-list {
+        list-style: none;
+        padding: none;
+        margin: auto
+    }
+}
+
+.header-chat {
+    margin: auto;
+
+    h6 {
+    text-align: center;
+    }
 }
