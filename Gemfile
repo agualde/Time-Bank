@@ -65,3 +65,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'cloudinary', '~> 1.16.0'
 gem 'faker'
 gem 'pg_search', '~> 2.3.0'
+gem 'custom_error_message'
+gem 'active_storage_validations'

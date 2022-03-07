@@ -9,7 +9,7 @@
     <%= form_tag projects_path, method: :get do %>
       <%= text_field_tag :query,
         params[:query],
-        class: "form-control",
+        class: "form-control-homepage",
         placeholder: "What are you looking for?"
       %>
       <%= submit_tag "Find a project", class: "home-page-btn" %>
