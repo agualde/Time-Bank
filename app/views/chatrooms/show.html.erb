@@ -6,9 +6,13 @@
     <small class="mb-5" style="font-size: 15px;">  <%= link_to @chatroom.reciever.email, user_path(@chatroom.reciever.id), class: "reciever-show" %></small> 
   </div>
 
-  <div class="messages" data-chatroom-subscription-target="messages">
+  <div class="messages" data-chatroom-subscription-target="messages" id="messages" data-chatroom-id="<%= @chatroom.id %>" data-current-user-id="<%= current_user.id %>">
     <% @chatroom.messages.each do |message| %>
-        <%= render "messages/message", message: message %>   
+       <% if message.user == current_user %>
+          <%= render 'messages/message', message: message, css_class: 'sender' %>
+      <% else %>
+          <%= render 'messages/message', message: message, css_class: 'reciever' %>
+      <% end %>  
     <% end %>
   </div>
 
