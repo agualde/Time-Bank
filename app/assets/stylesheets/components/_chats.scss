@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 0px;
     right: 50px;
-    height: 300px;
+    height: auto;
     background-color: #ffffffe0;
     width: 300px;
     border-radius: 6px;
@@ -55,4 +55,14 @@
     &:hover {
         color: black;
     }
+}
+
+.click-to-collapse {
+    width: 100%;
+    padding: 0;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #00000014;
 }
