@@ -2,8 +2,13 @@ class ProjectsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @favorites = Favorite.where(user_id: current_user)
-    @projects = Project.all
+    if params[:query].present?
+      @projects = Project.global_search(params[:query])
+      @favorites = Favorite.where(user_id: current_user)
+    else
+      @favorites = Favorite.where(user_id: current_user)
+      @projects = Project.all
+    end
   end
 
   def show
@@ -22,7 +27,7 @@ class ProjectsController < ApplicationController
     @project.user_id = current_user.id
     if @project.save
       redirect_to dashboard_path
-      
+
     else
       render :new
     end
