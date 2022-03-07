@@ -9,12 +9,16 @@ class ChatroomsController < ApplicationController
     @chatroom = Chatroom.new
     @chatroom.sender = current_user
     @chatroom.reciever = User.find(params[:user_id])
-    if @chatroom.save
-      redirect_to chatroom_path(@chatroom)
+    
+    if  @chatroom.sender == @chatroom.reciever
+      redirect_to dashboard_path, alert: "Stop it"
     else
-      dashboard_path
+      if @chatroom.save
+        redirect_to chatroom_path(@chatroom)
+      else
+        redirect_to dashboard_path
+      end
     end
-
 
   end
   
