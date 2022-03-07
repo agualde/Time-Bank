@@ -6,10 +6,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <%= favicon_link_tag asset_path('https://img.icons8.com/external-flatart-icons-outline-flatarticons/344/external-clock-summer-flatart-icons-outline-flatarticons.png 2x') %>
+    
   </head>
 
   <body>
@@ -18,7 +21,7 @@
 
     <div class="yield-container">
       <%= yield %>
-    </div>    
+    </div>
 
     <div class='mt-5 footer'></div>
   </body>
