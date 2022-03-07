@@ -73,8 +73,7 @@
       </div>
     </div>
     <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
-      <div class="card-container-dash" style="display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;">
+      <div class="card-container-dash" id="favorites-dashboard" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;">
         <% @user.favorites.each do | favorite | %>
             <div class="card-product my-3">
                 <%= cl_image_tag favorite.project.photos[0].key, class: "project-image" %>
