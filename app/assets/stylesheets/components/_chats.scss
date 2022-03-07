@@ -22,3 +22,37 @@
     text-align: center;
     }
 }
+
+
+
+.sender {
+    display: flex;
+    flex-direction: column;
+    align-self: end;
+    background: linear-gradient(45deg, #f2b9e4, #fba5a9);
+    padding: 14px;
+    border-radius: 12px;
+}
+
+.reciever {
+    background-color: #eaeaeae6;
+    align-self: flex-start;
+    padding: 14px;
+    border-radius: 12px;
+}  
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    min-height: 65vh;
+    overflow: scroll;
+    max-height: 65vh;
+}
+
+.reciever-show {
+    text-decoration: none;
+    color: black;
+    &:hover {
+        color: black;
+    }
+}
