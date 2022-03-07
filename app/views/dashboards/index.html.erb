@@ -39,8 +39,8 @@
                   <%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "show-avatar mb-3" %>
               <% end %>
             </div>
-            <p><%= @user.location %></p>
-            <h6>My skills:</h6>
+            <h4><%= @user.location %></h4>
+            <h5>My skills:</h5>
             <p><% @user.skills.each do | skill | %></p>
                 <ul>
                     <li><%= skill.name %></li>
@@ -86,7 +86,6 @@
                 </div>
             </div>
           <% end %>
-
       </div>
     </div>
     <div class="tab-pane fade" id="bookings-received" role="tabpanel" aria-labelledby="bookings-received-tab">
