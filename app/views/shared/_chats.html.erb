@@ -8,7 +8,7 @@
         <% @chatrooms.each do |chatroom| %>
             <li>
             <% if chatroom.reciever.photo.key != nil %>
-            <a href="/users/<%= chatroom.reciever.id %>"><%= cl_image_tag chatroom.reciever.photo.key, class: "nav-avatar" %></a> - <%= link_to chatroom.name, chatroom_path(chatroom) %></li>
+            <a href="/users/<%= chatroom.reciever.id %>"><%= cl_image_tag chatroom.reciever.photo.key, class: "nav-avatar" %></a> - <%= link_to chatroom.reciever.email, chatroom_path(chatroom) %></li>
              <% else %>
              <a href="/users/<%= chatroom.reciever.id %>"><%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "nav-avatar" %></a> - <%= link_to chatroom.name, chatroom_path(chatroom) %></li>
              <% end %>

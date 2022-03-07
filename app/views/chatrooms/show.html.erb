@@ -2,7 +2,7 @@
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
   <div class="mb-5">
-    <h1 style="margin-bottom: 0;">#<%= @chatroom.name %></h1>
+    <h1 style="margin-bottom: 0;">Chat: <%= @chatroom.name %></h1>
     <small class="mb-5" style="font-size: 15px;">  <%= link_to @chatroom.reciever.email, user_path(@chatroom.reciever.id), class: "reciever-show" %></small> 
   </div>
 
