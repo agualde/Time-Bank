@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users 
   root to: 'pages#home'
   resources :projects do
     resources :favorites, only: [:create]
     resources :bookings, only: [:new, :create, :show]
   end
+
+  resources :users, only: [] do 
+      resources :chatrooms, only: [:create]
+  end
+
+  resources :chatrooms, only: [:show] do 
+    resources :messages, only: [:create]
+  end
+
   resources :bookings, only: [:update, :destroy]
   resources :favorites, only: [:destroy]
   get '/dashboard', to: 'dashboards#index', as: :dashboard
