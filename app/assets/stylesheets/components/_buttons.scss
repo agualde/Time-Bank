@@ -167,3 +167,32 @@
 .home-page-btn-contributors:hover {
     outline: 0;
 }
+
+.home-page-btn-project-index {
+    align-items: center;
+    background-color: #fee6e3;
+    border: 2px solid #fee6e3;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    height: 48px;
+    justify-content: center;
+    line-height: 24px;
+    width: 300px;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    &:hover {
+        color: black;
+    }
+    margin-top: 25px;
+}

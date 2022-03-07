@@ -1,40 +1,101 @@
 <div class="container" style="margin-left: 135px;">
 
-    <h1 class='index-head mt-5 mb-2'>Work on any (<%= @projects.count %>) projects around you</h1>
+    <h1 class='index-head mt-5 mb-2'>Work on any (<%= @projects == nil ? 0 : @projects.count %>) projects around you</h1>
     <p class='index-head mb-5' id='sub-header'>Explore your communty, expand your reach</p>
 
 </div>
+
+<div class="container">
+  <div class="row">
+    <form action="/projects" method="get">
+      <div class="d-flex mt-1 mb-2">
+        <div class="form-div-input">
+          <label for="location" class="from-label-project-index"> Location </label>
+          <input list="locations" name="location" id="location" class="form-control-project-index mr-2" placeholder="ex: Barcelona">
+          <datalist id="locations">
+            <% @locations_array = [] %>
+            <% @locations.each do | location | %>
+              <% if @locations_array.include?(location) %>
+              <% else %>
+                <option value="<%= location %>">
+                <% @locations_array << location %>
+              <% end %>
+            <% end %>
+          </datalist>
+        </div>
+        <div>
+          <label for="category" class="from-label-project-index">Category</label>
+          <input list="categories" name="category" id="category" class="form-control-project-index mr-2" placeholder="ex: Gardening">
+          <datalist id="categories">
+            <% @categories.each do | category | %>
+              <option value="<%= category %>">
+            <% end %>
+          </datalist>
+        </div>
+        <div class="end-div">
+          <label for="favorite" class="from-label-project-index">Favorite(s)</label>
+          <input list="favorites" name="favorite" id="favorite" class="form-control-project-index mr-2" placeholder="ex: 1">
+          <datalist id="favorites">
+            <% @favorites_array = [] %>
+            <% @favorites.each do | favorite | %>
+              <% if @favorites_array.include?(favorite) %>
+              <% else %>
+                <option value="<%= favorite %>">
+                <% @favorites_array << favorite %>
+              <% end %>
+            <% end %>
+          </datalist>
+        </div>
+        <div class="guest-div">
+          <label for="collaborator" class="from-label-project-index">Collaborator(s)</label>
+          <input list="collaborators" name="collaborator" id="collaborator" class="form-control-project-index mr-2" placeholder="ex: 1">
+          <datalist id="collaborators">
+            <% @collaborators_array = [] %>
+            <% @collaborators.each do | collaborator | %>
+              <% if @collaborators_array.include?(collaborator) %>
+              <% else %>
+                <option value="<%= collaborator %>">
+                <% @collaborators_array << collaborator %>
+              <% end %>
+            <% end %>
+          </datalist>
+        </div>
+        <input type="submit" class="home-page-btn-project-index" value="Filter">
+      </div>
+    </form>
+  </div>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col"></div>
         <div class="col-10 grid justify-content-center" id="list">
+           <% if @projects == nil %>
+           <% else %>
             <% @projects.each do | project | %>
 
-                <div class="my-card my-3 project-image" style="background-image: url(<%= cl_image_path project.photos[0].key %>);">
-                    <a href="/projects/<%= project.id %>" style="height: 100%;"></a>
-                    <div class="inner-card">
-                        <%= link_to "♥", project_favorites_path(project), method: :create, class: "heart grey #{@favorites.find_by(project_id: project).present? ? 'd-none' : ''}", id: "test" %>
+                  <div class="my-card my-3 project-image" style="background-image: url(https://res.cloudinary.com/dwsgzpbts/image/upload/v1/development/<%= project.photos[0].key %>);">
+                      <a href="/projects/<%= project.id %>" style="height: 100%;"></a>
+                      <div class="inner-card">
+                          <%= link_to "♥", project_favorites_path(project), method: :create, class: "heart grey #{@user_favorites.find_by(project_id: project).present? ? 'd-none' : ''}", id: "test" %>
+                          <% if @user_favorites.find_by(project_id: project).present? %>
+                          <%= link_to "♥", favorite_path(@user_favorites.find_by(project_id: project).id), method: :delete, class: "heart red #{@user_favorites.find_by(project_id: project).present? ? '' : 'd-none'}", id: "test"%>
+                          <% else %>
+                          <% end %>
+                      </div>
+                      <div class="heady">
+                          <h5 class='mt-3 mb-0'><%= link_to project.title, project_path(project), class: "white" %></h5>
+                          <div class='index-card-list mb-3'>
+                              <h6 class="white"><%= project.category.name %> in <%= project.location %></h6>
+                          </div>
+                      </div>
+                  </div>
+              <% end %>
+          <% end %>
 
-                        <% if @favorites.find_by(project_id: project).present? %>
-                        <%= link_to "♥", favorite_path(@favorites.find_by(project_id: project).id), method: :delete, class: "heart red #{@favorites.find_by(project_id: project).present? ? '' : 'd-none'}", id: "test"%>
-                        <% else %>
-                        <% end %>
-                    </div>
-
-                    <div class="heady">
-                        <h5 class='mt-3 mb-0'><%= link_to project.title, project_path(project), class: "white" %></h5>
-
-                        <div class='index-card-list mb-3'>
-                            <h6 class="white"><%= project.category.name %> in <%= project.location %></h6>
-                        </div>
-                    </div>
-                </div>
-
-            <% end %>
         </div>
         <div class="col" style="z-index: -1;"></div>
     </div>
-
 </div>
 
 </div>

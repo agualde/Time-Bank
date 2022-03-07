@@ -21,7 +21,9 @@ class User < ApplicationRecord
   has_one_attached :photo
 
   has_many :messages
-  has_many :chatrooms_as_sender, class_name: "Chatroom", foreign_key:  :asker_id 
-  has_many :chatrooms_as_receiver, class_name: "Chatroom", foreign_key:  :reciever_id 
+  has_many :chatrooms_as_sender, class_name: "Chatroom", foreign_key:  :asker_id
+  has_many :chatrooms_as_receiver, class_name: "Chatroom", foreign_key:  :reciever_id
+
+  validates :photo, attached: true, size: { less_than: 20.megabytes , message: 'file is too large' }
 
 end
