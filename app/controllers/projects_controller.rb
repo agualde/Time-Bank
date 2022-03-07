@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
       @projects = Project.all
       @user_favorites = Favorite.where(user_id: current_user)
     else
-      @projects = Project.where(location: params[:location]).or(Project.where(category: params[:category]))
+      @projects = Project.where(location: params[:location]).or(Project.where(category_id: Category.all.where(name: params[:category]).ids.first))
       @user_favorites = Favorite.where(user_id: current_user)
       if params[:favorite] == "" && params[:collaborator] == ""
         @projects
