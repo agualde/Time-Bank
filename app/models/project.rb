@@ -27,5 +27,5 @@ class Project < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-  validates :phots, attached: true, size: { less_than: 20.megabytes , message: 'files are too large' }
+  # validates :phots, attached: true, size: { less_than: 20.megabytes , message: 'files are too large' }
 end
