@@ -56,7 +56,10 @@
 }
 
 .button-container {
-    margin: 130px;
+    margin-top: 130px;
+    margin-bottom: 130px;
+    margin-left: 225px;
+    margin-right: 130px;
     display: flex;
     justify-content: space-between;
 }
@@ -74,5 +77,3 @@
     padding: 30px;
     margin-left: 81px;
 }
-
-

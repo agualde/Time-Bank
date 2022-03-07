@@ -3,12 +3,18 @@
 
 <div class="heading-container col-4">
     <div class="header-div">
-      <h1 class="underline2">Time Bank.</h1> <h1>Bringing people together</h1>
+      <h1 class="underline2">Time Bank.</h1> <h1>Contribute to to improve</h1>
     </div>
   <div class="button-container">
-    <strong><%= link_to 'PROJECTS', projects_path, class: 'home-page-btn' %></strong>
-    <strong><%= link_to 'CONTRIBUTORS', users_path, class: 'home-page-btn-contributors' %></strong>
-</div>
+    <%= form_tag projects_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "What are you looking for?"
+      %>
+      <%= submit_tag "Find a project", class: "home-page-btn" %>
+    <% end %>
+   </div>
 </div>
 
 <div class="middle-banner">
@@ -18,18 +24,18 @@
     <div class="info-logo">
     <img src="https://img.icons8.com/external-smashingstocks-detailed-outline-smashing-stocks/66/000000/external-clock-education-school-and-elearning-smashingstocks-detailed-outline-smashing-stocks-2.png"/></div>
         <h3>What is Time Bank?</h3>
-        <p>Timebanking brings people together to share their time and skills</p>
+        <p>Time Bank brings people together to share their time and skills</p>
     </div>
     <div class="info">
         <div class="info-logo">
         <img src="https://img.icons8.com/external-nawicon-detailed-outline-nawicon/64/000000/external-clock-living-room-nawicon-detailed-outline-nawicon.png"/></div>
         <h3>Is Time Bank for you?</h3>
-        <p>Check out our current users and how they used their time</p></div>
+        <p>Check for projects in your area and the people behind them</p></div>
     <div class="info">
         <div class="info-logo">
         <img src="https://img.icons8.com/external-justicon-lineal-justicon/64/000000/external-hourglass-ecology-justicon-lineal-justicon.png"/></div>
-          <h3>Help People Share Time</h3>
-        <p>This is a little bit of information</p></div>
+          <h3>Help People</h3>
+        <p>Challenge the odds by helping those who need it the most</p></div>
   </div>
 
 </div>

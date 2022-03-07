@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+
   belongs_to :user
 
   has_many :favorites, dependent: :destroy
@@ -15,4 +16,14 @@ class Project < ApplicationRecord
   validates :location, presence: true
 
   belongs_to :category
+
+  include PgSearch::Model
+  pg_search_scope :global_search,
+    against: [ :title, :description ],
+    associated_against: {
+      user: [ :first_name, :last_name, :bio ]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
 end
