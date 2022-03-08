@@ -26,6 +26,7 @@ skip_before_action :authenticate_user!, only: [:index, :show]
     @chatroom = Chatroom.where(sender_id: current_user, reciever_id: @user.id)
 
     if user_signed_in?
+
       @my_projects_together = current_user.bookings.where(user_id: params[:id])
       @my_projects_together_2 = current_user.projects
       @her_projects_together = @user.projects
@@ -37,12 +38,13 @@ skip_before_action :authenticate_user!, only: [:index, :show]
       end
 
       @her_projects_together.each do |project|
-        @our_projects << project.title if project.bookings.where(user_id: current_user.id, status: "Approved")
+        (@our_projects << project.title) if !(project.bookings.where(user_id: current_user.id, status: "Approved").empty?)
       end
 
       @my_projects_together_2.each do |project|
         @our_projects << project.title if project.bookings.where(user_id: @user.id, status: "Approved")
       end
+
     end
   end
 
