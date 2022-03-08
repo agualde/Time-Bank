@@ -39,15 +39,23 @@
                   <%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "show-avatar mb-3" %>
               <% end %>
             </div>
-            <h4><%= @user.location %></h4>
+            <h4 id="underline"><%= @user.location %></h4>
             <h5>My skills:</h5>
             <p><% @user.skills.each do | skill | %></p>
                 <ul>
                     <li><%= skill.name %></li>
                 </ul>
             <% end %>
-            <p>Projects: <%= @user.projects.count %></p>
-            <p>Projects I'm taking part in: <%= @user.bookings.where(status: "Approved").count %></p>
+          <div class="icons d-flex justify-content-between">
+            <div class="favorites text-center">
+              <span><%= @user.projects.count %></span>
+              <p>Projects(s)</p>
+            </div>
+              <div class="collaborators text-center">
+                <span><%= @user.bookings.where(status: "Approved").count %></span>
+                <p>Projects I'm taking part in</p>
+              </div>
+              </div>
           </div>
           <div style="margin-left: 100px;">
             <h4>Bio:</h4>
@@ -125,7 +133,12 @@
     <div class="tab-pane fade" id="bookings-made" role="tabpanel" aria-labelledby="bookings-made-tab">
       <div class="card-container-dash">
         <% @user.bookings.each do |booking| %>
-          <div class="card project-card my-3 mx-3">
+          <div class="project-card my-3 mx-3" style="width: 350px">
+             <% if booking.user.photo.key != nil %>
+                  <a href='/users/<%= booking.user.id %>'><%= cl_image_tag booking.user.photo.key, id: "project-request", class: "mb-3" %></a>
+                <% else %>
+                  <a href='/users/<%= booking.user.id %>'><%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "mb-3" %></a>
+                <% end %>
             <div class="row no-gutters">
               <div class="col-sm-10">
                 <div class="card-body">
