@@ -1,6 +1,6 @@
 <div class="container chatroom"
   data-controller="chatroom-subscription"
-  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>" id="kathleen">
   <div class="mb-5">
     <h1 style="margin-bottom: 0;">Chat with: <%= @chatroom.name %></h1>
     <small class="mb-5" style="font-size: 18px;">  <%= link_to @chatroom.other_person(current_user).email, user_path(@chatroom.other_person(current_user).id), class: "reciever-show" %></small>
