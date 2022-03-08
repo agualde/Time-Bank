@@ -31,23 +31,24 @@ export default class extends Controller {
     
   insertIntoDOM = (messageHTML, currentUserId, messages) => {
     // create an empty div
-    const message = document.createElement('div') // https://developer.mozilla.org/pt-BR/docs/Web/API/Document/createElement
+    const messageFakeDiv = document.createElement('div') // https://developer.mozilla.org/pt-BR/docs/Web/API/Document/createElement
 
     // put the message HTML inside
-    message.innerHTML = messageHTML;
+    messageFakeDiv.innerHTML = messageHTML;
+    const message = messageFakeDiv.firstChild;
     // if the message is from the sender,
-    if (message.firstChild.dataset.senderId === currentUserId) {
+    if (message.dataset.senderId === currentUserId) {
       // add the sender CSS
-      message.firstChild.classList.add('sender');
+      message.classList.add('sender');
     } else {
       // Else, add the receiver css
-      message.firstChild.classList.add('reciever');
+      message.classList.add('reciever');
     }
-    messages.scrollTo(0, messages.scrollHeight)
     this.formTarget.reset()
-
+    
     // insert the element in the DOM
     messages.insertAdjacentElement('beforeend', message);
+    messages.scrollTo(0, messages.scrollHeight)
   }
 
 }
