@@ -23,9 +23,9 @@
   %>
     <%= f.input :content,
       label: false,
-      placeholder: "Message ##{@chatroom.name}",
+      placeholder: "Hit ENTER to send.",
       wrapper_html: {class: "flex-grow-1"}, as: :string
     %>
-    <%= f.submit "Send", class: "btn btn-primary" %>
+
   <% end %>
 </div>
