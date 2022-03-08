@@ -6,13 +6,8 @@
           <label for="location" class="from-label-project-index"> Location </label>
           <input list="locations" name="location" id="location" class="form-control-project-index mr-2" placeholder="ex: Barcelona">
           <datalist id="locations">
-            <% @locations_array = [] %>
             <% @locations.each do | location | %>
-              <% if @locations_array.include?(location) %>
-              <% else %>
-                <option value="<%= location %>">
-                <% @locations_array << location %>
-              <% end %>
+              <option value="<%= location %>">
             <% end %>
           </datalist>
         </div>
@@ -29,13 +24,8 @@
           <label for="favorite" class="from-label-project-index">Favorite(s)</label>
           <input list="favorites" name="favorite" id="favorite" class="form-control-project-index mr-2" placeholder="ex: 1">
           <datalist id="favorites">
-            <% @favorites_array = [] %>
             <% @favorites.each do | favorite | %>
-              <% if @favorites_array.include?(favorite) %>
-              <% else %>
-                <option value="<%= favorite %>">
-                <% @favorites_array << favorite %>
-              <% end %>
+              <option value="<%= favorite %>">
             <% end %>
           </datalist>
         </div>
@@ -43,13 +33,8 @@
           <label for="collaborator" class="from-label-project-index">Collaborator(s)</label>
           <input list="collaborators" name="collaborator" id="collaborator" class="form-control-project-index mr-2" placeholder="ex: 1">
           <datalist id="collaborators">
-            <% @collaborators_array = [] %>
             <% @collaborators.each do | collaborator | %>
-              <% if @collaborators_array.include?(collaborator) %>
-              <% else %>
-                <option value="<%= collaborator %>">
-                <% @collaborators_array << collaborator %>
-              <% end %>
+              <option value="<%= collaborator %>">
             <% end %>
           </datalist>
         </div>
