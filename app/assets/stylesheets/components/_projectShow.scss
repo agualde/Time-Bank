@@ -4,8 +4,7 @@
     
     .grid {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-column-gap: 34px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
     
     .project-image {
