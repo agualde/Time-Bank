@@ -2,8 +2,8 @@
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
   <div class="mb-5">
-    <h1 style="margin-bottom: 0;">Chat: <%= @chatroom.name %></h1>
-    <small class="mb-5" style="font-size: 15px;">  <%= link_to @chatroom.reciever.email, user_path(@chatroom.reciever.id), class: "reciever-show" %></small> 
+    <h1 style="margin-bottom: 0;">Chat with: <%= @chatroom.name %></h1>
+    <small class="mb-5" style="font-size: 18px;">  <%= link_to @chatroom.other_person(current_user).email, user_path(@chatroom.other_person(current_user).id), class: "reciever-show" %></small>
   </div>
 
   <div class="messages" data-chatroom-subscription-target="messages" id="messages" data-chatroom-id="<%= @chatroom.id %>" data-current-user-id="<%= current_user.id %>">
@@ -12,7 +12,7 @@
           <%= render 'messages/message', message: message, css_class: 'sender' %>
       <% else %>
           <%= render 'messages/message', message: message, css_class: 'reciever' %>
-      <% end %>  
+      <% end %>
     <% end %>
   </div>
 
