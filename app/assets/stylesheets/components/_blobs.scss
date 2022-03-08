@@ -7,7 +7,7 @@
     position: fixed;
     left: -155px;
     top: 532px;
-    z-index: -1;
+    z-index: -2;
 }
 
 #my-blob-index {
@@ -19,7 +19,7 @@
     position: fixed;
     left: -155px;
     top: 532px;
-    z-index: -1;
+    z-index: -2;
     transform: rotate(180deg);
 }
 
@@ -32,7 +32,7 @@
     opacity: 0.8;
     position: fixed;
     top: 225px;
-    z-index: -1;
+    z-index: -2;
     transform: rotate(180deg);
 }
 
@@ -44,7 +44,7 @@
     opacity: 0.8;
     position: fixed;
     left: -140px;
-    z-index: -1;
+    z-index: -2;
 }
 
 .blob {
@@ -57,7 +57,7 @@
     left: 1429px;
     top: 225px;
     transform: rotate(180deg);
-    z-index: -1;
+    z-index: -2;
 }
 
 .blob-show {
@@ -69,5 +69,18 @@
     position: fixed;
     left: 1143px;
     top: 225px;
-    z-index: -1;
+    z-index: -2;
+}
+
+#my-blob-show-right {
+      width: 675px;
+    height: 400px;
+    border-radius: 50%;
+    background-color: #f4f4f4;
+    opacity: 0.8;
+    position: fixed;
+    left: 1279px;
+    top: 96px;
+    z-index: -2;
+    transform: rotate(180deg);
 }
