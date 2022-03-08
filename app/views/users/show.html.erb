@@ -24,8 +24,17 @@
           <li><%= skill.name %></li>
         </ul>
       <% end %>
-      <p>Projects: <%= @user.projects.count %></p>
-      <p>Projects I'm taking part in: <%= @user.bookings.where(status: "Approved").count %></p>
+
+      <div class="icons d-flex justify-content-between">
+      <div class="favorites text-center">
+        <span><%= @user.projects.count %></span>
+        <p>Projects(s)</p>
+      </div>
+      <div class="collaborators text-center">
+        <span><%= @user.bookings.where(status: "Approved").count %></span>
+        <p>Projects I'm taking part in</p>
+      </div>
+    </div>
     </div>
     <div style="margin-left: 100px;">
 
@@ -79,7 +88,7 @@
 
 
 </div>
- <svg width="1000" height="1000" viewBox="0 0 696 694" fill="none" xmlns="http://www.w3.org/2000/svg" id="my-blob-index" >
+ <svg width="1000" height="1000" viewBox="0 0 696 694" fill="none" xmlns="http://www.w3.org/2000/svg" id="my-blob-show-right" >
   <path fill-rule="evenodd" clip-rule="evenodd" fill="url(#paint0_linear)">
     <animate repeatCount="indefinite" fill="freeze" attributeName="d" dur="5s"
 
