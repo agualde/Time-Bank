@@ -8,12 +8,14 @@
       <div class="container-home">
         <div class="button-container">
             <%= form_tag projects_path, method: :get do %>
+            <div class="form-home">
               <%= text_field_tag :query,
                 params[:query],
                 class: "search-home",
                 placeholder: "What are you looking for?"
               %>
               <%= button_tag "Go!", class: "home-page-btn-2" %>
+              </div>
             <% end %>
           </div>
       </div>
