@@ -5,6 +5,7 @@
     <div class="header-div">
       <h1 class="underline2">Time Bank.</h1> <h1>Bringing People Together</h1>
     </div>
+    <div class="container-home">
   <div class="button-container">
     <%= form_tag projects_path, method: :get do %>
       <%= text_field_tag :query,
@@ -14,6 +15,7 @@
       %>
       <%= submit_tag "Find a project", class: "home-page-btn" %>
     <% end %>
+
     </div>
 </div>
 
