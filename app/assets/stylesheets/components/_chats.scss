@@ -32,6 +32,7 @@
     background: linear-gradient(45deg, #f2b9e4, #fba5a9);
     padding: 14px;
     border-radius: 12px;
+
 }
 
 .reciever {
@@ -39,6 +40,7 @@
     align-self: flex-start;
     padding: 14px;
     border-radius: 12px;
+
 }  
 
 .messages {
@@ -65,4 +67,9 @@
     align-items: center;
     justify-content: center;
     border-bottom: 1px solid #00000014;
+}
+
+.message-content {
+    display: flex;
+    align-self: end;
 }
