@@ -3,24 +3,22 @@
 
 <div class="heading-container col-4">
     <div class="header-div">
-      <h1 class="underline2">Time Bank.</h1> <h1>Contribute to to improve</h1>
+      <h1 class="underline2">Time Bank.</h1> <h1>Bringing People Together</h1>
     </div>
     <div class="container-home">
   <div class="button-container">
     <%= form_tag projects_path, method: :get do %>
       <%= text_field_tag :query,
         params[:query],
-        class: "form-control",
+        class: "form-control-homepage",
         placeholder: "What are you looking for?"
       %>
       <%= submit_tag "Find a project", class: "home-page-btn" %>
     <% end %>
-  </div>
-      <div class="projects">
-      <%= link_to "See all the projects", projects_path, class: "home-page-btn" %>
-      </div>
+
     </div>
 </div>
+
 
 <div class="middle-banner">
   <div class="col-2"></div>

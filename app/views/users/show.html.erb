@@ -10,6 +10,13 @@
             <%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "show-avatar mb-3" %>
         <% end %>
       </div>
+
+      <% if @chatroom.exists? %>
+      <%= link_to "To Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn" %>
+      <% else %>
+      <%= link_to "Chat", user_chatrooms_path(@user), class: "home-page-btn", method: :create %>
+      <% end %>
+
       <p><%= @user.location %></p>
       <h6><%= @user.first_name %>'s skills:</h6>
       <p><% @user.skills.each do | skill | %></p>
@@ -17,10 +24,24 @@
           <li><%= skill.name %></li>
         </ul>
       <% end %>
-      <p>Projects: <%= @user.projects.count %></p>
-      <p>Projects I'm taking part in: <%= @user.bookings.where(status: "Approved").count %></p>
+
+      <div class="icons d-flex justify-content-between">
+      <div class="favorites text-center">
+        <span><%= @user.projects.count %></span>
+        <p>Projects(s)</p>
+      </div>
+      <div class="collaborators text-center">
+        <span><%= @user.bookings.where(status: "Approved").count %></span>
+        <p>Projects I'm taking part in</p>
+      </div>
+    </div>
     </div>
     <div style="margin-left: 100px;">
+
+
+
+
+
       <h4>Bio:</h4>
       <p class="mb-5" style="width: 500px;"><%= @user.bio %></p>
       <h4 class="mb-3"><%= @user.first_name %>'s projects:</h4>
@@ -67,7 +88,7 @@
 
 
 </div>
- <svg width="1000" height="1000" viewBox="0 0 696 694" fill="none" xmlns="http://www.w3.org/2000/svg" id="my-blob-index" >
+ <svg width="1000" height="1000" viewBox="0 0 696 694" fill="none" xmlns="http://www.w3.org/2000/svg" id="my-blob-show-right" >
   <path fill-rule="evenodd" clip-rule="evenodd" fill="url(#paint0_linear)">
     <animate repeatCount="indefinite" fill="freeze" attributeName="d" dur="5s"
 
