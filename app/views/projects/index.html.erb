@@ -44,35 +44,37 @@
   </div>
 </div>
 
-<div class="container">
+
     <div class="row">
         <div class="col grid justify-content-center" id="list">
            <% if @projects == nil %>
            <% else %>
             <% @projects.each do | project | %>
-
-                  <div class="my-card my-3 project-image" style="background-image: url(<%= cl_image_path project.photos[0].key %>);">
-                      <a href="/projects/<%= project.id %>" style="height: 100%;"></a>
-                      <div class="inner-card">
-                          <%= link_to "♥", project_favorites_path(project), method: :create, class: "heart grey #{@user_favorites.find_by(project_id: project).present? ? 'd-none' : ''}", id: "test" %>
-                          <% if @user_favorites.find_by(project_id: project).present? %>
-                          <%= link_to "♥", favorite_path(@user_favorites.find_by(project_id: project).id), method: :delete, class: "heart red #{@user_favorites.find_by(project_id: project).present? ? '' : 'd-none'}", id: "test"%>
-                          <% else %>
-                          <% end %>
-                      </div>
-                      <div class="heady">
-                          <h5 class='mt-3 mb-0'><%= link_to project.title, project_path(project), class: "white" %></h5>
-                          <div class='index-card-list mb-3'>
-                              <h6 class="white"><%= project.category.name %> in <%= project.location %></h6>
-                          </div>
-                      </div>
+                  <div style="display: flex;
+    justify-content: center;">
+                    <div class="my-card my-3 project-image" style="background-image: url(<%= cl_image_path project.photos[0].key %>);">
+                        <a href="/projects/<%= project.id %>" style="height: 100%;"></a>
+                        <div class="inner-card">
+                            <%= link_to "♥", project_favorites_path(project), method: :create, class: "heart grey #{@user_favorites.find_by(project_id: project).present? ? 'd-none' : ''}", id: "test" %>
+                            <% if @user_favorites.find_by(project_id: project).present? %>
+                            <%= link_to "♥", favorite_path(@user_favorites.find_by(project_id: project).id), method: :delete, class: "heart red #{@user_favorites.find_by(project_id: project).present? ? '' : 'd-none'}", id: "test"%>
+                            <% else %>
+                            <% end %>
+                        </div>
+                        <div class="heady">
+                            <h5 class='mt-3 mb-0'><%= link_to project.title, project_path(project), class: "white" %></h5>
+                            <div class='index-card-list mb-3'>
+                                <h6 class="white"><%= project.category.name %> in <%= project.location %></h6>
+                            </div>
+                        </div>
+                    </div>
                   </div>
               <% end %>
           <% end %>
-
+        
         </div>
     </div>
-</div>
+
 
 </div>
  <svg width="1000" height="1000" viewBox="0 0 696 694" fill="none" xmlns="http://www.w3.org/2000/svg" id='my-blob-index' >

@@ -1,6 +1,16 @@
 .alert {
   position: fixed;
-  bottom: 16px;
+  bottom: 24px;
   right: 16px;
   z-index: 1000;
+}
+
+#message_content:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.btn:focus {
+  border: none;
+  box-shadow: none;
 }
