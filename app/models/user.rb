@@ -26,4 +26,6 @@ class User < ApplicationRecord
 
   # validates :photo, attached: true, size: { less_than: 20.megabytes , message: 'file is too large' }
 
+  validates :username, presence: true
+
 end
