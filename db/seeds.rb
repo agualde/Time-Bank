@@ -57,7 +57,7 @@ projects = [
   user = User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    username: Faker::Name.first_name,
+    username: "dummy",
     email: "dummy@gmail.com",
     password: 123456,
     location: Faker::Address.city,
