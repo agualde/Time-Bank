@@ -29,4 +29,23 @@ export default class extends Controller {
       console.log(objDiv)
     })
   }
+
+  createContent(event) {
+    event.preventDefault()
+    event.stopImmediatePropagation()
+    this.contentTarget.classList.toggle("d-none")
+    const csrf = document.querySelector('[name=csrf-token]').content
+    
+    fetch(event.target.href, {
+      headers: { "Accept": "text/plain", 'X-CSRF-TOKEN': csrf },
+      method: "POST"
+    })
+    .then((res) => res.text())
+    .then((data) => {
+      this.contentTarget.innerHTML = data
+      var objDiv = document.getElementById("messages");
+      objDiv.scrollTop = objDiv.scrollHeight;
+      console.log(objDiv)
+    })
+  }
 }
