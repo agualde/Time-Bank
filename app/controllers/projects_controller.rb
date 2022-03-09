@@ -103,9 +103,8 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    @project = Project.update(project_params)
-    if @project.save
-      redirect_to #####project_show#####
+    if @project.update(project_params)
+      redirect_to "/dashboard"
     else
       render :edit
     end

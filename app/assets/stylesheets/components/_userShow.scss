@@ -98,7 +98,7 @@
     align-items: center;
     border-radius: 2px;
     background-color: rgba(255, 255, 255, 0);
-    width: 300px;
+    width: 350px;
     justify-content: space-between;
 }
 
@@ -127,12 +127,17 @@
     font-size: 12px;
     line-height: 1.4;
     opacity: .7;
-    margin-bottom: 0;
-    margin-top: 8px;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .card-product-dashboard .card-product-dashboard-infos {
     padding: 16px;
     display: flex;
     flex-direction: column;
+}
+
+.card-product-dashboard-infos {
+    height: 120px;
+    width: 100%;
 }
