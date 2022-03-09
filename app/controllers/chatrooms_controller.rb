@@ -42,5 +42,4 @@ class ChatroomsController < ApplicationController
   def destroy
     
   end
-
 end
