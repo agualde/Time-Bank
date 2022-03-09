@@ -9,7 +9,6 @@ class ReviewsController < ApplicationController
       @my_projects_together_2 = current_user.projects
       @her_projects_together = @user.projects
 
-
       @our_projects = []
 
       @my_projects_together.each do |booking|
@@ -17,12 +16,13 @@ class ReviewsController < ApplicationController
       end
 
       @her_projects_together.each do |project|
-        @our_projects << project.title if project.bookings.where(user_id: current_user.id, status: "Approved")
+        (@our_projects << project.title) if !(project.bookings.where(user_id: current_user.id, status: "Approved").empty?)
       end
 
       @my_projects_together_2.each do |project|
         @our_projects << project.title if project.bookings.where(user_id: @user.id, status: "Approved")
       end
+
     end
   end
 
@@ -32,7 +32,7 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     if @review.save
       UserReview.create(user_id: params[:id].to_i, review_id: @review.id)
-      redirect_to user_registration_path(params[:id].to_i)
+      redirect_to user_show_path(params[:id].to_i)
     else
       new
       render :new

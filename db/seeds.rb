@@ -72,11 +72,11 @@ puts "user #{User.count} created"
 
 
 
-category = [Category.create(name: "Gardening"), 
+category = [Category.create(name: "Gardening"),
             Category.create(name: "Fishing"),
-            Category.create(name: "Playing"), 
-            Category.create(name: "Community"), 
-            Category.create(name: "Web Development"), 
+            Category.create(name: "Playing"),
+            Category.create(name: "Community"),
+            Category.create(name: "Web Development"),
             Category.create(name: "Crypto Currencies")]
 
 30.times do
@@ -95,7 +95,7 @@ category = [Category.create(name: "Gardening"),
     { io: file2, filename: project.title, content_type: 'image/jpeg' }])
 end
 
-15.times do
+5.times do
   Skill.create!(
     name: Faker::Hobby.activity,
   )

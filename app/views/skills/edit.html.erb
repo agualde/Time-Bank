@@ -4,11 +4,11 @@
         <h1>Update your skills</h1>
           <%= simple_form_for :skills_path, :method => :patch do |f| %>
             <div class="row">
-            <% @skills_array.each do |skill| %>
-              <div class="col-6">
-                <%= f.input :"#{skill}", as: :boolean %>
-              </div>
-            <% end %>
+              <% @skills.each do |skill| %>
+                <div class="col-6">
+                  <%= f.input :"#{skill.name}", as: :boolean, :input_html => { :checked => current_user.skills.include?(skill) }%>
+                </div>
+              <% end %>
             </div>
             <div class="row mt-3">
               <div class="col-6">
