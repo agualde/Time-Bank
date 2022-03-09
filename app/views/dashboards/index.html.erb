@@ -78,11 +78,11 @@
                         <%= cl_image_tag project.photos[0].key, class: "project-image" %>
                       </a>
                       <div class="card-product-dashboard-infos">
-                        <p>
+                        <p style="text-align: end; margin-top: 0;">
                           <%= "[" %>
-                            <%= link_to "Edit", edit_project_path(project.id), method: :get %>
+                            <%= link_to "Edit", edit_project_path(project.id), method: :get, style: "text-decoration: none;" %>
                           <%= " | " %>
-                            <%= link_to "Delete", project_path(project), method: :delete, data: { confirm: "Deleting your project will erase it from our database and delete all related communications. Are you sure?" }%>
+                            <%= link_to "Delete", project_path(project), method: :delete, data: { confirm: "Deleting your project will erase it from our database and delete all related communications. Are you sure?" }, style: "text-decoration: none;"%>
                           <%= "]" %>
                         </p>
                         <h2><%= link_to project.title, project_path(project) %></h2>

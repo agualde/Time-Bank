@@ -51,4 +51,7 @@
   font-weight:400;
   text-shadow: 2px 2px 10px black;
   font-size: smaller;
+  &:hover {
+    color: white;
+  }
 }
