@@ -5,7 +5,7 @@
 <% end %>
 <div class="dash-container mt-5">
 
-  <div class="card text-center">
+  <div class="card text-center" style="width: fit-content;">
     <div class="card-header">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -104,7 +104,7 @@
                 <%= cl_image_tag favorite.project.photos[0].key, class: "project-image" %>
               </a>
               <div class="card-product-dashboard-infos">
-                <p><%= "[" %><%= link_to " Delete ", favorite_path(favorite), method: :delete, data: { confirm: "Remove from favorites?"} %> <%= "]" %></p>
+                <p style="text-align: end; margin-top: 0;"><%= "[" %><%= link_to " Delete ", favorite_path(favorite), method: :delete, data: { confirm: "Remove from favorites?"}, style: "text-decoration: none;" %> <%= "]" %></p>
                 <h2><%= link_to favorite.project.title, project_path(favorite.project_id) %></h2>
                 <p><%= favorite.project.category.name %> in <%= favorite.project.location %></p>
               </div>
