@@ -37,7 +37,7 @@
         <p class="mt-4"><strong><%= @user.first_name %>'s Location:</strong><%= " #{@user.location}" %></p>
         <p><strong><%= @user.first_name %>'s interests:</strong></p>
         <div id= "skills-breakdown" class="justify-content-left">
-          <% @skills.each do | skill | %>
+          <% @user.skills.each do | skill | %>
               <p class="col-3 px-2" style="<%="text-decoration: line-through; color: grey; font-size: smaller;" if !(@user.skills.include?(skill)) %>"><%= skill.name %></p>
           <% end %>
         </div>
@@ -49,9 +49,9 @@
       <h4 class="mb-3"><%= @user.first_name %>'s projects:</h4>
       <div class="user-show-grid">
         <% @user.projects.each do | project | %>
-          <div class="card-product">
+          <div class="card-product-dashboard">
             <%= link_to (cl_image_tag project.photos[0].key), project_path(project), class: "project-image-user-show" %>
-              <div class="card-product-infos">
+              <div class="card-product-dashboard-infos">
                 <h2><%= link_to project.title, project_path(project) %></h2>
                 <p><%= project.category.name %> in <%= project.location %></p>
               </div>

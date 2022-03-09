@@ -39,24 +39,33 @@
                   <%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "show-avatar mb-3" %>
               <% end %>
             </div>
-            <h4 id="underline"><%= @user.location %></h4>
-            <h5>My skills:</h5>
-            <p><% @user.skills.each do | skill | %></p>
-                <ul>
-                    <li><%= skill.name %></li>
-                </ul>
-            <% end %>
-          <div class="icons d-flex justify-content-between">
-            <div class="favorites text-center">
-              <span><%= @user.projects.count %></span>
-              <p>Projects(s)</p>
-            </div>
+
+            <div class="icons d-flex justify-content-between">
+              <div class="favorites text-center">
+                <span><%= @user.projects.count %></span>
+                <p><%= (@user.projects.count == 1 ) ? "Project" : "Projects" %></p>
+              </div>
               <div class="collaborators text-center">
                 <span><%= @user.bookings.where(status: "Approved").count %></span>
-                <p>Projects I'm taking part in</p>
+                <p class="mb-3"><%= (@user.bookings.where(status: "Approved").count == 1 ) ? "Contribution" : "Contributions" %></p>
               </div>
+            </div>
+
+            <div class="icons">
+              <p class="mt-4"><strong>
+              <% if @user.user_reviews.present? %>
+                <%= @user.first_name %>'s Rating:</strong> <%= "   " %><%= "⏳" * (@ratings.sum / @ratings.count)%><em> (<%= @ratings.count %> <%= (@ratings.count == 1 ) ? "Review" : "Reviews" %>)</em></p>
+              <% end %>
+              <p class="mt-4"><strong><%= @user.first_name %>'s Location:</strong><%= " #{@user.location}" %></p>
+              <p><strong><%= @user.first_name %>'s interests:</strong></p>
+              <div id= "skills-breakdown" class="justify-content-left">
+                <% @user.skills.each do | skill | %>
+                    <p class="col-3 px-2" style="<%="text-decoration: line-through; color: grey; font-size: smaller;" if !(@user.skills.include?(skill)) %>"><%= skill.name %></p>
+                <% end %>
               </div>
+            </div>
           </div>
+
           <div style="margin-left: 100px;">
             <h4>Bio:</h4>
             <p class="mb-3" style="width: 500px;"><%= @user.bio %></p>
@@ -69,9 +78,15 @@
                         <%= cl_image_tag project.photos[0].key, class: "project-image" %>
                       </a>
                       <div class="card-product-infos">
-                      <%= link_to "Delete [X]", project_path(project) , method: :delete, data: { confirm: "Deleting your project will erase it from our database and delete all related communications. Are you sure?" }, id: "delete-project-btn" %>
-                          <h2><%= link_to project.title, project_path(project) %></h2>
-                          <p><%= project.category.name %> in <%= project.location %></p>
+                        <p style="margin-top: 0;"></strong><%= "  " %>
+                          <%= "[" %>
+                          <%= link_to "Edit", project_path(project.id), method: :path %>
+                          <%= " | " %>
+                          <%= link_to "Delete", project_path(project) , method: :delete, data: { confirm: "Deleting your project will erase it from our database and delete all related communications. Are you sure?" } %>
+                          <%= "]" %>
+                        </p>
+                        <h2><%= link_to project.title, project_path(project) %></h2>
+                        <p><%= project.category.name %> in <%= project.location %></p>
                       </div>
                   </div>
                 <% end %>
