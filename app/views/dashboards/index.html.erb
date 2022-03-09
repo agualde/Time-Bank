@@ -1,7 +1,10 @@
 <div class="container mt-5">
 <h2 class="mt-5">Hello,</h2> <h2 class="mt-5" id="underline"><%= @user.username %></h2>
-<h4 class="mt-3"> Have you completed your profile?</h4>
+<% if !(@user.first_name.present? && @user.last_name.present? && @user.bio.present? && @user.location.present? && @user.birthday.present?) %>
+  <h4 class="mt-3"> Have you completed your profile?</h4>
+<% end %>
 <div class="dash-container mt-5">
+
   <div class="card text-center">
     <div class="card-header">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -27,9 +30,7 @@
     <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
       <div class="">
         <div class="head-container mt-3 mb-3 d-flex">
-
         </div>
-
         <div class="d-flex">
           <div>
             <div class="user-img">
@@ -43,21 +44,20 @@
             <div class="icons d-flex justify-content-between">
               <div class="favorites text-center">
                 <span><%= @user.projects.count %></span>
-                <p><%= (@user.projects.count == 1 ) ? "Project" : "Projects" %></p>
+                <p><%= (@user.projects.count == 1 ) ? "My Project" : "My Projects" %></p>
               </div>
               <div class="collaborators text-center">
                 <span><%= @user.bookings.where(status: "Approved").count %></span>
-                <p class="mb-3"><%= (@user.bookings.where(status: "Approved").count == 1 ) ? "Contribution" : "Contributions" %></p>
+                <p class="mb-3"><%= (@user.bookings.where(status: "Approved").count == 1 ) ? "My Contribution" : "My Contributions" %></p>
               </div>
             </div>
 
             <div class="icons">
-              <p class="mt-4"><strong>
               <% if @user.user_reviews.present? %>
-                <%= @user.first_name %>'s Rating:</strong> <%= "   " %><%= "⏳" * (@ratings.sum / @ratings.count)%><em> (<%= @ratings.count %> <%= (@ratings.count == 1 ) ? "Review" : "Reviews" %>)</em></p>
+                <p class="mt-4"><strong>My Rating:</strong> <%= "   " %><%= "⏳" * (@ratings.sum / @ratings.count)%><em> (<%= @ratings.count %> <%= (@ratings.count == 1 ) ? "Review" : "Reviews" %>)</em></p>
               <% end %>
-              <p class="mt-4"><strong><%= @user.first_name %>'s Location:</strong><%= " #{@user.location}" %></p>
-              <p><strong><%= @user.first_name %>'s interests:</strong></p>
+              <p class="mt-4"><strong>My Location:</strong><%= " #{@user.location}" %></p>
+              <p><strong>My interests:</strong></p>
               <div id= "skills-breakdown" class="justify-content-left">
                 <% @user.skills.each do | skill | %>
                     <p class="col-3 px-2" style="<%="text-decoration: line-through; color: grey; font-size: smaller;" if !(@user.skills.include?(skill)) %>"><%= skill.name %></p>
@@ -67,50 +67,52 @@
           </div>
 
           <div style="margin-left: 100px;">
-            <h4>Bio:</h4>
-            <p class="mb-3" style="width: 500px;"><%= @user.bio %></p>
-            <%= link_to "Update Profile", edit_user_path(@user.id), class: "btn btn-outline-secondary mt-2 mb-3" %>
-            <h4 class="mb-3">My projects:</h4>
-            <div class="user-show-grid">
-                <% @user.projects.each do | project | %>
-                  <div class="card-product">
+              <h4>Bio:</h4>
+              <p class="mb-3" style="width: 500px;"><%= @user.bio %></p>
+              <%= link_to "Update Profile", edit_user_path(@user.id), class: "btn btn-outline-secondary mt-2 mb-5" %>
+              <h4 class="mb-3">My projects:</h4>
+              <div class="user-show-grid">
+                  <% @user.projects.each do | project | %>
+                    <div class="card-product-dashboard">
                       <a href="/projects/<%= project.id %>" style="height: 100%;">
                         <%= cl_image_tag project.photos[0].key, class: "project-image" %>
                       </a>
-                      <div class="card-product-infos">
-                        <p style="margin-top: 0;"></strong><%= "  " %>
+                      <div class="card-product-dashboard-infos">
+                        <p>
                           <%= "[" %>
-                          <%= link_to "Edit", project_path(project.id), method: :path %>
+                            <%= link_to "Edit", edit_project_path(project.id), method: :get %>
                           <%= " | " %>
-                          <%= link_to "Delete", project_path(project) , method: :delete, data: { confirm: "Deleting your project will erase it from our database and delete all related communications. Are you sure?" } %>
+                            <%= link_to "Delete", project_path(project), method: :delete, data: { confirm: "Deleting your project will erase it from our database and delete all related communications. Are you sure?" }%>
                           <%= "]" %>
                         </p>
                         <h2><%= link_to project.title, project_path(project) %></h2>
                         <p><%= project.category.name %> in <%= project.location %></p>
                       </div>
-                  </div>
-                <% end %>
-            </div>
+                    </div>
+                  <% end %>
+              </div>
           </div>
         </div>
       </div>
     </div>
+
     <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
       <div class="card-container-dash" id="favorites-dashboard" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;">
         <% @user.favorites.each do | favorite | %>
-            <div class="card-product my-3">
+            <div class="card-product-dashboard">
+              <a href="/projects/<%= favorite.project.id %>" style="height: 100%;">
                 <%= cl_image_tag favorite.project.photos[0].key, class: "project-image" %>
-                <div>
-                  <div class="card-product-infos">
-                  <%= link_to "Delete [X]", favorite_path(favorite), method: :delete, data: { confirm: "Remove from favorites?"},class: "red", id: "fav-delete-dashboard" %>
-                      <h2><%= link_to favorite.project.title, project_path(favorite.project_id) %></h2>
-                      <p><%= favorite.project.category.name %> in <%= favorite.project.location %></p>
-                  </div>
-                </div>
+              </a>
+              <div class="card-product-dashboard-infos">
+                <p><%= "[" %><%= link_to " Delete ", favorite_path(favorite), method: :delete, data: { confirm: "Remove from favorites?"} %> <%= "]" %></p>
+                <h2><%= link_to favorite.project.title, project_path(favorite.project_id) %></h2>
+                <p><%= favorite.project.category.name %> in <%= favorite.project.location %></p>
+              </div>
             </div>
           <% end %>
       </div>
     </div>
+
     <div class="tab-pane fade" id="bookings-received" role="tabpanel" aria-labelledby="bookings-received-tab">
       <div class="card-container-dash" style="display: grid; grid-template-columns: 1fr 1fr;">
         <% @user.projects.each do |project| %>
@@ -118,25 +120,35 @@
             <div class="project-card my-3 mx-3" style="width: 400px">
               <div class="m-0 text-center">
                 <% if booking.user.photo.key != nil %>
-                  <a href='/users/<%= project.user.id %>'><%= cl_image_tag booking.user.photo.key, id: "project-request", class: "mb-3" %></a>
+                  <a href='/users/<%= booking.user_id %>'><%= cl_image_tag booking.user.photo.key, id: "project-request", class: "mb-3" %></a>
                 <% else %>
-                  <a href='/users/<%= project.user.id %>'><%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "mb-3" %></a>
+                  <a href='/users/<%= booking.user_id %>'><%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "mb-3" %></a>
                 <% end %>
                 <div class="w-100 m-0">
-                  <p><%= booking.user.first_name.nil? ? booking.user.first_name : booking.user.email  %> wants to join <%= booking.project.title %></p>
+                  <p><%=  booking.user.username %> wants to join <%= booking.project.title %></p>
                 </div>
               </div>
-              <div class="col-sm-10">
+              <div class="text-center">
                   <div class="card-body">
                     <% if booking.status == "Approved" %>
                         <p class="card-text"><strong>Booking status: <%= booking.status %></strong></p>
                         <%= link_to "Reject the booking", destroy_booking_from_dashboard_path(booking.id), method: :delete , class:"home-page-btn"%>
+                        <% if (@chatroom_sender.where(reciever_id: booking.user_id) || @chatroom_reciever.where(sender_id: booking.user_id)).exists? %>
+                          <%= link_to "To Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn" %>
+                        <% else %>
+                          <%= link_to "Chat", user_chatrooms_path(@user), class: "home-page-btn", method: :create %>
+                        <% end %>
                     <% elsif booking.status == "Pending" %>
                         <p class="card-text"><strong>Booking status: <%= booking.status %></strong></p>
                     <% end %>
                     <% if booking.status != "Approved" %>
                       <%= link_to "Accept the booking", booking_path(booking), method: :patch ,class:"home-page-btn"%>
                       <%= link_to "Reject the booking", destroy_booking_from_dashboard_path(booking.id), method: :delete , class:"home-page-btn"%>
+                      <% if (@chatroom_sender.where(reciever_id: booking.user_id) || @chatroom_reciever.where(sender_id: booking.user_id)).exists? %>
+                        <%= link_to "To Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn" %>
+                      <% else %>
+                        <%= link_to "Chat", user_chatrooms_path(@user), class: "home-page-btn", method: :create %>
+                      <% end %>
                     <% end %>
                 </div>
               </div>
@@ -145,30 +157,31 @@
         <% end%>
       </div>
     </div>
+
     <div class="tab-pane fade" id="bookings-made" role="tabpanel" aria-labelledby="bookings-made-tab">
-      <div class="card-container-dash">
+      <div class="card-container-dash" style="display: grid; grid-template-columns: 1fr 1fr;">
         <% @user.bookings.each do |booking| %>
-          <div class="project-card my-3 mx-3" style="width: 350px">
-             <% if booking.user.photo.key != nil %>
-                  <a href='/users/<%= booking.user.id %>'><%= cl_image_tag booking.user.photo.key, id: "project-request", class: "mb-3" %></a>
-                <% else %>
-                  <a href='/users/<%= booking.user.id %>'><%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "mb-3" %></a>
-                <% end %>
-            <div class="row no-gutters">
-              <div class="col-sm-10">
-                <div class="card-body">
-                    <h5 class="card-title">Your booking for <%= link_to booking.project.title, project_booking_path(booking.project_id, booking.id), class: "booking-btn" %></h5>
-                    <p class="card-text">Booking status: <%= booking.status %> </p>
-                    <%= link_to "Delete your booking", booking_path(booking.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
-                </div>
+          <div class="project-card my-3 mx-3" style="width: 400px">
+            <div class="m-0 text-center">
+              <% if booking.user.photo.key != nil %>
+                <a href='/users/<%= booking.user_id %>'><%= cl_image_tag booking.user.photo.key, id: "project-request", class: "mb-3" %></a>
+              <% else %>
+                <a href='/users/<%= booking.user_id %>'><%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "mb-3" %></a>
+              <% end %>
+            </div>
+            <div class="text-center">
+              <div class="card-body booking-made">
+                  <h5 class="card-title">Your booking for <%= link_to booking.project.title, project_booking_path(booking.project_id, booking.id), class: "booking-btn" %></h5>
+                  <p class="card-text">Booking status: <%= booking.status %> </p>
+                  <%= link_to "Delete your booking", booking_path(booking.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn home-page-btn"%>
               </div>
             </div>
           </div>
         <% end%>
       </div>
     </div>
+
   </div>
-</div>
 </div>
 
 
