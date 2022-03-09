@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :chatrooms, only: [:show, :index] do
-    resources :messages, only: [:create] 
+    resources :messages, only: [:create]
 
   end
 
@@ -34,7 +34,10 @@ Rails.application.routes.draw do
 
   get '/users/:id/review/new', to: 'reviews#new', as: :reviews
   post '/users/:id/review', to: 'reviews#create'
-  delete '/review/:id', to: 'reviews#destroy'
+  delete '/review/:id', to: 'reviews#destroy', as: :delete_review
+
+  get '/users/:user_id/review/:review_id', to: 'reviews#edit', as: :edit_review
+  patch '/review/:review_id', to: 'reviews#update', as: :update_review
 
   delete '/dashboardbooking/:id', to: 'bookings#destroy_from_dashboard', as: :destroy_booking_from_dashboard
 
