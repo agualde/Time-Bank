@@ -1,7 +1,7 @@
 .info-container {
     display: flex;
     justify-content: center;
-    margin-top: 60px;
+    margin-top: 203px;
 }
 
 .button-container {
@@ -96,3 +96,10 @@ height: 50px;
 align-items: center;
 }
 
+#time {
+  color: black;
+
+  &:hover {
+    color: black;
+  }
+}
