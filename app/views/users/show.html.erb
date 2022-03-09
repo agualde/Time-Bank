@@ -16,7 +16,7 @@
         <% if @chatroom.exists? %>
           <%= link_to "To Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn", data: { action: "click->hello#revealContent" } %>
         <% else %>
-          <%= link_to "Chat", user_chatrooms_path(@user), class: "home-page-btn", method: :create %>
+          <%= link_to "Chat", user_chatrooms_path(@user), class: "home-page-btn", method: :post, data: { action: "click->hello#createContent" } %>
         <% end %>
       </div>
       <div class="icons d-flex justify-content-between">

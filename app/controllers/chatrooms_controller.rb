@@ -9,14 +9,26 @@ class ChatroomsController < ApplicationController
     @chatroom = Chatroom.new
     @chatroom.sender = current_user
     @chatroom.reciever = User.find(params[:user_id])
+    @message = Message.new
     
     if  @chatroom.sender == @chatroom.reciever
-      redirect_to dashboard_path, alert: "Stop it"
+      # redirect_to dashboard_path, alert: "Stop it"
+      respond_to do |format|
+        format.html { redirect_to dashboard_path }# Follow regular flow of Rails
+        format.text { render partial: 'chatrooms/chatroom', locals: { chatroom: @chatroom, message: @message }, formats: [:html] }
+      end
     else
       if @chatroom.save
-        redirect_to chatroom_path(@chatroom)
+
+        respond_to do |format|
+          format.html { redirect_to chatroom_path(@chatroom) }# Follow regular flow of Rails
+          format.text { render partial: 'chatrooms/chatroom', locals: { chatroom: @chatroom, message: @message }, formats: [:html] }
+        end
       else
-        redirect_to dashboard_path
+        respond_to do |format|
+          format.html { redirect_to dashboard_path }# Follow regular flow of Rails
+          format.text { render partial: 'chatrooms/chatroom', locals: { chatroom: @chatroom, message: @message }, formats: [:html] }
+        end
       end
     end
 
