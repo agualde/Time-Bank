@@ -68,16 +68,23 @@ projects = [
   user.photo.attach(io: file1, filename: user.username, content_type: 'image/jpeg')
 end
 
-puts "user #{User.count} created"
+puts "#{User.count} user was created"
 
 
 
-category = [Category.create(name: "Gardening"),
-            Category.create(name: "Fishing"),
-            Category.create(name: "Playing"),
+category = [Category.create(name: "Childcare"),
             Category.create(name: "Community"),
-            Category.create(name: "Web Development"),
-            Category.create(name: "Crypto Currencies")]
+            Category.create(name: "Education"),
+            Category.create(name: "Media"),
+            Category.create(name: "Design"),
+            Category.create(name: "Research"),
+            Category.create(name: "Integration"),
+            Category.create(name: "Construction"),
+            Category.create(name: "Housework"),
+            Category.create(name: "Others")
+          ]
+
+puts "#{Category.count} categories were created"
 
 30.times do
   project =  Project.create!(
@@ -95,10 +102,25 @@ category = [Category.create(name: "Gardening"),
     { io: file2, filename: project.title, content_type: 'image/jpeg' }])
 end
 
-5.times do
-  Skill.create!(
-    name: Faker::Hobby.activity,
-  )
-end
+puts "#{Project.count} projects were created"
 
-puts "projects #{Project.count} created"
+Skill.create!(name: "Music")
+Skill.create!(name: "Reading")
+Skill.create!(name: "Gardening")
+Skill.create!(name: "Dancing")
+Skill.create!(name: "Painting")
+Skill.create!(name: "Movies")
+Skill.create!(name: "Magic")
+Skill.create!(name: "Sports")
+Skill.create!(name: "Hiking")
+Skill.create!(name: "Fishing")
+Skill.create!(name: "Computer Games")
+Skill.create!(name: "Bitcoin")
+Skill.create!(name: "Traveling")
+Skill.create!(name: "Knitting")
+Skill.create!(name: "Sewing")
+Skill.create!(name: "Playing Cards")
+Skill.create!(name: "Chess")
+Skill.create!(name: "Chatting")
+
+puts "#{Skill.count} interests were created"
