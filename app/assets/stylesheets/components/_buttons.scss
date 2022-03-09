@@ -19,6 +19,7 @@
     text-align: center;
     text-decoration: none;
     user-select: none;
+    margin-top: 20px;
     -webkit-user-select: none;
     touch-action: manipulation;
     &:hover {
@@ -111,9 +112,9 @@
   border: grey;
 }
 
-.home-page-btn-contributors{
+.home-page-btn-2{
     align-items: center;
-    background-color: #FFC0CB;
+    background-color: #fee6e3;
     border: 2px solid #111;
     border-radius: 8px;
     box-sizing: border-box;
@@ -122,10 +123,10 @@
     display: flex;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
-    height: 48px;
+    height: 50px;
     justify-content: center;
     line-height: 24px;
-    width: 300px;
+    width: 100px;
     padding: 0 25px;
     position: relative;
     text-align: center;
@@ -139,34 +140,38 @@
     margin: 20px;
 }
 
-.home-page-btn-contributors:after {
+.home-page-btn-2:after {
     background-color: #111;
     border-radius: 8px;
     content: "";
     display: block;
-    height: 48px;
+    height: 50px;
     left: 0;
     width: 100%;
     position: absolute;
-    top: -2px;
+    top: -1px;
     transform: translate(8px, 8px);
     transition: transform .2s ease-out;
     z-index: -1;
 }
 
-.home-page-btn-contributors:hover:after {
+.home-page-btn-2:hover:after {
     transform: translate(0, 0);
     text-decoration: none;
 }
 
-.home-page-btn-contributors:active {
+.home-page-btn-2:active {
     background-color: #ffdeda;
     outline: 0;
 }
 
-.home-page-btn-contributors:hover {
+.home-page-btn-2:hover {
     outline: 0;
 }
+
+
+
+
 
 .home-page-btn-project-index {
     align-items: center;

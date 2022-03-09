@@ -10,10 +10,10 @@
             <%= form_tag projects_path, method: :get do %>
               <%= text_field_tag :query,
                 params[:query],
-                class: "form-control-homepage",
+                class: "search-home",
                 placeholder: "What are you looking for?"
               %>
-              <%= submit_tag "Find a project", class: "home-page-btn" %>
+              <%= button_tag "Go!", class: "home-page-btn-2" %>
             <% end %>
           </div>
       </div>
