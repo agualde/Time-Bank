@@ -34,7 +34,7 @@ class ChatroomsController < ApplicationController
     if @chatroom.other_person(current_user)
       @chatroom.notifications.each do |notification|
           notification.read = true
-          notification.save
+          notification.destroy
       end
     end
   end

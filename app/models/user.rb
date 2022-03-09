@@ -8,8 +8,11 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  has_many :reviews, dependent: :destroy
+  
   has_many :user_reviews, dependent: :destroy
-  has_many :reviews, through: :user_reviews, dependent: :destroy
+  has_many :created_reviews, through: :user_reviews, source: :review, dependent: :destroy
+  
 
   has_many :favorite_projects, through: :favorites, source: :project
   has_many :booked_projects, through: :bookings, source: :project
@@ -20,9 +23,9 @@ class User < ApplicationRecord
 
   has_one_attached :photo
 
-  has_many :messages
-  has_many :notifications
-  has_many :chatrooms_as_sender, class_name: "Chatroom", foreign_key: :asker_id, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+  has_many :chatrooms_as_sender, class_name: "Chatroom", foreign_key: :sender_id, dependent: :destroy
   has_many :chatrooms_as_receiver, class_name: "Chatroom", foreign_key: :reciever_id, dependent: :destroy
 
   # validates :photo, attached: true, size: { less_than: 20.megabytes , message: 'file is too large' }

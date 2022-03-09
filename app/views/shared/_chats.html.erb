@@ -2,16 +2,33 @@
     <div class="chats" data-controller="chat">
 
             <div class="header-chat" data-action="click->chat#revealContent">
-                <h6 class="btn click-to-collapse">All your chats</h6>
+                <h6 class="btn click-to-collapse">All your chats <div class="<%= current_user.notifications.count == 0 ? "" : "circle" %> "><%= current_user.notifications.count == 0 ? "" : current_user.notifications.count %></div></h6>
+                
             </div>
         <div class="d-none" data-chat-target="content" style="height: 350px;" data-controller="replace" data-replace-target="output">
             <ul id="chat-list">
             <% @chatrooms.each do |chatroom| %>
                 <li class="my-2">
-                <% if chatroom.other_person(current_user).photo.key != nil %>
-                <a href="/users/<%= chatroom.other_person(current_user).id %>"><%= cl_image_tag chatroom.other_person(current_user).photo.key, class: "nav-avatar" %></a> - <%= link_to chatroom.other_person(current_user).email, chatroom_path(chatroom), data: { action: "click->replace#render"} %></li>
+                        <% if chatroom.other_person(current_user).photo.key != nil %>
+                    <div class="d-flex" style="align-items: center; margin-left: 20px; align-content: space-between; justify-content: flex-start;">
+                        <a href="/users/<%= chatroom.other_person(current_user).id %>">
+                        <%= cl_image_tag chatroom.other_person(current_user).photo.key, class: "nav-avatar" %>
+                        </a> 
+                        <%= link_to chatroom.other_person(current_user).username, chatroom_path(chatroom), data: { action: "click->replace#render"}, style: "padding-inline: 20px;" %>
+                        <div class="<%= chatroom.notifications.count == 0 ? "" : "circle" %> "><%= chatroom.notifications.count == 0 ? "" : chatroom.notifications.count %></div>
+                    
+                    </div>
+                </li>
+
+
                 <% else %>
-                <a href="/users/<%= chatroom.other_person(current_user).id %>"><%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "nav-avatar" %></a> - <%= link_to chatroom.other_person(current_user).email, chatroom_path(chatroom), data: { action: "click->replace#render"} %></li>
+                    <div class="d-flex" style="align-items: center; margin-left: 20px; align-content: space-between; justify-content: flex-start;">
+                        <a href="/users/<%= chatroom.other_person(current_user).id %>">
+                        <%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "nav-avatar" %></a>
+                        <%= link_to chatroom.other_person(current_user).username, chatroom_path(chatroom), data: { action: "click->replace#render"}, style: "padding-inline: 20px;" %> 
+                        <div class="<%= chatroom.notifications.count == 0 ? "" : "circle" %> "><%= chatroom.notifications.count == 0 ? "" : chatroom.notifications.count %></div>
+                    </div>
+                    </li>  
                 <% end %>
 
             <% end %>
