@@ -5,7 +5,7 @@
                 <h6 class="btn click-to-collapse">All your chats <div class="<%= current_user.notifications.count == 0 ? "" : "circle" %> "><%= current_user.notifications.count == 0 ? "" : current_user.notifications.count %></div></h6>
                 
             </div>
-        <div class="d-none" data-chat-target="content" style="height: 350px;" data-controller="replace" data-replace-target="output">
+        <div class="d-none" data-chat-target="content" style="height: 350px;" data-controller="replace" data-replace-target="output" data-hello-target="content">
             <ul id="chat-list">
             <% @chatrooms.each do |chatroom| %>
                 <li class="my-2">
