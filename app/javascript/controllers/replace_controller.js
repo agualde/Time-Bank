@@ -13,7 +13,7 @@ export default class extends Controller {
   static targets = [ "output" ]
 
   connect() {
-    console.log('Hello, Stimulus!')
+    console.log('Hello, replace!')
   }
 
   render(event) {

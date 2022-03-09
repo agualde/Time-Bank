@@ -14,7 +14,7 @@ class ChatroomsController < ApplicationController
       redirect_to dashboard_path, alert: "Stop it"
     else
       if @chatroom.save
-        redirect_to chatroom_path(@chatroom)
+ 
       else
         redirect_to dashboard_path
       end

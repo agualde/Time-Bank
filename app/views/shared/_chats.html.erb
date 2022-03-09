@@ -1,11 +1,12 @@
 <% if user_signed_in? %>
-    <div class="chats" data-controller="chat">
+    <div class="chats" data-controller="chat" data-controller="chat">
 
+           <a href="/chatrooms" data-action="click->replace#render">back</a>
             <div class="header-chat" data-action="click->chat#revealContent">
                 <h6 class="btn click-to-collapse">All your chats <div class="<%= current_user.notifications.count == 0 ? "" : "circle" %> "><%= current_user.notifications.count == 0 ? "" : current_user.notifications.count %></div></h6>
                 
             </div>
-        <div class="d-none" data-chat-target="content" style="height: 350px;" data-controller="replace" data-replace-target="output">
+        <div class="d-none" data-chat-target="content" style="height: 350px;" data-controller="replace" data-replace-target="output" data-hello-target="content" data-hello-target="output">
             <ul id="chat-list">
             <% @chatrooms.each do |chatroom| %>
                 <li class="my-2">
