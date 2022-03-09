@@ -3,6 +3,7 @@ class Chatroom < ApplicationRecord
   belongs_to :reciever, class_name: "User"
 
   has_many :messages, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   validates_uniqueness_of :sender_id, :scope => [:reciever_id]
 

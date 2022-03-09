@@ -30,11 +30,17 @@ class ChatroomsController < ApplicationController
       format.html # Follow regular flow of Rails
       format.text { render partial: 'chatrooms/chatroom', locals: { chatroom: @chatroom, message: @message }, formats: [:html] }
     end
+
+    if @chatroom.other_person(current_user)
+      @chatroom.notifications.each do |notification|
+          notification.read = true
+          notification.save
+      end
+    end
   end
 
   def destroy
     
   end
-
 
 end
