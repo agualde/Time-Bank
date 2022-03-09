@@ -8,6 +8,13 @@ class BookingsController < ApplicationController
     redirect_to project_path(@project.id)
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+    @current_day = Time.now.day
+    @current_month = Time.now.month
+    @current_year = Time.now.year
+  end
+
   def update
     @booking = Booking.find(params[:id])
     @booking.status = "Approved"
