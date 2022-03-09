@@ -21,7 +21,8 @@ class Project < ApplicationRecord
   pg_search_scope :global_search,
     against: [ :title, :description, :location ],
     associated_against: {
-      user: [ :first_name, :last_name, :bio ]
+      user: [ :first_name, :last_name, :bio ],
+      category: [:name]
     },
     using: {
       tsearch: { prefix: true }
