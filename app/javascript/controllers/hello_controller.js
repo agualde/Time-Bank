@@ -10,9 +10,23 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "output" ]
+  static targets = [ "content" ]
 
-  connect() {
-    this.outputTarget.textContent = 'Hello, Stimulus!'
+  revealContent(event) {
+    event.preventDefault()
+    this.contentTarget.classList.toggle("d-none")
+    event.preventDefault()
+    console.log(event.target)
+    
+    fetch(event.target.href, {
+      headers: { "Accept": "text/plain" }
+    })
+    .then((res) => res.text())
+    .then((data) => {
+      this.contentTarget.innerHTML = data
+      var objDiv = document.getElementById("messages");
+      objDiv.scrollTop = objDiv.scrollHeight;
+      console.log(objDiv)
+    })
   }
 }

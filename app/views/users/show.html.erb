@@ -14,7 +14,7 @@
       </div>
       <div class="d-flex justify-content-center">
         <% if @chatroom.exists? %>
-          <%= link_to "To Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn" %>
+          <%= link_to "To Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn", data: { action: "click->hello#revealContent" } %>
         <% else %>
           <%= link_to "Chat", user_chatrooms_path(@user), class: "home-page-btn", method: :create %>
         <% end %>
