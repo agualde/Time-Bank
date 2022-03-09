@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
 
       @project_location = (params[:location].blank?) ? Project.all : Project.where(location: params[:location])
       @project_category = (params[:category].blank?) ? Project.all : Project.where(category_id: Category.all.where(name: params[:category]).ids.first)
-      @project_favorites = (params[:favorite].blank?) ? Project.all : Project.joins(:favorites).group("projects.id").having("COUNT (*) >= #{params[:favorite]}")
+      @project_favorites = (params[:favorite].blank? || params[:favorite].to_i == 0 ) ? Project.all : Project.joins(:favorites).group("projects.id").having("COUNT (*) = #{params[:favorite]}")
       @project_collaborators = Project.all
 
       @projects = []
@@ -31,6 +31,7 @@ class ProjectsController < ApplicationController
       #the filter will select all the projects that share the values defined in the filter (no value == all values)
       #it will check what projects are in the 4 different variables predefined before
       #in case there is a project that is shared across the 4 variables, it will display it
+
 
       @project_location.each do |project|
         if @project_category.include?(project) && @project_favorites.include?(project)
@@ -42,6 +43,7 @@ class ProjectsController < ApplicationController
         end
       end
       @user_favorites = Favorite.where(user_id: current_user)
+
     end
 
     #we create the filter options as follows
