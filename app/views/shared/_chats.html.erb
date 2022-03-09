@@ -1,10 +1,10 @@
 <% if user_signed_in? %>
     <div class="chats" data-controller="chat">
 
-            <div class="header-chat click-to-collapse" style="display: flex; justify-content: space-evenly; cursor: pointer;">
-                <p class="btn" data-action="click->hello#displayBack" style="padding: 0; margin: 0; width: 18%;"><<</p>
-                <h6 class="btn" data-action="click->chat#revealContent" style="padding: 0; margin: 0; width: 63%;">Inbox </h6>
-                <div style="width: 18%;" data-action="click->chat#revealContent"><div id="outer-notification" class="<%= current_user.notifications.count == 0 ? "" : "circle"%> " style="align-self: end;"><%= current_user.notifications.count == 0 ? "" : current_user.notifications.count %></div></div>
+            <div class="header-chat click-to-collapse" data-hello-target="back" style="display: flex; justify-content: space-evenly; cursor: pointer;">
+                <p class="btn" data-action="click->hello#displayBack" style="padding: 0; margin: 0; width: 10%;"><<</p>
+                <h6 class="btn" data-action="click->chat#revealContent" style="padding: 0; margin: 0; width: 71%;">Inbox </h6>
+                <div style="width: 18%;" data-action="click->chat#revealContent" data-action="click->hello#hide"><div id="outer-notification" class="<%= current_user.notifications.count == 0 ? "" : "circle"%> " style="align-self: end;"><%= current_user.notifications.count == 0 ? "" : current_user.notifications.count %></div></div>
             </div>
         <div class="d-none" data-chat-target="content" style="height: 350px;" data-controller="replace" data-replace-target="output" data-hello-target="content">
             <ul id="chat-list">

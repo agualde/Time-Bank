@@ -45,7 +45,7 @@ export default class extends Controller {
     this.contentTarget.classList.toggle("d-none")
   }
 
-  displayBack(event) {
+  displayBack() {
     window.history.pushState({}, document.title, "/" );
     fetch("chatrooms", {
       headers: { "Accept": "text/plain" }
@@ -55,5 +55,5 @@ export default class extends Controller {
       this.contentTarget.innerHTML = data
     })
   }
-
+  
 }
