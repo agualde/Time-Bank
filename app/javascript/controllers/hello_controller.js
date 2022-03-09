@@ -46,6 +46,7 @@ export default class extends Controller {
   }
 
   displayBack(event) {
+    window.history.pushState({}, document.title, "/" );
     fetch("chatrooms", {
       headers: { "Accept": "text/plain" }
     })
