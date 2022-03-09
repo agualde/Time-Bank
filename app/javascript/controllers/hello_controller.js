@@ -10,7 +10,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "content" ]
+  static targets = [ "content", "back" ]
 
   revealContent(event) {
     event.preventDefault()
@@ -44,4 +44,15 @@ export default class extends Controller {
     })
     this.contentTarget.classList.toggle("d-none")
   }
+
+  displayBack(event) {
+    fetch("chatrooms", {
+      headers: { "Accept": "text/plain" }
+    })
+    .then((res) => res.text())
+    .then((data) => {
+      this.contentTarget.innerHTML = data
+    })
+  }
+
 }
