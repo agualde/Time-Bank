@@ -169,31 +169,31 @@
     outline: 0;
 }
 
-.home-page-btn-project-index {
-    align-items: center;
-    background-color: #fee6e3;
-    border: 2px solid #fee6e3;
-    border-radius: 8px;
-    box-sizing: border-box;
-    color: #111;
-    cursor: pointer;
-    display: flex;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: normal;
-    font-size: 16px;
-    height: 48px;
-    justify-content: center;
-    line-height: 24px;
-    width: 300px;
-    padding: 0 25px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    &:hover {
-        color: black;
-    }
-    margin-top: 25px;
+.home-page-btn-project-index{
+  align-items: center;
+  background-color: #FEE6E3;
+  border: 0.5px solid grey;
+  border-radius: 181px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  height: 40px;
+  justify-content: center;
+  line-height: 24px;
+  width: 154px;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-top: 29px;
 }
+
