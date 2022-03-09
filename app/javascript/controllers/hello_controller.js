@@ -14,10 +14,7 @@ export default class extends Controller {
 
   revealContent(event) {
     event.preventDefault()
-    this.contentTarget.classList.toggle("d-none")
-    event.preventDefault()
-    console.log(event.target)
-    
+
     fetch(event.target.href, {
       headers: { "Accept": "text/plain" }
     })
@@ -26,14 +23,13 @@ export default class extends Controller {
       this.contentTarget.innerHTML = data
       var objDiv = document.getElementById("messages");
       objDiv.scrollTop = objDiv.scrollHeight;
-      console.log(objDiv)
     })
+    this.contentTarget.classList.toggle("d-none")
   }
 
   createContent(event) {
     event.preventDefault()
     event.stopImmediatePropagation()
-    this.contentTarget.classList.toggle("d-none")
     const csrf = document.querySelector('[name=csrf-token]').content
     
     fetch(event.target.href, {
@@ -45,7 +41,7 @@ export default class extends Controller {
       this.contentTarget.innerHTML = data
       var objDiv = document.getElementById("messages");
       objDiv.scrollTop = objDiv.scrollHeight;
-      console.log(objDiv)
     })
+    this.contentTarget.classList.toggle("d-none")
   }
 }

@@ -87,14 +87,22 @@
 }
 
 .circle {
-    height: 20px;
-    width: 20px;
+    align-content: center;
+    height: 25px;
+    width: 25px;
     border-radius: 50%;
-    background-color: red;
-    margin-left: 26px;
+    background: linear-gradient(59deg, red, #c928288f);
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-    font-size: 12px;
+    font-size: 15px;
+ 
+}
+
+
+#outer-notification {
+    position: relative;
+    bottom: 17px;
+    left: 85px;
 }
