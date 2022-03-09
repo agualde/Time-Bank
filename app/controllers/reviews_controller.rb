@@ -39,16 +39,57 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def destroy
-    @user = User.find(current_user)
-    @user.destroy
+  def edit
+    @review = Review.find(params[:review_id])
+    @user_reviewd = User.find(UserReview.where(review_id: params[:review_id])[0].user_id)
 
-    redirect_to user_registration_path(review_params_userid.value)
+    @my_projects_together = current_user.bookings.where(user_id: @user_reviewd.id)
+    @my_projects_together_2 = current_user.projects
+    @her_projects_together = @user_reviewd.projects
+
+    @our_projects = []
+
+    @my_projects_together.each do |booking|
+      @our_projects << booking.project.title
+    end
+
+    @her_projects_together.each do |project|
+      (@our_projects << project.title) if !(project.bookings.where(user_id: current_user.id, status: "Approved").empty?)
+    end
+
+    @my_projects_together_2.each do |project|
+      @our_projects << project.title if project.bookings.where(user_id: @user_reviewd.id, status: "Approved")
+    end
+
+  end
+
+  def update
+    @review = Review.find(params[:review_id])
+    @user = UserReview.where(review_id: @review.id)[0]
+
+    if @review.update(review_params_no_userid)
+      redirect_to user_show_path(@user.user_id)
+    else
+      edit
+      render :edit
+    end
+  end
+
+
+  def destroy
+    @review = Review.find(params[:id])
+    @user = UserReview.where(review_id: @review.id)[0]
+
+    @review.destroy
+    redirect_to user_show_path(@user.user_id)
+
   end
 
   private
 
   def review_params_no_userid
-    params.require(:review).permit(:title, :content, :project)
+    params.require(:review).permit(:title, :content, :project, :rating)
   end
+
+
 end
