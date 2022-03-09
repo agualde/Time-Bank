@@ -4,7 +4,7 @@
 
 
   <div class="messages" data-chatroom-subscription-target="messages" id="messages" data-chatroom-id="<%= chatroom.id %>" data-current-user-id="<%= current_user.id %>">
-    <% chatroom.messages.each do |message| %>
+    <% chatroom.messages.order(created_at: :asc).each do |message| %>
        <% if message.user == current_user %>
           <%= render 'messages/message', message: message, css_class: 'sender' %>
       <% else %>
