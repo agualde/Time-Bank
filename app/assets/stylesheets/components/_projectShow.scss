@@ -1,13 +1,13 @@
     .showcontainer {
         margin-top: 75px;
     }
-    
+
     .grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         margin-inline: 40px;
     }
-    
+
     .project-image {
         height: 200px;
         width: 100%;
@@ -16,7 +16,15 @@
         background-size: cover;
         object-fit: cover;
     }
-    
+
+    .project-image-user-show {
+        height: 200px;
+        border-radius: 6px 6px 0 0;
+        background-position: center;
+        background-size: cover;
+        object-fit: cover;
+    }
+
     .index-card-list {
         a {
             font-size: 13px;
@@ -27,7 +35,7 @@
             font-size: 12px;
         }
     }
-    
+
     .header-link {
         border-bottom: 1px solid #857f7f2f;
         width: fit-content;
@@ -37,7 +45,7 @@
             color: white;
         }
     }
-    
+
     .my-card {
         border-radius: 12px;
         width: 300px;
@@ -56,24 +64,24 @@
             background-color: #f4f4f4;
         }
     }
-    
+
     .index-head {
         font-weight: lighter;
         font-size: 25px;
         font-family: 'Montserrat', sans-serif;
         width: 475px;
     }
-    
+
     #sub-header {
         font-size: 15px;
     }
-    
+
     .index-card-list {
         h6 {
             font-size: 12px;
         }
     }
-    
+
     .card-head {
         display: flex;
         align-items: center;
@@ -82,33 +90,33 @@
             text-decoration: none;
         }
     }
-    
+
     .grey {
         color: #fffdfd8a;
         &:hover {
             color: #ff4571;
         }
     }
-    
+
     .red {
         color: #ff4571;
         &:hover {
             color: #ff4571;
         }
     }
-    
+
     #heart {
         position: relative;
         bottom: 196px;
         font-size: 25px;
         text-shadow: -1px 7px 20px #00000030;
     }
-    
+
     .index-card-list {
         display: flex;
         justify-content: space-between;
     }
-    
+
     .card-avatar {
         width: 50px;
         height: 50px;
@@ -119,7 +127,7 @@
         border: 3px solid #f4f4f4;
         left: 10px;
     }
-    
+
     .right-page {
         margin-left: 50px;
         h2 {
@@ -139,14 +147,14 @@
             font-size: 20px;
         }
     }
-    
+
     .header {
         border: none;
         .new {
             margin-left: 10px;
         }
     }
-    
+
     .white {
         color: white;
         text-decoration: none;
@@ -157,7 +165,7 @@
             color: white;
         }
     }
-    
+
     .heart {
         position: relative;
         bottom: 175px;
@@ -165,7 +173,7 @@
         font-size: 21px;
         text-shadow: 0px 2px 10px #00000054;
     }
-    
+
     .inner-card {
         display: flex;
         justify-content: flex-end;

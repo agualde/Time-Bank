@@ -69,10 +69,22 @@
 }
 
 .back-btn {
-    margin-left: 220px;
     text-decoration: none;
     color: black;
     &:hover {
         color: black;
     }
+}
+
+
+.back-btn-2 {
+    text-decoration: none;
+    color: black;
+    &:hover {
+        color: black;
+    }
+}
+
+#skills-breakdown {
+  width: 300px;
 }

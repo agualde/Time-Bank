@@ -22,6 +22,7 @@ skip_before_action :authenticate_user!, only: [:index, :show]
 
 
   def show
+    @skills = Skill.all
     @user = User.find(params[:id])
     @chatroom = Chatroom.where(sender_id: current_user, reciever_id: @user.id)
 
@@ -45,6 +46,10 @@ skip_before_action :authenticate_user!, only: [:index, :show]
         @our_projects << project.title if project.bookings.where(user_id: @user.id, status: "Approved")
       end
 
+    end
+
+    @ratings = UserReview.where(user_id: @user.id).map do |review|
+      review.review.rating
     end
   end
 

@@ -1,5 +1,7 @@
-<%= link_to "< Back to Contributors", users_path, class: 'back-btn ' %>
 <div class="container">
+  <div>
+    <p><%= link_to "Go to Projects", projects_path, class: 'back-btn ' %> || <%= link_to "Go to Dashboard ", dashboard_path, class: 'back-btn-2' %> </p>
+  </div>
   <h1 class="header mb-5 underline2" ><%= @user.first_name %> <%= @user.last_name %></h1>
   <div class="d-flex">
     <div>
@@ -11,30 +13,36 @@
         <% end %>
       </div>
 
+
       <% if @chatroom.exists? %>
       <%= link_to "To Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn", data: { action: "click->hello#revealContent" } %>
       <% else %>
       <%= link_to "Chat", user_chatrooms_path(@user), class: "home-page-btn", method: :create, data: { action: "click->hello#revealContent" } %>
       <% end %>
 
-      <p><%= @user.location %></p>
-      <h6><%= @user.first_name %>'s skills:</h6>
-      <p><% @user.skills.each do | skill | %></p>
-        <ul>
-          <li><%= skill.name %></li>
-        </ul>
-      <% end %>
-
       <div class="icons d-flex justify-content-between">
-      <div class="favorites text-center">
-        <span><%= @user.projects.count %></span>
-        <p>Projects(s)</p>
+        <div class="favorites text-center">
+          <span><%= @user.projects.count %></span>
+          <p><%= (@user.projects.count == 1 ) ? "Project" : "Projects" %></p>
+        </div>
+        <div class="collaborators text-center">
+          <span><%= @user.bookings.where(status: "Approved").count %></span>
+          <p class="mb-3"><%= (@user.bookings.where(status: "Approved").count == 1 ) ? "Contribution" : "Contributions" %></p>
+        </div>
       </div>
-      <div class="collaborators text-center">
-        <span><%= @user.bookings.where(status: "Approved").count %></span>
-        <p>Projects I'm taking part in</p>
+      <div class="icons">
+        <p class="mt-4"><strong>
+        <% if @user.user_reviews.present? %>
+          <%= @user.first_name %>'s Rating:</strong> <%= "   " %><%= "⏳" * (@ratings.sum / @ratings.count)%><em> (<%= @ratings.count %> <%= (@ratings.count == 1 ) ? "Review" : "Reviews" %>)</em></p>
+        <% end %>
+        <p class="mt-4"><strong><%= @user.first_name %>'s Location:</strong><%= " #{@user.location}" %></p>
+        <p><strong><%= @user.first_name %>'s interests:</strong></p>
+        <div id= "skills-breakdown" class="justify-content-left">
+          <% @skills.each do | skill | %>
+              <p class="col-3 px-2" style="<%="text-decoration: line-through; color: grey; font-size: smaller;" if !(@user.skills.include?(skill)) %>"><%= skill.name %></p>
+          <% end %>
+        </div>
       </div>
-    </div>
     </div>
     <div style="margin-left: 100px;">
       <h4>Bio:</h4>
@@ -43,7 +51,7 @@
       <div class="user-show-grid">
         <% @user.projects.each do | project | %>
           <div class="card-product">
-            <%= cl_image_tag project.photos[0].key, class: "project-image" %>
+            <%= link_to (cl_image_tag project.photos[0].key), project_path(project), class: "project-image-user-show" %>
               <div class="card-product-infos">
                 <h2><%= link_to project.title, project_path(project) %></h2>
                 <p><%= project.category.name %> in <%= project.location %></p>
@@ -57,7 +65,7 @@
       <% else %>
         <% @user.user_reviews.each do |user_review| %>
           <div class = "review-card mt-2">
-            <strong><%= user_review.review.title %></strong>
+            <strong><%= user_review.review.title %></strong><%= "  " %><%= "[" %><%= link_to "Edit", edit_review_path(@user.id, user_review.review.id) %><%= " | " %><%= link_to "Delete", delete_review_path(user_review.review.id), method: :delete, data: { confirm: "You are about to delete the review, are you sure?" } %><%= "]" %>
             <div class="d-flex mt-3">
               "<em><%= user_review.review.content %></em>"
             </div>
