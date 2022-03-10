@@ -31,9 +31,9 @@ export default class extends Controller {
 
   createContent(event) {
     event.preventDefault()
+    this.contentTarget.classList.toggle("d-none")
     event.stopImmediatePropagation()
     const csrf = document.querySelector('[name=csrf-token]').content
-    
     fetch(event.target.href, {
       headers: { "Accept": "text/plain", 'X-CSRF-TOKEN': csrf },
       method: "POST"
@@ -44,7 +44,7 @@ export default class extends Controller {
       var objDiv = document.getElementById("messages");
       objDiv.scrollTop = objDiv.scrollHeight;
     })
-    this.contentTarget.classList.toggle("d-none")
+    this.otherTarget.classList.toggle("d-none")
   }
 
   displayBack() {

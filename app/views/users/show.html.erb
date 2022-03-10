@@ -63,7 +63,7 @@
         <% end %>
       </div>
       <h4 class="mb-3 mt-5"><%= @user.first_name %>'s reviews:</h4>
-      <% if @user.reviews.count == 0 %>
+      <% if @user.user_reviews.count == 0 %>
         <em><%= @user.first_name %> still does not have any review</em>
       <% else %>
         <% @user.user_reviews.each do |user_review| %>

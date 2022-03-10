@@ -30,6 +30,6 @@ export default class extends Controller {
       objDiv.scrollTop = objDiv.scrollHeight;
       console.log(objDiv)
     })
-    this.otherTarget.classList.toggle("d-none")
+    // this.otherTarget.classList.toggle("d-none")
   }
 }
