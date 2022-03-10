@@ -1,7 +1,8 @@
 .icons {
-    margin-top: 20px;
+    margin-top: -10px;
     margin-left: 50px;
     margin-right: 50px;
+    margin-bottom: 10px;
 }
 
 .favorites span {
@@ -131,7 +132,7 @@
     margin-left: 15px;
     align-items: center;
     background-color: #F0F0F1;
-    border: 2px solid #111;
+    // border: 2px solid #111;
     border-radius: 8px;
     box-sizing: border-box;
     color: #111;
@@ -170,4 +171,12 @@
 
 #add-fav-btn:hover {
     outline: 0;
+}
+
+.margin-p {
+    margin-left: 5px;
+}
+
+.margin-p-bottom-0 p {
+    margin-bottom: 2px;
 }

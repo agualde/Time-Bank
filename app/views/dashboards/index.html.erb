@@ -44,25 +44,38 @@
             <div class="icons d-flex justify-content-between">
               <div class="favorites text-center">
                 <span><%= @user.projects.count %></span>
-                <p><%= (@user.projects.count == 1 ) ? "My Project" : "My Projects" %></p>
+                <p style="margin-top: -8px;"><%= (@user.projects.count == 1 ) ? "My Project" : "My Projects" %></p>
               </div>
               <div class="collaborators text-center">
                 <span><%= @user.bookings.where(status: "Approved").count %></span>
-                <p class="mb-3"><%= (@user.bookings.where(status: "Approved").count == 1 ) ? "My Contribution" : "My Contributions" %></p>
+                <p class="mb-3" style="margin-top: -8px;"><%= (@user.bookings.where(status: "Approved").count == 1 ) ? "My Contribution" : "My Contributions" %></p>
               </div>
             </div>
 
             <div class="icons">
+              <p class="mt-4">
               <% if @user.user_reviews.present? %>
-                <p class="mt-4"><strong>My Rating:</strong> <%= "   " %><%= "⏳" * (@ratings.sum / @ratings.count)%><em> (<%= @ratings.count %> <%= (@ratings.count == 1 ) ? "Review" : "Reviews" %>)</em></p>
+                <div class="d-flex justify-content-left margin-p-bottom-0">
+                  <p style="font-weight: 400;"> My <p class="underline margin-p" style="font-weight: 400;" >Rating</p> <p>:</p></p>
+                  <p style="margin-left: 5px;"><%= "   " %><%= "⏳" * (@ratings.sum / @ratings.count)%><em> (<%= @ratings.count %> <%= (@ratings.count == 1 ) ? "Review" : "Reviews" %>)</em></p>
+                </div>
               <% end %>
-              <p class="mt-4"><strong>My Location:</strong><%= " #{@user.location}" %></p>
-              <p><strong>My interests:</strong></p>
-              <div id= "skills-breakdown" class="justify-content-left">
+              
+              <div class="mt-2 d-flex justify-content-left margin-p-bottom-0">
+                <p  style="font-weight: 400;" class="">My<p class="underline margin-p" style="font-weight: 400;">Location</p> <p>:</p> </p>
+                <p style="margin-left: 5px;"><%= " #{@user.location}" %></p>
+              </div>  
+
+              <div class="mt-2 d-flex justify-content-left margin-p-bottom-0">
+                <p  style="font-weight: 400;"> My<p class="underline margin-p" style="font-weight: 400;">interests</p> <p>:</p></p>
+              </div>
+              
+              <div class="mt-2 justify-content-left">
                 <% @user.skills.each do | skill | %>
-                    <p class="col-3 px-2" style="<%="text-decoration: line-through; color: grey; font-size: smaller;" if !(@user.skills.include?(skill)) %>"><%= skill.name %></p>
+                    <p class="px-2" style="<%="text-decoration: line-through; color: grey; font-size: smaller;" if !(@user.skills.include?(skill)) %>"><%= skill.name %></p>
                 <% end %>
               </div>
+            
             </div>
           </div>
 
@@ -163,10 +176,11 @@
         <% @user.bookings.each do |booking| %>
           <div class="project-card my-3 mx-3" style="width: 400px">
             <div class="m-0 text-center">
-              <% if booking.user.photo.key != nil %>
-                <a href='/users/<%= booking.user_id %>'><%= cl_image_tag booking.user.photo.key, id: "project-request", class: "mb-3" %></a>
+            
+              <% if booking.project.photos.attached? != nil %>
+                <a href='/projects/<%= booking.project.id %>'><%= cl_image_tag booking.project.photos.first.key, id: "project-request", class: "mb-3" %></a>
               <% else %>
-                <a href='/users/<%= booking.user_id %>'><%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "mb-3" %></a>
+                <a href='/projects/<%= booking.project.id %>'><%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "mb-3" %></a>
               <% end %>
             </div>
             <div class="text-center">
