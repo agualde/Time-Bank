@@ -5,7 +5,7 @@
   <h1 class="header mb-5 underline2" ><%= @user.first_name %> <%= @user.last_name %></h1>
   <div class="d-flex">
     <div>
-      <div class="user-img">
+      <div class="user-img" style="height: 675px; width: 450px">
         <% if @user.photo.key != nil %>
             <%= cl_image_tag(@user.photo.key, class: "show-avatar mb-3") %>
         <% else %>

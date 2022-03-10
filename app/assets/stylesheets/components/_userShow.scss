@@ -7,13 +7,16 @@
 
 .user-img {
     width: 450px;
+    height: 675px;
 }
 
 .show-avatar {
     height: 100%;
     border-radius: 6px;
     width: 100%;
-}
+    object-fit: cover;
+    }
+
 
 .user-show-grid {
     display: grid;
