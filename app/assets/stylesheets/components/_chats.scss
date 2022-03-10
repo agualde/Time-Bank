@@ -12,6 +12,7 @@
         padding: 0;
         margin: auto;
         overflow: scroll;
+        border-bottom: 1px solid #0000000f;
     }
 }
 
@@ -88,10 +89,10 @@
 
 .circle {
     align-content: center;
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
-    background: linear-gradient(59deg, red, #c928288f);
+    background: linear-gradient(59deg, #f095da, #ff6066);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,5 +105,19 @@
 #outer-notification {
     position: relative;
     bottom: 17px;
-    left: 85px;
+    left: 16px;
+    background: linear-gradient(59deg, red, #c928288f);
+    cursor: pointer;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.chat-index-li {
+    border-bottom: 1px solid #0000000f;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 1px solid #0000000f;
+    margin: 0;
 }

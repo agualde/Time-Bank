@@ -13,34 +13,50 @@
         <% end %>
       </div>
       <div class="d-flex justify-content-center">
-        <% if @chatroom.exists? %>
-          <%= link_to "Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn", data: { action: "click->hello#revealContent" } %>
-        <% else %>
-          <%= link_to "NEW Chat", user_chatrooms_path(@user), class: "home-page-btn", method: :post, data: { action: "click->hello#createContent" } %>
+        <% if user_signed_in? %>
+        <% if @user != current_user %>
+          <% if @chatroom.exists? %>
+            <%= link_to "Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn", data: { action: "click->hello#revealContent" } %>
+          <% else %>
+            <%= link_to "Chat", user_chatrooms_path(@user), class: "home-page-btn", method: :post, data: { action: "click->hello#createContent" } %>
+          <% end %>
+        <% end %>
         <% end %>
       </div>
       <div class="icons d-flex justify-content-between">
         <div class="favorites text-center">
           <span><%= @user.projects.count %></span>
-          <p><%= (@user.projects.count == 1 ) ? "Project" : "Projects" %></p>
+          <p class="less-margin-p"><%= (@user.projects.count == 1 ) ? "Project" : "Projects" %></p>
         </div>
         <div class="collaborators text-center">
           <span><%= @user.bookings.where(status: "Approved").count %></span>
-          <p class="mb-3"><%= (@user.bookings.where(status: "Approved").count == 1 ) ? "Contribution" : "Contributions" %></p>
+          <p class="mb-3 less-margin-p"><%= (@user.bookings.where(status: "Approved").count == 1 ) ? "Contribution" : "Contributions" %></p>
         </div>
       </div>
       <div class="icons">
-        <p class="mt-4"><strong>
+        <p class="mt-4">
         <% if @user.user_reviews.present? %>
-          <%= @user.first_name %>'s Rating:</strong> <%= "   " %><%= "⏳" * (@ratings.sum / @ratings.count)%><em> (<%= @ratings.count %> <%= (@ratings.count == 1 ) ? "Review" : "Reviews" %>)</em></p>
+          <div class="d-flex justify-content-left margin-p-bottom-0">
+            <p style="font-weight: 400;"> <%= @user.first_name %>'s <p class="underline margin-p" style="font-weight: 400;" >Rating</p> <p>:</p></p>
+            <p style="margin-left: 5px;"><%= "   " %><%= "⏳" * (@ratings.sum / @ratings.count)%><em> (<%= @ratings.count %> <%= (@ratings.count == 1 ) ? "Review" : "Reviews" %>)</em></p>
+          </div>
         <% end %>
-        <p class="mt-4"><strong><%= @user.first_name %>'s Location:</strong><%= " #{@user.location}" %></p>
-        <p><strong><%= @user.first_name %>'s interests:</strong></p>
-        <div id= "skills-breakdown" class="justify-content-left">
+        
+        <div class="mt-2 d-flex justify-content-left margin-p-bottom-0">
+          <p  style="font-weight: 400;" class=""><%= @user.first_name %>'s <p class="underline margin-p" style="font-weight: 400;">Location</p> <p>:</p> </p>
+          <p style="margin-left: 5px;"><%= " #{@user.location}" %></p>
+        </div>  
+
+        <div class="mt-2 d-flex justify-content-left margin-p-bottom-0">
+          <p  style="font-weight: 400;"> <%= @user.first_name %>'s <p class="underline margin-p" style="font-weight: 400;">interests</p> <p>:</p></p>
+        </div>
+        
+        <div class="mt-2 justify-content-left">
           <% @user.skills.each do | skill | %>
-              <p class="col-3 px-2" style="<%="text-decoration: line-through; color: grey; font-size: smaller;" if !(@user.skills.include?(skill)) %>"><%= skill.name %></p>
+              <p class="px-2" style="<%="text-decoration: line-through; color: grey; font-size: smaller;" if !(@user.skills.include?(skill)) %>"><%= skill.name %></p>
           <% end %>
         </div>
+      
       </div>
     </div>
     <div style="margin-left: 100px;">
@@ -59,13 +75,20 @@
         <% end %>
       </div>
       <h4 class="mb-3 mt-5"><%= @user.first_name %>'s reviews:</h4>
-      <% if @user.reviews.count == 0 %>
+      <% if @user.user_reviews.count == 0 %>
         <em><%= @user.first_name %> still does not have any review</em>
       <% else %>
         <% @user.user_reviews.each do |user_review| %>
           <div class = "review-card mt-2">
-            <strong><%= user_review.review.title %></strong><%= "  " %><%= "[" %><%= link_to "Edit", edit_review_path(@user.id, user_review.review.id) %><%= " | " %><%= link_to "Delete", delete_review_path(user_review.review.id), method: :delete, data: { confirm: "You are about to delete the review, are you sure?" } %><%= "]" %>
-            <div class="d-flex mt-3">
+              <div class="d-flex" style="justify-content: space-between;"><strong><%= user_review.review.title %></strong>
+              
+            <% if user_review.review.user_id == current_user.id %>
+              <div><%= "[" %><%= link_to "Edit", edit_review_path(@user.id, user_review.review.id), style: "text-decoration: none; font-size: 12px;" %><%= " | " %><%= link_to "Delete", delete_review_path(user_review.review.id), method: :delete, data: { confirm: "You are about to delete the review, are you sure?" }, style: "text-decoration: none; font-size: 12px;" %><%= "]" %>
+              </div>
+            <% end %>
+              
+              </div>
+            <div class="d-flex mt-1">
               "<em><%= user_review.review.content %></em>"
             </div>
             <div class="mt-2">

@@ -7,7 +7,12 @@ class DashboardsController < ApplicationController
     @ratings = UserReview.where(user_id: @user.id).map do |review|
       review.review.rating
     end
-    @chatroom_sender = Chatroom.where(sender_id: current_user)
-    @chatroom_reciever = Chatroom.where(reciever_id: current_user)
+    @chatroom = Chatroom.all
+
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: 'shared/index', locals: { chatrooms: @chatrooms }, formats: [:html] }
+    end
+
   end
 end

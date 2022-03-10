@@ -10,9 +10,10 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "content" ]
+  static targets = [ "content", "other" ]
 
   revealContent() {
     this.contentTarget.classList.toggle("d-none")
+    this.otherTarget.classList.toggle("d-none")
   }
 }
