@@ -59,7 +59,7 @@
               <% if @project.favorites.where(user_id: current_user).present? %>
                 <%= link_to "Remove favorite", project_favorite_delete_path(@project.favorites.where(user_id: current_user)[0].id), method: "delete", id: "add-fav-btn" %>
               <% else %>
-                <%= link_to "Add ❤️", project_favorite_path(@project.id), method: "post", id: "add-fav-btn" %>
+                <%= link_to "❤️", project_favorite_path(@project.id), method: "post", id: "add-fav-btn" %>
               <% end %>
             <% end %>
 
