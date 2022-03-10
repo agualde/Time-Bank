@@ -22,8 +22,10 @@ class ProjectsController < ApplicationController
 
       @project_location = (params[:location].blank?) ? Project.all : Project.where(location: params[:location])
       @project_category = (params[:category].blank?) ? Project.all : Project.where(category_id: Category.all.where(name: params[:category]).ids.first)
-      @project_favorites = (params[:favorite].blank? || params[:favorite].to_i == 0 ) ? Project.all : Project.joins(:favorites).group("projects.id").having("COUNT (*) = #{params[:favorite]}")
-      @project_collaborators = Project.all
+
+      @project_favorites = (params[:favorite].blank?) ? Project.all : Project.joins(:favorites).group("projects.id").having("COUNT (*) >= #{params[:favorite]}")
+      @project_collaborators = (params[:collaborator].blank?) ? Project.all : Project.left_joins(:bookings).where("bookings.status = 1").group("projects.id").having("COUNT (*) >= #{params[:collaborator]}")
+
 
       @projects = []
       @approved_bookings = 0
@@ -34,12 +36,8 @@ class ProjectsController < ApplicationController
 
 
       @project_location.each do |project|
-        if @project_category.include?(project) && @project_favorites.include?(project)
-          project.bookings.each do |booking|
-            @approved_bookings += 1 if booking.status == "Approved"
-          end
+        if @project_category.include?(project) && @project_favorites.include?(project) && @project_collaborators.include?(project)
           @projects << project if @approved_bookings == params[:collaborator].to_i
-          @approved_bookings = 0
         end
       end
       @user_favorites = Favorite.where(user_id: current_user)
