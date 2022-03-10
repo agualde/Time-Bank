@@ -14,12 +14,12 @@ class Chatroom < ApplicationRecord
     return sender
    end
   end
-
+  
   def me(me)
     if sender == me
-      return me
+      return sender
     else
-      return me
+      return reciever
     end
   end
 
