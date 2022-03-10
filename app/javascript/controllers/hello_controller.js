@@ -10,10 +10,12 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "content", "back" ]
+  static targets = [ "content", "back", "other" ]
 
   revealContent(event) {
     event.preventDefault()
+
+    this.otherTarget.classList.toggle("d-none")
 
     fetch(event.target.href, {
       headers: { "Accept": "text/plain" }
@@ -54,6 +56,6 @@ export default class extends Controller {
     .then((data) => {
       this.contentTarget.innerHTML = data
     })
+    this.otherTarget.classList.toggle("d-none")
   }
-  
 }

@@ -1,7 +1,7 @@
 <div class="" data-chat-target="content" style="height: 350px;" data-controller="replace" data-replace-target="output" data-hello-target="content">
             <ul id="chat-list">
             <% @chatrooms.each do |chatroom| %>
-                <li class="my-2">
+                <li class="chat-index-li">
                         <% if chatroom.other_person(current_user).photo.key != nil %>
                     <div class="d-flex" style="align-items: center; margin-inline: 33px; align-content: space-between; justify-content: space-between;">
                         <a href="/users/<%= chatroom.other_person(current_user).id %>" style="width: 33%">

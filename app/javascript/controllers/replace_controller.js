@@ -10,7 +10,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "output" ]
+  static targets = [ "output", "other" ]
 
   connect() {
     console.log('Hello, Stimulus!')
@@ -30,5 +30,6 @@ export default class extends Controller {
       objDiv.scrollTop = objDiv.scrollHeight;
       console.log(objDiv)
     })
+    this.otherTarget.classList.toggle("d-none")
   }
 }
