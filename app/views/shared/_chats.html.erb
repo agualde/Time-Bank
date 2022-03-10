@@ -1,10 +1,14 @@
 <% if user_signed_in? %>
-    <div class="chats" data-controller="chat">
+    <div class="chats" data-controller="chat notification-subscription" data-user-id="<%= current_user.id %>">
 
             <div class="header-chat click-to-collapse" data-hello-target="back" data-replace-target="other" style="display: flex; justify-content: space-evenly; cursor: pointer;">
                 <div style="width: 10%;"><p class="btn d-none" data-action="click->hello#displayBack" style="padding: 0; margin: 0; display: flex; align-content: center; justify-content: center;" data-chat-target="other" data-hello-target="other"><<</p></div> 
                 <h6 class="btn" data-action="click->chat#revealContent" style="padding: 0; margin: 0; width: 71%;">Inbox </h6>
-                <div style="width: 18%;" data-action="click->chat#revealContent" data-action="click->chat#hideBack"><div id="outer-notification" class="<%= current_user.notifications.count == 0 ? "" : "circle"%> " style="align-self: end;"><%= current_user.notifications.count == 0 ? "" : current_user.notifications.count %></div></div>
+                <div style="width: 18%;" data-action="click->chat#revealContent" data-action="click->chat#hideBack">
+                    <div id="outer-notification" data-notification-subscription-target="count" class="<%= current_user.notifications.count == 0 ? "" : "circle"%> " style="align-self: end;">
+                     <%= current_user.notifications.count == 0 ? "" : current_user.notifications.count %>
+                    </div>
+                </div>
             </div>
         <div class="d-none" data-chat-target="content" style="height: 350px;" data-controller="replace" data-replace-target="output" data-hello-target="content">
             <ul id="chat-list">
