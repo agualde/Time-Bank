@@ -23,9 +23,23 @@ class ProjectsController < ApplicationController
       @project_location = (params[:location].blank?) ? Project.all : Project.where(location: params[:location])
       @project_category = (params[:category].blank?) ? Project.all : Project.where(category_id: Category.all.where(name: params[:category]).ids.first)
 
-      @project_favorites = (params[:favorite].blank?) ? Project.all : Project.joins(:favorites).group("projects.id").having("COUNT (*) >= #{params[:favorite]}")
-      @project_collaborators = (params[:collaborator].blank?) ? Project.all : Project.left_joins(:bookings).where("bookings.status = 1").group("projects.id").having("COUNT (*) >= #{params[:collaborator]}")
 
+      if params[:favorite].blank?
+        @project_favorites =  Project.all
+      elsif params[:favorite].to_i == 0
+        @project_favorites = Project.left_joins(:favorites).where('favorites.project_id' =>  nil)
+      else
+        @project_favorites = Project.joins(:favorites).group("projects.id").having("COUNT (*) = ?", params[:favorite].to_i)
+      end
+
+
+      if params[:collaborator].blank?
+        @project_collaborators = Project.all
+      elsif params[:collaborator].to_i == 0
+        @project_collaborators = Project.left_joins(:bookings).where('bookings.project_id' =>  nil)
+      else
+        @project_collaborators = Project.joins(:bookings).where('bookings.status' => 'Approved').group("projects.id").having("COUNT (*) = ?", params[:collaborator].to_i)
+      end
 
       @projects = []
       @approved_bookings = 0
@@ -37,7 +51,7 @@ class ProjectsController < ApplicationController
 
       @project_location.each do |project|
         if @project_category.include?(project) && @project_favorites.include?(project) && @project_collaborators.include?(project)
-          @projects << project if @approved_bookings == params[:collaborator].to_i
+          @projects << project
         end
       end
       @user_favorites = Favorite.where(user_id: current_user)
