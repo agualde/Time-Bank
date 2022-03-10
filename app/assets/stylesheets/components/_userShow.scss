@@ -7,12 +7,15 @@
 
 .user-img {
     width: 450px;
+    height: 510px;
+
 }
 
 .show-avatar {
     height: 100%;
     border-radius: 6px;
     width: 100%;
+    object-fit: cover;
 }
 
 .user-show-grid {
@@ -140,4 +143,8 @@
 .card-product-dashboard-infos {
     height: 120px;
     width: 100%;
+}
+
+.less-margin-p {
+    margin-top: -20px;
 }

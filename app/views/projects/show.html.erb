@@ -55,6 +55,15 @@
 
       <% if user_signed_in? %>
         <div class="project-buttons d-flex justify-content-start">
+            
+            <% if @project.user_id != current_user.id %>
+              <% if @project.bookings.where(user_id: current_user).present? %>
+                <%= link_to "Cancel request", booking_path(@project.bookings.where(user_id: current_user)[0].id), id: "join-btn", method: "delete"%>
+              <% else %>
+                <%= link_to "Join the project", project_bookings_path(@project.id), id: "join-btn",method: "post"%>
+              <% end %>
+            <% end %>
+
             <% if @project.user_id != current_user.id %>
               <% if @project.favorites.where(user_id: current_user).present? %>
                 <%= link_to "Remove favorite", project_favorite_delete_path(@project.favorites.where(user_id: current_user)[0].id), method: "delete", id: "add-fav-btn" %>
@@ -63,21 +72,13 @@
               <% end %>
             <% end %>
 
-
-            <% if @project.user_id != current_user.id %>
-              <% if @project.bookings.where(user_id: current_user).present? %>
-                <%= link_to "Cancel request", booking_path(@project.bookings.where(user_id: current_user)[0].id), id: "join-btn", method: "delete"%>
-              <% else %>
-                <%= link_to "Join the project", project_bookings_path(@project.id), id: "join-btn",method: "post"%>
-              <% end %>
-            <% end %>
           </div>
       <% else %>
             <div class="project-buttons d-flex justify-content-start">
 
-                <%= link_to "Add ❤️", dashboard_path, id: "add-fav-btn" %>
-
                 <%= link_to "Join the project", dashboard_path, id: "join-btn" %>
+
+                <%= link_to "Add ❤️", dashboard_path, id: "add-fav-btn" %>
           </div>
 
       <% end %>
