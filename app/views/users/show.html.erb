@@ -81,7 +81,7 @@
         <% @user.user_reviews.each do |user_review| %>
           <div class = "review-card mt-2">
             <% if user_review.review.user_id == current_user.id %>
-              <strong><%= user_review.review.title %></strong><%= "  " %><%= "[" %><%= link_to "Edit", edit_review_path(@user.id, user_review.review.id) %><%= " | " %><%= link_to "Delete", delete_review_path(user_review.review.id), method: :delete, data: { confirm: "You are about to delete the review, are you sure?" } %><%= "]" %>
+              <div class="d-flex" style="justify-content: space-between;"><strong><%= user_review.review.title %></strong><div><%= "[" %><%= link_to "Edit", edit_review_path(@user.id, user_review.review.id), style: "text-decoration: none; font-size: 12px;" %><%= " | " %><%= link_to "Delete", delete_review_path(user_review.review.id), method: :delete, data: { confirm: "You are about to delete the review, are you sure?" }, style: "text-decoration: none; font-size: 12px;" %><%= "]" %></div></div>
             <% end %>
             <div class="d-flex mt-1">
               "<em><%= user_review.review.content %></em>"
