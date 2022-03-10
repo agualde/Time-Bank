@@ -9,5 +9,10 @@ class DashboardsController < ApplicationController
     end
     @chatroom = Chatroom.all
 
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: 'shared/index', locals: { chatrooms: @chatrooms }, formats: [:html] }
+    end
+
   end
 end

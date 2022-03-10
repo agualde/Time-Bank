@@ -146,22 +146,26 @@
                     <% if booking.status == "Approved" %>
                         <p class="card-text"><strong>Booking status: <%= booking.status %></strong></p>
                         <%= link_to "Reject the booking", destroy_booking_from_dashboard_path(booking.id), method: :delete , class:"home-page-btn"%>
-                        <% if (@chatroom.where(sender_id: current_user.id, reciever_id: booking.user_id) || @chatroom.where(sender_id: booking.user_id, reciever_id: current_user.user_id)).exists? %>
-                          <%= link_to "To Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn" %>
+ 
+                        <% if @chatroom.exists? %>
+                          <%= link_to "Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn", data: { action: "click->hello#revealContent" } %>
                         <% else %>
-                          <%= link_to "Chat", user_chatrooms_path(booking.user_id), class: "home-page-btn", method: :create %>
+                          <%= link_to "Chat", user_chatrooms_path(booking.user_id), class: "home-page-btn", method: :post, data: { action: "click->hello#createContent" } %>
                         <% end %>
+
                     <% elsif booking.status == "Pending" %>
                         <p class="card-text"><strong>Booking status: <%= booking.status %></strong></p>
                     <% end %>
                     <% if booking.status != "Approved" %>
                       <%= link_to "Accept the booking", booking_path(booking), method: :patch ,class:"home-page-btn"%>
                       <%= link_to "Reject the booking", destroy_booking_from_dashboard_path(booking.id), method: :delete , class:"home-page-btn"%>
-                      <% if (@chatroom.where(sender_id: current_user.id, reciever_id: booking.user_id) || @chatroom.where(sender_id: booking.user_id, reciever_id: current_user.user_id)).exists? %>
-                        <%= link_to "To Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn" %>
-                      <% else %>
-                        <%= link_to "Chat", user_chatrooms_path(booking.user_id), class: "home-page-btn", method: :create %>
-                      <% end %>
+                        
+                        <% if @chatroom.exists? %>
+                        <%= link_to "Chat", chatroom_path(@chatroom.first.id), class: "home-page-btn", data: { action: "click->hello#revealContent" } %>
+                        <% else %>
+                        <%= link_to "Chat", user_chatrooms_path(booking.user_id), class: "home-page-btn", method: :post, data: { action: "click->hello#createContent" } %>
+                        <% end %>
+      
                     <% end %>
                 </div>
               </div>
