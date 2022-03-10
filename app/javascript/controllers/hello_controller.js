@@ -56,6 +56,6 @@ export default class extends Controller {
     .then((data) => {
       this.contentTarget.innerHTML = data
     })
-    this.otherTarget.classList.toggle("d-none")
+    // this.otherTarget.classList.toggle("d-none")
   }
 }
