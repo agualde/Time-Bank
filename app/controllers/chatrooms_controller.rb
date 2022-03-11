@@ -30,11 +30,12 @@ class ChatroomsController < ApplicationController
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
 
-    if @chatroom.other_person(current_user)
-      @chatroom.notifications.each do |notification|
+    @chatroom.notifications.each do |notification|
+      if notification.user == current_user
         notification.destroy
       end
     end
+
 
     respond_to do |format|
       format.html # Follow regular flow of Rails
