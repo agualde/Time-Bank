@@ -30,19 +30,21 @@ class ChatroomsController < ApplicationController
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
 
+    if @chatroom.other_person(current_user)
+      @chatroom.other_person(current_user).notifications.each do |notification|
+        notification.destroy
+      end
+    end
+
     respond_to do |format|
       format.html # Follow regular flow of Rails
       format.text { render partial: 'chatrooms/chatroom', locals: { chatroom: @chatroom, message: @message }, formats: [:html] }
     end
 
-    if @chatroom.other_person(current_user)
-      @chatroom.notifications.each do |notification|
-          notification.destroy
-      end
-    end
   end
 
-  def destroy
-    
-  end
+  # def destroy
+  #   @chatroom = Chatroom.find(params[:id])
+  #   @chatroom.destroy
+  # end
 end

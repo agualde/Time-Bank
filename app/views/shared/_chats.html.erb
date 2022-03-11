@@ -21,7 +21,7 @@
                         </a> 
                         <%= link_to chatroom.other_person(current_user).username, chatroom_path(chatroom), data: { action: "click->replace#render"}, style: "width: 33%;text-align: center;color: black;text-decoration: none;font-weight: 100;" %>
                          <div style="width: 33%; display: flex; justify-content: center;"><div  data-notification-subscription-target="other" class="<%= chatroom.me(current_user).notifications.count == 0 ? "" : "circle" %> "><%= chatroom.me(current_user).notifications.count == 0 ? "" : chatroom.me(current_user).notifications.count %></div></div>
-                    
+                        <%# <%= link_to "[X]", chatroom_path(chatroom), method: :delete %> %>
                     </div>
                 </li>
 
