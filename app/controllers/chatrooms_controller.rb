@@ -31,7 +31,7 @@ class ChatroomsController < ApplicationController
     @message = Message.new
 
     if @chatroom.other_person(current_user)
-      @chatroom.other_person(current_user).notifications.each do |notification|
+      @chatroom.notifications.each do |notification|
         notification.destroy
       end
     end
