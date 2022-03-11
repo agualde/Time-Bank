@@ -16,8 +16,8 @@ export default class extends Controller {
                 console.log(data)
                 this.countTarget.classList.add("circle")
                 this.countTarget.innerHTML = data.unread_messages
-                this.otherTarget.classList.add("circle")
-                this.otherTarget.innerHTML = data.unread_messages 
+                // this.otherTarget.classList.add("circle")
+                // this.otherTarget.innerHTML = data.unread_messages 
             }
             })
     }
