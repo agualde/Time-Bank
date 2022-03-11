@@ -81,10 +81,13 @@
         <% @user.user_reviews.each do |user_review| %>
           <div class = "review-card mt-2">
               <div class="d-flex" style="justify-content: space-between;"><strong><%= user_review.review.title %></strong>
-              
-            <% if user_review.review.user_id == current_user.id %>
-              <div><%= "[" %><%= link_to "Edit", edit_review_path(@user.id, user_review.review.id), style: "text-decoration: none; font-size: 12px;" %><%= " | " %><%= link_to "Delete", delete_review_path(user_review.review.id), method: :delete, data: { confirm: "You are about to delete the review, are you sure?" }, style: "text-decoration: none; font-size: 12px;" %><%= "]" %>
-              </div>
+            <% if user_signed_in? %>
+            
+              <% if user_review.review.user_id == current_user.id %>
+                <div>
+                  <%= "[" %><%= link_to "Edit", edit_review_path(@user.id, user_review.review.id), style: "text-decoration: none; font-size: 12px;" %><%= " | " %><%= link_to "Delete", delete_review_path(user_review.review.id), method: :delete, data: { confirm: "You are about to delete the review, are you sure?" }, style: "text-decoration: none; font-size: 12px;" %><%= "]" %>
+                </div>
+              <% end %>
             <% end %>
               
               </div>
