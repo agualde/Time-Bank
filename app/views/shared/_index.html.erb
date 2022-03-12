@@ -8,7 +8,7 @@
                         <%= cl_image_tag chatroom.other_person(current_user).photo.key, class: "nav-avatar"%>
                         </a> 
                         <%= link_to chatroom.other_person(current_user).username, chatroom_path(chatroom), data: { action: "click->replace#render"}, style: "width: 33%;text-align: center;color: black;text-decoration: none;font-weight: 100;" %>
-                         <div style="width: 33%; display: flex; justify-content: center;"><div  data-notification-subscription-target="other" class="<%= chatroom.me(current_user).notifications.count == 0 ? "" : "circle" %> "><%= chatroom.me(current_user).notifications.count == 0 ? "" : chatroom.me(current_user).notifications.count %></div></div>
+                        <div style="width: 33%; display: flex; justify-content: center;"><div  data-notification-subscription-target="other" class="<%= chatroom.notifications.where(user: current_user).count == 0 ? "" : "circle" %> "><%= chatroom.notifications.where(user: current_user).count == 0 ? "" : chatroom.notifications.where(user: current_user).count %></div></div>
                          <% if chatroom.present? %>
                          <%= link_to "🗑️", chatroom_path(chatroom), method: :delete, data: { action: "click->hello#deleteContent", target: "hello.last" }, class: "no-decor" %>  
                          <% end %>
@@ -21,8 +21,10 @@
                         <a href="/users/<%= chatroom.other_person(current_user).id %>" style="width: 33%">
                         <%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmendocoastpm.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fuser_avatar.png&f=1&nofb=1", class: "nav-avatar" %></a>
                         <%= link_to chatroom.other_person(current_user).username, chatroom_path(chatroom), data: { action: "click->replace#render"}, style: "width: 33%;text-align: center;color: black;text-decoration: none;font-weight: 100;" %> 
-                        <div style="width: 33%; display: flex; justify-content: center;"><div  data-notification-subscription-target="other" class="<%= chatroom.me(current_user).notifications.count == 0 ? "" : "circle" %> "><%= chatroom.me(current_user).notifications.count == 0 ? "" : chatroom.me(current_user).notifications.count %></div></div>
-                         <%= link_to "🗑️", chatroom_path(chatroom), method: :delete, data: { action: "click->hello#deleteContent", target: "hello.last" }, class: "no-decor" %>
+                       <div style="width: 33%; display: flex; justify-content: center;"><div  data-notification-subscription-target="other" class="<%= chatroom.notifications.where(user: current_user).count == 0 ? "" : "circle" %> "><%= chatroom.notifications.where(user: current_user).count == 0 ? "" : chatroom.notifications.where(user: current_user).count %></div></div>
+                            <% if chatroom.present? %>
+                            <%= link_to "🗑️", chatroom_path(chatroom), method: :delete, data: { action: "click->hello#deleteContent", target: "hello.last" }, class: "no-decor" %>  
+                            <% end %>
                     </div>
                     </li>  
                 <% end %>
