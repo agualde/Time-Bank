@@ -48,7 +48,9 @@ export default class extends Controller {
   }
 
   deleteContent(event) {
-    console.log("test")
+    let base_url = window.location.origin;
+    let specific_url = window.location.pathname
+    const complete_url = base_url + specific_url
     event.preventDefault()
     event.stopImmediatePropagation()
     window.history.pushState({}, document.title, "/" );
@@ -60,11 +62,16 @@ export default class extends Controller {
     .then((res) => res.text())
     .then((data) => {
       this.contentTarget.innerHTML = data
+      window.history.pushState({}, document.title, "/" );
+      window.history.pushState({}, document.title, complete_url );
     })
   }
 
 
   displayBack() {
+    let base_url = window.location.origin;
+    let specific_url = window.location.pathname
+    const complete_url = base_url + specific_url
     window.history.pushState({}, document.title, "/" );
     fetch("chatrooms", {
       headers: { "Accept": "text/plain" }
@@ -72,6 +79,7 @@ export default class extends Controller {
     .then((res) => res.text())
     .then((data) => {
       this.contentTarget.innerHTML = data
+      window.history.pushState({}, document.title, complete_url );
     })
     // this.otherTarget.classList.toggle("d-none")
   }
