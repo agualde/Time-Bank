@@ -1,5 +1,5 @@
 <div class="<%= local_assigns[:css_class] %> my-1 aaa" id="message-<%= message.id %>" data-sender-id="<%= message.user.id %>">
-  <small style="display: flex; justify-content: end;">
+  <small>
      <i style="font-size: 10px;"><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i> 
   </small>
   <p class="mb-0 message-content"><%= message.content %></p>
