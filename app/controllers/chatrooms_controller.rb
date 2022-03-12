@@ -44,8 +44,15 @@ class ChatroomsController < ApplicationController
 
   end
 
-  # def destroy
-  #   @chatroom = Chatroom.find(params[:id])
-  #   @chatroom.destroy
-  # end
+  def destroy
+    @chatrooms = Chatroom.where(sender_id: current_user).or(Chatroom.where(reciever_id: current_user))
+    @chatroom = Chatroom.find(params[:id])
+    @chatroom.destroy
+
+    
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: 'shared/index',locals: { chatrooms: @chatrooms }, formats: [:html] }
+    end
+  end
 end
