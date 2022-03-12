@@ -6,7 +6,6 @@ export default class extends Controller {
 
     connect () {
         const userId = this.element.dataset.userId;
-        console.log(userId)
         consumer.subscriptions.create(
             { channel: 'UserChannel', id: userId },
             {

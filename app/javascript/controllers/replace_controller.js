@@ -12,10 +12,6 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static targets = [ "output", "other" ]
 
-  connect() {
-    console.log('Hello, Stimulus!')
-  }
-
   render(event) {
     event.preventDefault()
     console.log(event.target)

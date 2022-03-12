@@ -10,7 +10,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "content", "back", "other" ]
+  static targets = [ "content", "back", "other", 'last' ]
 
   revealContent(event) {
     event.preventDefault()
@@ -46,6 +46,23 @@ export default class extends Controller {
     })
     this.otherTarget.classList.toggle("d-none")
   }
+
+  deleteContent(event) {
+    console.log("test")
+    event.preventDefault()
+    event.stopImmediatePropagation()
+    window.history.pushState({}, document.title, "/" );
+    const csrf = document.querySelector('[name=csrf-token]').content
+    fetch(event.target.href, {
+      headers: { "Accept": "text/plain", 'X-CSRF-TOKEN': csrf  },
+      method: "DELETE",
+    })
+    .then((res) => res.text())
+    .then((data) => {
+      this.contentTarget.innerHTML = data
+    })
+  }
+
 
   displayBack() {
     window.history.pushState({}, document.title, "/" );
