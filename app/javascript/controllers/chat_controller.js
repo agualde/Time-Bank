@@ -12,10 +12,21 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static targets = [ "content", "other", "third" ]
 
-  revealContent() {
+  revealContent() {    
+    let base_url = window.location.origin;
+    let specific_url = window.location.pathname
+    const complete_url = base_url + specific_url
+    window.history.pushState({}, document.title, "/" );
+    fetch("chatrooms", {
+      headers: { "Accept": "text/plain" }
+    })
+    .then((res) => res.text())
+    .then((data) => {
+      this.contentTarget.innerHTML = data
+      window.history.pushState({}, document.title, complete_url );
+    })
+
     this.contentTarget.classList.toggle("d-none")
     this.otherTarget.classList.toggle("d-none")
-    // this.thirdTarget.classList.toggle("d-none")
-    // this.thirdTarget.outerHTML = ""
 }
 }
