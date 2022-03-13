@@ -13,7 +13,7 @@
           <% end %>
           </div>
           </a>
-          <p><%= user.first_name %> <%=", #{((( Date.new(@current_year, @current_day, @current_month) - user.birthday ).to_i) / 365)}" if ((( Date.new(@current_year, @current_day, @current_month) - user.birthday ).to_i) / 365) > 18 %></p>
+          <p><%= user.first_name %> <%=", #{((( Date.new(@current_year, @current_month, @current_day) - user.birthday ).to_i) / 365)}" if ((( Date.new(@current_year, @current_month, @current_day) - user.birthday ).to_i) / 365) > 18 %></p>
           <span class="d-flex justify-content-between">
             <button type="submit" value="<%= user.id %>" data-action="click->flip#revealBio"> Quick view</button>
             <form action="/users/<%= user.id %>">
