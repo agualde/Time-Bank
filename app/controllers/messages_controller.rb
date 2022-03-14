@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
     @message.chatroom = @chatroom
     @message.user = current_user
     other = @chatroom.other_person(current_user)
+    chatroom = @chatroom
     if @message.save
       ChatroomChannel.broadcast_to(
         @chatroom,
@@ -12,8 +13,12 @@ class MessagesController < ApplicationController
       )
       UserChannel.broadcast_to(
         other,
-        { unread_messages: other.notifications.count }
+        { unread_messages: other.notifications.count,
+          chatroom: chatroom.id,
+          chatroom_messages: @chatroom.notifications.where(user: @chatroom.other_person(current_user)).count }
+
       )
+
       head :ok
     else
       render "chatrooms/show"
