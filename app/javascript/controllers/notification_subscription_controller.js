@@ -6,19 +6,22 @@ export default class extends Controller {
 
     connect () {
         const userId = this.element.dataset.userId;
+        
         consumer.subscriptions.create(
             { channel: 'UserChannel', id: userId },
             {
                 // when you receive something
-            received: (data) => {
+                received: (data) => {
                 // update the DOM
                 console.log(data)
+                // console.log(chatroom)
                 this.countTarget.classList.add("circle")
                 this.countTarget.innerHTML = data.unread_messages
-                this.otherTarget.innerHTML = data.chatroom_messages
-                this.otherTarget.classList.add("circle")
-                // this.otherTarget.classList.add("circle")
-                // this.otherTarget.innerHTML = data.unread_messages 
+                console.log(data.chatroom)
+                var chatroom = document.getElementById(data.chatroom);
+                console.log(chatroom)
+                chatroom.classList.add("circle")
+                chatroom.innerHTML = data.chatroom_messages
             }
             })
     }
