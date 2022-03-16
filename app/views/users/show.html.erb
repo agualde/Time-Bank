@@ -3,7 +3,7 @@
     <p><%= link_to "Go to Projects", projects_path, class: 'back-btn ' %> || <%= link_to "Go to Dashboard ", dashboard_path, class: 'back-btn-2' %> </p>
   </div>
   <h1 class="header mb-5 underline2" ><%= @user.first_name %> <%= @user.last_name %></h1>
-  <div class="d-flex">
+  <div class="d-flex user-show">
     <div>
       <div class="user-img">
         <% if @user.photo.key != nil %>
@@ -47,11 +47,11 @@
           <p style="margin-left: 5px;"><%= " #{@user.location}" %></p>
         </div>  
 
-        <div class="mt-2 d-flex justify-content-left margin-p-bottom-0">
+        <div class="mt-2 d-flex justify-content-left margin-p-bottom-0 interests">
           <p  style="font-weight: 400;"> <%= @user.first_name %>'s <p class="underline margin-p" style="font-weight: 400;">interests</p> <p>:</p></p>
         </div>
         
-        <div class="mt-2 justify-content-left">
+        <div class="mt-2 justify-content-left interests">
           <% @user.skills.each do | skill | %>
               <p class="px-2" style="<%="text-decoration: line-through; color: grey; font-size: smaller;" if !(@user.skills.include?(skill)) %>"><%= skill.name %></p>
           <% end %>
@@ -59,12 +59,13 @@
       
       </div>
     </div>
-    <div style="margin-left: 100px;">
+    <div class="kill-margin" style="margin-left: 100px;">
       <h4>Bio:</h4>
       <p class="mb-5" style="width: 500px;"><%= @user.bio %></p>
       <h4 class="mb-3"><%= @user.first_name %>'s projects:</h4>
       <div class="user-show-grid">
         <% @user.projects.each do | project | %>
+        <div class="user-projects">
           <div class="card-product-dashboard">
             <%= link_to (cl_image_tag project.photos[0].key), project_path(project), class: "project-image-user-show" %>
               <div class="card-product-dashboard-infos">
@@ -72,6 +73,7 @@
                 <p><%= project.category.name %> in <%= project.location %></p>
               </div>
           </div>
+        </div>
         <% end %>
       </div>
       <h4 class="mb-3 mt-5"><%= @user.first_name %>'s reviews:</h4>
