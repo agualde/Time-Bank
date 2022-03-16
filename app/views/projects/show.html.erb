@@ -2,7 +2,7 @@
   <div class="container">
     <p><%= link_to "Go to Projects", projects_path, class: 'back-btn ' %></p>
   </div>
-<div class="container d-flex justify-content-between">
+<div class="container projects-show d-flex justify-content-between col ">
   <div class="left-page col-6">
     <div class="carousel">
       <div id="carouselExampleDark<%= @project.id %>" class="carousel carousel-dark slide img-container">
@@ -55,7 +55,7 @@
 
       <% if user_signed_in? %>
         <div class="project-buttons d-flex justify-content-start">
-            
+
             <% if @project.user_id != current_user.id %>
               <% if @project.bookings.where(user_id: current_user).present? %>
                 <%= link_to "Cancel request", booking_path(@project.bookings.where(user_id: current_user)[0].id), id: "join-btn", method: "delete"%>
@@ -76,7 +76,7 @@
       <% else %>
             <div class="project-buttons d-flex justify-content-start">
 
-                <%= link_to "Join the project", dashboard_path, id: "join-btn" %>
+                <%= link_to "Join", dashboard_path, id: "join-btn" %>
 
                 <%= link_to "Add ❤️", dashboard_path, id: "add-fav-btn" %>
           </div>
