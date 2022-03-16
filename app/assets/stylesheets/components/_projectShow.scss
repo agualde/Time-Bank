@@ -193,3 +193,13 @@
         margin-top: 0!important;
       }
 }
+
+
+.btn-container {
+    display: flex;
+    align-items: center;
+    @media (max-width: 480px) {
+        display: flex;
+        align-items: center;
+      }
+}
