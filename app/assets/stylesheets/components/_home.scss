@@ -142,3 +142,11 @@ form {
     outline: none;
   }
 }
+
+
+.center-media  {
+  @media (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+  }
+}
