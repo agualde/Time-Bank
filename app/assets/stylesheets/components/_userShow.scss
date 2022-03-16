@@ -20,6 +20,12 @@
       }
 }
 
+.bio {
+    @media (max-width: 480px) {
+        width: 366px;
+      }
+}
+
 .user-projects {
     @media (max-width: 480px) {
         display: flex !important;
