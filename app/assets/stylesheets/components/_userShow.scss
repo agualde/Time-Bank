@@ -183,5 +183,11 @@
 .user-show {
     @media (max-width: 480px) {
         display: inline!important;
-      }
+    }
+}
+
+.favorites {
+    @media (max-width: 480px) {
+        margin-left: 65px;
+    }
 }
