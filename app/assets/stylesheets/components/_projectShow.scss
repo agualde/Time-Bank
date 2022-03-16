@@ -1,6 +1,7 @@
     .showcontainer {
         margin-top: 75px;
-    }
+}
+
 
     .grid {
         display: grid;
@@ -137,15 +138,39 @@
             display: inline;
             color: grey;
             border-bottom: 40px;
+
+            @media (max-width: 480px) {
+              margin-left: 30px;
+            }
+
+
         }
         p {
             text-align: left;
             width: 300px;
             font-family: 'Montserrat', sans-serif;
+
+            @media (max-width: 480px) {
+              margin-left: -15px;
+            }
         }
         em {
             font-size: 20px;
+            @media (max-width: 480px) {
+              padding: 20px;
+            }
+
+
         }
+
+
+
+      h4 {
+        @media (max-width: 480px) {
+          display: inline !important;
+          align-items: center;
+        }
+      }
     }
 
     .header {
@@ -202,4 +227,19 @@
         display: flex;
         align-items: center;
       }
+}
+
+.container-projects-show {
+  @media (max-width: 480px) {
+    display: inline !important;
+    align-items: center;
+}
+}
+
+.project-buttons {
+  @media (max-width: 480px) {
+    display: inline !important;
+    align-items: center;
+}
+
 }
