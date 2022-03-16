@@ -41,3 +41,22 @@
   margin-bottom: 0.5rem;
   margin-left: 1rem;
 }
+
+
+.end-div {
+  @media (max-width: 480px) {
+    display: none;
+    }
+}
+
+.guest-div {
+  @media (max-width: 480px) {
+    display: none;
+    }
+}
+
+.form {
+  @media (max-width: 480px) {
+    padding-inline: 27px;
+  }
+}
