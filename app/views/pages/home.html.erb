@@ -7,7 +7,7 @@
       </div>
       <div class="container-home">
         <div class="button-container">
-            <%= form_tag projects_path, method: :get do %>
+            <%= form_tag projects_path, style: "z-index: 1000;", method: :get do %>
             <div class="form-home">
               <%= text_field_tag :query,
                 params[:query],
