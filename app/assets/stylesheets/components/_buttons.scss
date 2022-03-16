@@ -195,8 +195,20 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   margin-top: 29px;
+  @media (max-width: 480px) {
+    margin-top: 24px;
+    padding-inline: 11px;
+    height: 37px;
+    width: 59px;
+  }
 }
 
 .no-decor {
     text-decoration: none;
+}
+
+.collaborator {
+    @media (max-width: 480px) {
+        margin-left: 6px;
+      }
 }

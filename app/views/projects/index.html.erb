@@ -30,7 +30,7 @@
           </datalist>
         </div>
         <div class="guest-div">
-          <label for="collaborator" class="from-label-project-index">Collaborator(s)</label>
+          <label for="collaborator" class="from-label-project-index collaborator">Collaborator(s)</label>
           <input list="collaborators" name="collaborator" id="collaborator" class="form-control-project-index mr-2" placeholder="ex: 1">
           <datalist id="collaborators">
             <% @collaborators.each do | collaborator | %>
@@ -38,7 +38,9 @@
             <% end %>
           </datalist>
         </div>
-        <input type="submit" class="home-page-btn-project-index" value="Go">
+        <div class="submit">
+          <input type="submit" class="home-page-btn-project-index" value="Go">
+        </div>
       </div>
     </form>
   </div>
