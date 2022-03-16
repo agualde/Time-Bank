@@ -138,6 +138,12 @@
         color: black;
     }
     margin: 20px;
+
+    @media (max-width: 480px) {
+        margin-left: 7px;
+        margin-right: 0;
+      }
+    
 }
 
 .home-page-btn-2:after {
