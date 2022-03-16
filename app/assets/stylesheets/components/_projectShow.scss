@@ -183,3 +183,10 @@
     display: flex;
     align-items: center;
 }
+
+.container-project-show {
+
+  @media(max-width: 480px){
+    display: inline !important;
+  }
+}
