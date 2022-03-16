@@ -5,6 +5,9 @@
     top: 0px;
     padding-inline: 45px;
     z-index: 999;
+    @media (max-width: 480px) {
+        padding: 0px;
+      }
 }
 
 .navbar-lewagon .navbar-collapse {
