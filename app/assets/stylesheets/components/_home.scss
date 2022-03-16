@@ -35,6 +35,9 @@
     height: 300px;
     width: 393px;
     justify-content: center;
+    @media (max-width: 480px) {
+      width: auto;
+    }
 
     h3 {
       text-align: center;
