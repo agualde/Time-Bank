@@ -91,6 +91,10 @@
 
 .header-div {
     width: 300px;
+
+    @media (max-width: 480px) {
+      margin-left: 16px;
+    }
 }
 
 
