@@ -2,10 +2,16 @@
     display: flex;
     justify-content: center;
     margin-top: 203px;
+    @media (max-width: 480px) {
+      display: inline;
+    }
 }
 
 .button-container {
   display: flex;
+  @media (max-width: 480px) {
+    margin-left: 8px!important;
+  }
 }
 
 
@@ -45,6 +51,11 @@
     padding: 50px;
     margin-top: 60px;
     justify-content: space-between;
+
+    @media (max-width: 480px) {
+      display: inline;
+    }
+
 
     h1 {
       font-size: 60px;
@@ -89,6 +100,10 @@ border: 2px solid black;
 border-radius: 10px;
 width: 400px;
 height: 50px;
+
+@media (max-width: 480px) {
+  width: 263px;
+}
 }
 
 .search-home:focus-visible{
