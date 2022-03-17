@@ -138,12 +138,6 @@
             display: inline;
             color: grey;
             border-bottom: 40px;
-
-            @media (max-width: 480px) {
-              margin-left: 30px;
-            }
-
-
         }
         p {
             text-align: left;
@@ -159,18 +153,18 @@
             @media (max-width: 480px) {
               padding: 20px;
             }
-
-
         }
-
-
 
       h4 {
         @media (max-width: 480px) {
-          display: inline !important;
-          align-items: center;
+          margin-left: -15px;
         }
       }
+
+      @media (max-width: 480px) {
+        margin-left: 55px;
+      }
+
     }
 
     .header {
@@ -229,17 +223,30 @@
       }
 }
 
-.container-projects-show {
+#projects-show-mobile {
   @media (max-width: 480px) {
     display: inline !important;
     align-items: center;
 }
 }
 
-.project-buttons {
+
+#carousel-mobile {
   @media (max-width: 480px) {
-    display: inline !important;
     align-items: center;
 }
+}
 
+.desription {
+  h4 {
+    @media (max-width: 480px) {
+      margin-left: 10px;
+  }
+}
+}
+
+.center-mobile {
+    @media (max-width: 480px) {
+      margin-left: -20px;
+  }
 }
