@@ -57,9 +57,9 @@
                     <div class="my-card my-3 project-image" style="background-image: url(<%= cl_image_path project.photos[0].key %>);">
                         <a href="/projects/<%= project.id %>" style="height: 100%;"></a>
                         <div class="inner-card">
-                            <%= link_to "♥", project_favorites_path(project), method: :create, class: "heart grey #{@user_favorites.find_by(project_id: project).present? ? 'd-none' : ''}", id: "test" %>
+                           <div data-favourites-target="favourite"> <%= link_to "♥", project_favorites_path(project), method: :create, class: "heart grey #{@user_favorites.find_by(project_id: project).present? ? 'd-none' : ''}", id: "test", data: { controller: "favourite", action: "click->favourite#favourite" } %></div>
                             <% if @user_favorites.find_by(project_id: project).present? %>
-                            <%= link_to "♥", favorite_path(@user_favorites.find_by(project_id: project).id), method: :delete, class: "heart red #{@user_favorites.find_by(project_id: project).present? ? '' : 'd-none'}", id: "test"%>
+                           <div data-favourites-target="favourite"> <%= link_to "♥", favorite_path(@user_favorites.find_by(project_id: project).id), method: :delete, class: "heart red #{@user_favorites.find_by(project_id: project).present? ? '' : 'd-none'}", id: "test", data: { controller: "favourite", action: "click->favourite#deleteFavourite" } %></div>
                             <% else %>
                             <% end %>
                         </div>
