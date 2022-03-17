@@ -60,3 +60,10 @@
     padding-inline: 27px;
   }
 }
+
+.form-space {
+  @media (max-width: 480px) {
+    display: none;
+  }
+
+}
