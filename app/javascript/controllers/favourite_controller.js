@@ -14,7 +14,8 @@ export default class extends Controller {
 
   favourite(event) {
     event.preventDefault();
-    console.log(this.element.href);
+    console.log(this)
+    // console.log(this.element.href);
     event.stopImmediatePropagation()
     const url = this.element.href;
     // fetch POST request to link url
@@ -27,7 +28,7 @@ export default class extends Controller {
   })
     .then(response => response.text())
     .then((data) => {
-      console.log(data)
+      // console.log(data)
       this.element.outerHTML = data;
     })
 }

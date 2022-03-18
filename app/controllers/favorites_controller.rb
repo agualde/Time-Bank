@@ -7,7 +7,6 @@ class FavoritesController < ApplicationController
     @favorite.save
     @user_favorites = Favorite.where(user_id: current_user)
     # redirect_to projects_path(anchor: @project.id)
-
     respond_to do |format|
       format.html # Follow regular flow of Rails
       format.text { render partial: 'shared/favouriteDelete', locals: { project: @project, user_favorites: @user_favorites }, formats: [:html] }
