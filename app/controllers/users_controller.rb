@@ -15,9 +15,13 @@ skip_before_action :authenticate_user!, only: [:index, :show]
   def update
     @user = current_user
     @user.update(user_params)
-    @user.save!
 
+   if @user.save
     redirect_to edit_skills_path
+   else
+     render :edit
+   end
+
   end
 
 
