@@ -9,6 +9,7 @@ class Project < ApplicationRecord
   has_many :users, through: :bookings
 
   has_many_attached :photos
+  validates :photos, size: { between: 1.kilobyte..5.megabytes , message: 'size is too big (max 5MB)' }, content_type: ['image/png', 'image/jpeg']
 
   validates :title, presence: true
   validates :description, presence: true
