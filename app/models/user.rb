@@ -22,6 +22,7 @@ class User < ApplicationRecord
 
 
   has_one_attached :photo
+  # validates :photo, size: { between: 1.kilobyte..5.megabytes , message: 'size is too big (max 5MB)' }, content_type: ['image/png', 'image/jpeg']
 
   has_many :messages, dependent: :destroy
   has_many :notifications, dependent: :destroy
